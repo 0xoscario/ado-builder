@@ -114,13 +114,13 @@ const MissionDashboard = (props) => {
 
                 <div id="add-module-bar" className="text-center p-3">
                     <a data-toggle="modal" data-target="#ModuleSelectionForm">
-                        <img src="/images/add_dropshadow.png" className="" width="75" />
+                        <img src="./images/add_dropshadow.png" className="" width="75" />
                     </a>
                 </div>
 
             </div>
                 <div className="text-center">
-                    <img src="/images/curly-down-brace.png" />
+                    <img src="./images/curly-down-brace.png" />
                     <div className="text-center m-4">
                         <button type="button" className="btn btn-primary">Build Contract</button>
                     </div>

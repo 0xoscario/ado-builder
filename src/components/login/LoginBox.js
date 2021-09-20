@@ -12,7 +12,7 @@ const LoginBox = (props) => {
         <div id="wrapper" className="col-8 offset-lg-2">
             <div id="loginbox" className="light-opacity rounded-lg m-5 p-5">
                 <div id="login-header" className="text-center text-light">
-                    <img src="images/adp-logo_labeled.png" className="m-2" height="90" />
+                    <img src="./images/adp-logo_labeled.png" className="m-2" height="90" />
                     <p className="h2">Functional Smart Contracts</p>
                     <div className="">
                         <p>NFTs and Contracts embeded with governance, rules, royalties, and other commercial terms</p>
@@ -30,7 +30,7 @@ const LoginBox = (props) => {
                                 }}
                                 >
                                     <span className="float-left mt-2">Install Terra Station Extension</span>
-                                    <img src="/images/connect-icons_extension.png" width="42" className="float-right" />
+                                    <img src="./images/connect-icons_extension.png" width="42" className="float-right" />
                                 </button>
                             :
                                 status === WalletStatus.WALLET_NOT_CONNECTED && (
@@ -42,7 +42,7 @@ const LoginBox = (props) => {
                                     }}
                                     >
                                         <span className="float-left mt-2">Connect Terra Station Extension</span>
-                                        <img src="/images/connect-icons_extension.png" width="42" className="float-right" />
+                                        <img src="./images/connect-icons_extension.png" width="42" className="float-right" />
                                     </button>
                                 )
                             }
@@ -58,7 +58,7 @@ const LoginBox = (props) => {
                                 }}
                                 >
                                     <span className="float-left mt-2">Connect Terra Station Mobile</span>
-                                    <img src="/images/connect-icons_mobile.png" width="42" className="float-right" />
+                                    <img src="./images/connect-icons_mobile.png" width="42" className="float-right" />
                             </button>
                         </div>
                     </div>

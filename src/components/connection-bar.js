@@ -23,7 +23,7 @@ const ConnectionBar = (props) => {
                         disconnect()
                     }}
                     >
-                        <img src="images/connect-icons_extension.png" width="22" className="mr-0" />
+                        <img src="./images/connect-icons_extension.png" width="22" className="mr-0" />
                         <span className="pr-1">Disconnect</span>
                     </button>
                 )}

@@ -14,8 +14,10 @@ T2Idj2OK98
 ## Development
 
 ### Operating
-npm start\
-npm build
+npm install (Build out dependency modules)\
+npm start (Launch local dev server version)\
+npm run build (Build package)\
+gh-pages -d build (Wrap package for release to GitHub Pages)
 
 ### Dependencies
 #### NPM

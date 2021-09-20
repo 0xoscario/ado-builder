@@ -110,7 +110,7 @@ const Dashboard = (props) => {
                     <div id="dashWrapper" className="dash-wrapper row m-0 h-100">
                         <div id="sidebar" className="col-3 dark-opacity text-light pt-5 p-3">
                         <div id="headerBar" className="container-fluid text-center text-light">
-                            <img src="/images/adp-logo.png" height="40" className="pl-2 pb-2" />
+                            <img src="./images/adp-logo.png" height="40" className="pl-2 pb-2" />
                             <p className="h1" className="display-4 pb-0 mb-0">Andromeda</p>
                             <p className="h3" className="">Functional Terra NFTs</p>
                         </div>
@@ -226,7 +226,7 @@ const Dashboard = (props) => {
     
                             <div className="row  text-light ml-4 mr-4 mt-1">
                                 <div className="col rounded-lg light-opacity p-4">
-                                    <img src="/images/connect-icons_mobile.png" width="40" className="float-left" />
+                                    <img src="./images/connect-icons_mobile.png" width="40" className="float-left" />
                                     <p className="h5 float-left p-2">Create an NFT Collectible, DeFi Instrument or other smart contract</p>
                                     <button 
                                         className="btn btn-primary float-right p-2"
