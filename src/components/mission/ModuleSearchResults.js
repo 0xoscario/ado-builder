@@ -4,7 +4,7 @@ import React from 'react'
 import _ from 'lodash' //underscores '_.' reference lodash in code below and are not an operator
 
 //Load Interface Components & Iconography
-import ModuleBar from '/components/mission/ModuleBar'
+import ModuleBar from './ModuleBar'
 
 //Load Module Info to Operate Form From
 const moduleList = [

@@ -38,7 +38,7 @@ const CoinBalance = (props) => {
     //Section to preformat data for integration into other components
     } else if (props.dspType === "Total") {
         return(
-            <p>{currency(usrWalletData.acctValue)}</p>
+            <p>{usrWalletData.currency(usrWalletData.acctValue)}</p>
         )
     } else {
         return (null)

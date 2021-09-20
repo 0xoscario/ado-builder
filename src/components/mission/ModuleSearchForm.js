@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 
 //Load Content Components
-import ModuleSearchResults from '/components/mission/ModuleSearchResults'
+import ModuleSearchResults from './ModuleSearchResults'
 
 //Load Interface Components & Iconography
 import SearchIcon from '@material-ui/icons/SearchOutlined'

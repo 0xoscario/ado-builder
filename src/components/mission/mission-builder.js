@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
 //Load Content Components
-import AddedModuleButtons from '/components/mission/AddedModuleButtons'
-import ModuleSearchForm from '/components/mission/ModuleSearchForm';
+import AddedModuleButtons from './AddedModuleButtons'
+import ModuleSearchForm from './ModuleSearchForm'
 
 //Load Interface Components & Iconography
 
