@@ -2,14 +2,23 @@
 
 A repository for the front-end user interface for the Andromeda Protocol Builder (APB).
 
+## Current Build Notes
+This is currently in proto-typing, and as such has limited functionality, formatting issuses, and bugs.\
+Chain data retrieval modules have yet to be assigned to a preloader and sometimes displays incorrectly.
+
+### Sample Test Wallet
+If you need a wallet to test with then you can use the following which has tokens preloaded for Testnet & Bombay\
+terra1k82hqu0hxksyyew5atm8eq08t94e2klwe3yhsc\
+T2Idj2OK98
+
 ## Development
 
 ### Operating
-ADO-Builder uses the ParcelJS web application bundler. | Run with ```parcel index.html```
+npm start
+npm build
 
 ### Dependencies
 #### NPM
-ParcelJS Bundler - [ParcelJS.org](https://parceljs.org/)\
 React - [ReactJS.org](https://reactjs.org/)\
 Axios - [Axios-HTTP.com](https://axios-http.com/)\
 Lo Dash - [Lodash.com](https://lodash.com/)\
