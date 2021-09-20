@@ -14,7 +14,7 @@ T2Idj2OK98
 ## Development
 
 ### Operating
-npm start
+npm start\
 npm build
 
 ### Dependencies
