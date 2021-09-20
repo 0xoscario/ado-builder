@@ -173,7 +173,6 @@ const Dashboard = (props) => {
                                                 <a 
                                                     className="nav-link" 
                                                     onClick={() => {
-                                                        hideAll(),
                                                         setShowDash(true)
                                                     }}
                                                     href="/">

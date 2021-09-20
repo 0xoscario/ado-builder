@@ -1,14 +1,15 @@
+//AddedModuleButton - 
 import React, {useState} from 'react';
+
+//Load Interface Components & Iconography
+import SettingsIcon from '@material-ui/icons/SettingsOutlined';
+import DownArrowIcon from '@material-ui/icons/ArrowDownwardOutlined';
 
 // Check if is first module button added & include drop arrow above if true
 // Map the modules provided to create a series of buttons to apply to current project
 
 //Apply Props of Added Modules
 const addedModuleName = "Module Name"
-
-//Load Interface Components & Iconography
-import SettingsIcon from '@material-ui/icons/SettingsOutlined';
-import DownArrowIcon from '@material-ui/icons/ArrowDownwardOutlined';
 
 const AddedModuleButton = () => {
     return (
