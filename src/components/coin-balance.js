@@ -11,7 +11,7 @@ const CoinBalance = (props) => {
     
 
     // Setup Currency Icon Path
-    const currencyIcon = "./images/currency-icons/currency-icons_" + `${usrWalletData.denomTitle}` + ".png"
+    const currencyIcon = "./images/currency-icons/currency-icons_" + `${usrWalletData.denomTitle.toUpperCase()}` + ".png"
     
     //Preformated data for integration into the Dashboard component
     if (props.dspType === "Dash") {
