@@ -28,7 +28,7 @@ const MissionDashboard = (props) => {
             
                 <div className="col-12 text-right pb-5">
                     <a 
-                        className="text-dark"
+                        className="text-light"
                         onClick={() => {
                             props.setShowMissionDashboard(false),
                             props.setShowDashboard(true)
@@ -122,7 +122,7 @@ const MissionDashboard = (props) => {
                 <div className="text-center">
                     <img src="./images/curly-down-brace.png" />
                     <div className="text-center m-4">
-                        <button type="button" className="btn btn-primary">Build Contract</button>
+                        <button type="button" className="btn btn-primary pad-btn">Build Contract</button>
                     </div>
                 </div>
         </div>

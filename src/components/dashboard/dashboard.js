@@ -229,7 +229,7 @@ const Dashboard = (props) => {
                                     <img src="./images/connect-icons_mobile.png" width="40" className="float-left" />
                                     <p className="h5 float-left p-2">Create an NFT Collectible, DeFi Instrument or other smart contract</p>
                                     <button 
-                                        className="btn btn-primary float-right p-2"
+                                        className="btn btn-primary float-right pad-btn"
                                         onClick={() => {
                                             hideAll(),
                                             setShowTemplates(true)

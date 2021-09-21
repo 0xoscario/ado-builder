@@ -12,7 +12,7 @@ const ModuleSelection = (props) => {
                 <div id="Modal-Header">
                     <div className="col-12 text-right">
                         <a 
-                            className="text-dark"
+                            className="text-light"
                             data-toggle="modal" 
                             data-target="#ModuleSelectionForm"
                             onClick={() => {

@@ -23,7 +23,7 @@ const TemplatePage = (props) => {
                 <div className="light-opacity rounded-lg w-80 mt-4 mx-5 p-2">
                     <div className="col-12 text-right">
                         <a 
-                            className="text-dark"
+                            className="text-light"
                             onClick={() => {
                                 props.setShowDash(true)
                             }}>
@@ -48,7 +48,7 @@ const TemplatePage = (props) => {
                             <div className="text-center">
                                 {templateInfo.disabled? 
                                     <button 
-                                        className="btn btn-primary px-4 py-2 mt-5"
+                                        className="btn btn-primary pad-btn {/* px-4 py-2 */} mt-5"
                                         onClick={() => {
                                             props.setShowDashboard(false),
                                             props.setShowMissionDashboard(templateInfo.link)
@@ -59,7 +59,7 @@ const TemplatePage = (props) => {
                                     </button>                                    
                                 :
                                     <button 
-                                        className="btn btn-primary px-4 py-2 mt-5"
+                                        className="btn btn-primary pad-btn {/* px-4 py-2 */} mt-5"
                                         onClick={() => {
                                             props.setShowDashboard(false),
                                             props.setShowMissionDashboard(templateInfo.link)

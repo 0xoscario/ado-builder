@@ -6,7 +6,7 @@ const PreviewPage = (props) => {
         <div id="previewWrapper">
             <p className="h3">Preview Page</p>
             <button 
-                                className="btn btn-primary float-right p-2"
+                                className="btn btn-primary float-right pad-btn"
                                 onClick={() => {
                                     props.setShowDash(true)
                                 }}    
