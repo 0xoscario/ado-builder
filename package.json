@@ -2,7 +2,7 @@
   "name": "ado-builder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://app.andromedaprotocol.io/",
+  "homepage": "app.andromedaprotocol.io",
   "dependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
