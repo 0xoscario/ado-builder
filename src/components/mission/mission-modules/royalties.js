@@ -15,16 +15,38 @@ const Royalties = (props) => {
                         <div id="RoyaltiesForm" className=" col-6 offset-lg-3 text-left collapse">
                             <hr />
                                 <div>
-                                    <div className="form-group">
-                                        <label htmlFor="formGroupExampleInput" className="lead">Alphanumeric Terra Address</label>
-                                        <div className="row">
-                                            <input type="text" className="form-control col" id="formGroupExampleInput" placeholder="terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4" />
-                                            <button type="button" htmlFor="formGroupExampleInput" className="col-2 btn btn-primary ml-2">Add</button>
+                                    <p className="row h6 text-primary my-4">What royalty fee would you like applied to the sale of this asset?</p>
+                                    <div className="form-group my-2">
+                                        <div>                                                                                    
+                                            <label htmlFor="formGroupExampleInput" className="row lead">% fee of sale price</label>
+                                            <div className="row">
+                                                <input type="text" className="form-control col-5" id="formGroupExampleInput" placeholder="5%" />
+                                            </div>
                                         </div>
-                                        <label htmlFor="formGroupExampleInput" className="small">Address allowed to interact with your NFT.</label>
+
+                                        <div className="row my-4">
+                                            <div className="col pl-0">
+                                                <label htmlFor="formGroupExampleInput" className="lead">Flat fee</label>
+                                                <input type="text" id="formGroupExampleInput" className="form-control col" placeholder="$50.00" />
+                                            </div>
+                                            <div className="col">
+                                                <label htmlFor="formGroupExampleInput" className="lead">Currency type</label>
+                                                <input type="text" id="formGroupExampleInput" className="form-control col" placeholder="USD" />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-group my-5">
+                                            <p className="row h6 text-primary my-2">Reciever of this royalty payout?</p>
+                                            <label htmlFor="formGroupExampleInput" className="row lead">Alphanumeric Terra Address</label>
+                                            <div className="row">
+                                                <input type="text" className="form-control col" id="formGroupExampleInput" placeholder="terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4" />
+                                                <button type="button" htmlFor="formGroupExampleInput" className="col-2 btn btn-primary ml-2">Add</button>
+                                            </div>
+                                            <label htmlFor="formGroupExampleInput" className="small">Address recieving funds from royalty.</label>
+                                        </div>
                                     </div>
                                     <hr />
-                                    <p className="h5">Whitelisted</p>
+                                    <p className="h5">Royalty Recipient</p>
                                     <div key="AddedAddress1" className="row mid-opacity rounded-lg text-dark small p-3 mb-2">
                                         <p className="col text-left m-0">terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4</p>
                                         <a className="col-2  text-danger" onClick={() => {return(null)}}>Remove</a>
