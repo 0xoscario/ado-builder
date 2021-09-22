@@ -21,7 +21,9 @@ const CoinBalance = (props) => {
                 <div className="row">
                     <img src={currencyIcon} className="h-100 col-2" />
                     <p className="col-5 h4 text-uppercase">{usrWalletData.denomTitle}</p>
-                    <p className="col-5 h5 text-right">{usrWalletData.amt}</p>
+                    <p className="col-5 h5 text-right">{
+                        Math.trunc(usrWalletData.amt * Math.pow(10, 4)) / Math.pow(10, 4)                
+                    }</p>
                 </div>
                 <hr />
                 <div id="titles" className="row mt-4">
