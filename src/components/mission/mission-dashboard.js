@@ -13,6 +13,11 @@ import NFTDetails from './mission-modules/nft-details'
 import Whitelist from './mission-modules/whitelist'
 import Royalties from './mission-modules/royalties'
 import Taxes from './mission-modules/taxes'
+import Splitter from './mission-modules/splitter'
+import TimeLock from './mission-modules/time-lock'
+import Metadata from './mission-modules/metadata'
+import Reciept from './mission-modules/reciept'
+import ESign from './mission-modules/e-sign'
 
 const MissionDashboard = (props) => {
 
@@ -97,6 +102,11 @@ const MissionDashboard = (props) => {
                         <Whitelist />
                         <Royalties />
                         <Taxes />
+                        <Splitter />
+                        <TimeLock />
+                        <Metadata />
+                        <Reciept />
+                        <ESign />
                     </div>
                 )}
                 {props.showMissionDashboard === "DeFi" && (

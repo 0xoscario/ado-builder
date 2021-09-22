@@ -3,7 +3,7 @@ import React from "react"
 const Royalties = (props) => {
     
     return (
-                <div id="NFTD-details" className="row">
+                <div id="royalties-panel" className="row">
                     <div className="col-1"></div>
                     <div id="inner-content-box" className="col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-2 p-4">
                         <div className="custom-control custom-switch float-right">
