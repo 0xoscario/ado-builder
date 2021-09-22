@@ -11,6 +11,7 @@ import ModuleSelection from './ModuleSelection'
 //Dynamicly Loaded Data Modules
 import NFTDetails from './mission-modules/nft-details'
 import Whitelist from './mission-modules/whitelist'
+import Blacklist from './mission-modules/blacklist'
 import Royalties from './mission-modules/royalties'
 import Taxes from './mission-modules/taxes'
 import Splitter from './mission-modules/splitter'
@@ -101,6 +102,7 @@ const MissionDashboard = (props) => {
                     <div>
                         <Whitelist />
                         <Royalties />
+                        <Blacklist />
                         <Taxes />
                         <Splitter />
                         <TimeLock />
