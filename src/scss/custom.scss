@@ -1,6 +1,8 @@
 //Override BootStrap with Custom SASS
 //Bootstrap loaded at bottom
 
+/* Company Site Pallete 
+#f0425c;
 
 /* Custom Definitions */
 body {
@@ -54,36 +56,48 @@ body {
         rgba(150, 150, 150, 0.02) 100%
     ),
     
-    linear-gradient(90deg, #4756a8,#3e289c);
+    linear-gradient(90deg, #f16176,#f0425c7e);
 }
 
 /* See-through panel definitions */
 .main-moduleselection {
-    background-color: rgba(240, 241, 248, 0.2);
+    background-color: rgba(248, 240, 242, 0.2);
  }
 
  .bright-opacity {
-   background-color: rgba(240, 241, 248, 0.6);
+   background-color: rgba(248, 240, 241, 0.6);
 }
 
  .light-opacity {
-    background-color: rgba(240, 241, 248, 0.2);
+    background-color: rgba(248, 241, 244, 0.158);
  }
 
  .mid-opacity {
-    background-color: rgba(240, 241, 248, 0.4);
+    background-color: rgba(248, 241, 248, 0.4);
  }
 
  .dark-opacity {
-    background-color: rgba(118, 98, 230, 0.4);
+    background-color: rgba(231, 104, 125, 0.801);
  }
 
  .modal-opacity {
-    background-color: rgba(187, 193, 238, 0.9);
+    background-color: rgba(238, 187, 221, 0.9);
  }
 
-/* Bootstrap Overrides */
-$primary: #3823a1;
+ 
+ /* Bootstrap Overrides */
+ $primary: rgba(214, 97, 122, 0.39);
+ $dark: rgb(78, 78, 78);
+
+ body .btn-primary {
+     color:white;
+ }
+
+ body .btn-primary:hover {
+     color: white;
+ }
+
+
 
 //Import Bootsrap 
 // @import '~bootstrap/scss/bootstrap'
