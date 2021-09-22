@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 
+// Load Bootstrap Configuration Override SCSS
+import './scss/custom.scss'
+
+/* Deprecated for Transition from Parcel (resolved Parcel conflict)
 //Patch ASync Regenerator Conflicts in Parcel
 import 'regenerator-runtime/runtime'
+*/
 
 //Load Terra-Money Modules
 import {NetworkInfo, WalletProvider, ConnectType, useWallet, WalletStatus} from '@terra-money/wallet-provider';

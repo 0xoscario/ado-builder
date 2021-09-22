@@ -1,6 +1,8 @@
-@charset "UTF-8";
-/* CSS Document */
+//Override BootStrap with Custom SASS
+//Bootstrap loaded at bottom
 
+
+/* Custom Definitions */
 body {
     /*Custom Background Design */
 	background-image: 
@@ -55,26 +57,7 @@ body {
     linear-gradient(90deg, #4756a8,#3e289c);
 }
 
-/* Temporary Overrides for Bootstrap */ 
-/* Finalization should be setup in proper SCSS override for Bootstrap */
-.btn-primary {
-    background-color: #4756a8;
- }
-
-.border-primary {
-    border-color: #a8a8a8;
- }
-
- .btn-primary:hover {
-    border-color: #a8a8a8;
-    background-color: #4756a8b0;
- }
-.text-primary {
-    color: #404e9e;
-  } 
-  /* End of temp-overrides */
-
-
+/* See-through panel definitions */
 .main-moduleselection {
     background-color: rgba(240, 241, 248, 0.2);
  }
@@ -99,8 +82,9 @@ body {
     background-color: rgba(187, 193, 238, 0.9);
  }
 
- .original-dark-opacity {
-    background-color: rgba(38, 28, 92, 0.4);
+/* Bootstrap Overrides */
+$primary: #3823a1;
 
-    color: rgb(40, 146, 81)
- }
+//Import Bootsrap 
+// @import '~bootstrap/scss/bootstrap'
+@import '../../node_modules/bootstrap/scss/bootstrap'

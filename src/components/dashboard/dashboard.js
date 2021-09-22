@@ -3,7 +3,7 @@
 import React, {useState, useEffect} from 'react'
 
 //Load Content Components
-import Preloader from './modal-preloader'
+//import Preloader from './modal-preloader'
 import ConnectionBar from '../connection-bar'
 import CoinBalance from '../coin-balance' //parses coin data for displaying
 import AssetGallery from '../asset-gallery'
@@ -314,7 +314,7 @@ const Dashboard = (props) => {
                     </div>
                     :
                     <div id="subPageWrapper" className="m-0 p-0">
-                        {showPreloader? <Preloader confirmSwapRate={usrWalletData.confirmSwapRate()} /> : null}
+                        
                         {showTemplates? <TemplatePage setShowDash={setShowDash} setShowDashboard={props.setShowDashboard} setShowMissionDashboard={props.setShowMissionDashboard}/> : null}
                         {showTransactions? <TransactionsPage setShowDash={setShowDash}/> : null}
                         {showBurn? <BurnPage setShowDash={setShowDash}/> : null}
@@ -324,7 +324,7 @@ const Dashboard = (props) => {
                 </div>
             )                        
 }
-
+// {/* showPreloader? <Preloader confirmSwapRate={usrWalletData.confirmSwapRate()} /> : null */}
 
 
 export default Dashboard
