@@ -1,0 +1,24 @@
+// Notifications( ) - Shows passed notification popups and errors
+//Uses popupDuration variable below to set the duration a popup should be up for
+//Stylization types of: error | info | success | warning
+
+import React from 'react'
+import {Snackbar} from '@material-ui/core'
+import {Alert} from '@material-ui/lab'
+
+
+
+const Notifications = (props) => {
+    const popupDuration = 1500 //time in milliseconds to display popup
+    
+    return (
+        <Snackbar open={props.notify.isOpen} autoHideDuration={popupDuration} >            
+            <Alert severity={props.notify.type}>
+                {props.notify.message}
+            </Alert>
+        </Snackbar>
+
+    )
+}
+
+export default Notifications

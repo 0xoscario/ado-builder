@@ -19,7 +19,8 @@ gh-pages -d build (Wrap package for release to GitHub Pages)
 React - [ReactJS.org](https://reactjs.org/)\
 Axios - [Axios-HTTP.com](https://axios-http.com/)\
 Lo Dash - [Lodash.com](https://lodash.com/)\
-Material-UI - [Material-UI.com/](https://material-ui.com/)\
+Material-UI - [Material-UI.com](https://material-ui.com/)\
+Material-UI Lab - [github.com/mui-org/material-ui](https://github.com/mui-org/material-ui/)\
 Apollo Client - [ApolloGraphQL.com](https://www.apollographql.com/)\
 Terra.js - [Terra-Money.Github.io/Terra.js](https://terra-money.github.io/terra.js/)\
 Terra Wallet Provider - [npmjs.com/package/@terra-money/wallet-provider](https://www.npmjs.com/package/@terra-money/wallet-provider)\
