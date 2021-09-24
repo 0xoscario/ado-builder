@@ -1,7 +1,7 @@
 // MissionDashboard(setShowDashboard, showMissionDashboard, setShowMissionDashboard)
 // - Page used to develop, configure, and deploy custom ANDR contracts 
 // (Utilises dynamic development to build custom WYSIWG)
-import React from 'react'
+import React, {useState} from 'react'
 
 //Load Content Components
 import PrimaryHeaderBar from '../header-bar'
@@ -20,11 +20,49 @@ import Metadata from './mission-modules/metadata'
 import Reciept from './mission-modules/reciept'
 import ESign from './mission-modules/e-sign'
 
+
+
 const MissionDashboard = (props) => {
+    
+    //Declare Panel State & Data for use throughout Mission-Builder
+    //State is not reset here, but in setPanels()
+    /* --Params
+        showPanel - Toggles loaded to MB | isOpen - Toggles Collapse State | isRequired - Toggle Enabled of Panel Removal | 
+        dependentOn - Other Panels which must be present prior to adding (to be implemented)|
+        isValidated - visual validation toggle for failing validation on submission (border highlighting problem panels)|
+        Declared $VARIBLES - Panel specific data for passing to messaging and validators (e.g. Array toWhitelist[address1, address2])
+    */
+    const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toWhitelist: [],})
+    const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toBlacklist: [],})
+    const [royaltiesPanel, setRoyaltiesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [splitterPanel, setSplitterPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [timelockPanel, setTimelockPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [metadataPanel, setMetadataPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [recieptPanel, setRecieptPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [esignPanel, setEsignPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+   
+   
+    //Compile declare panels into stack for prop-drilling through mission-builder
+    const [Panels,setPanels] = useState({ 
+        whitelist:whitelistPanel,
+        blacklist:blacklistPanel,
+        royalties:royaltiesPanel,
+        taxes:taxesPanel,
+        splitter:splitterPanel,
+        timelock:timelockPanel,
+        metadata:metadataPanel,
+        reciept:recieptPanel,
+        esign:esignPanel
+    } )
+    
+    //Debugging toggles 
+    //console.info(Panels) //show Panel structure for review in console
+
 
     return (
         <div id="mission-builder-wrapper" className="m-0">
-            <ModuleSelection />
+            <ModuleSelection Panels={Panels} setPanels={setPanels}/>
             <div id="header">
                 <PrimaryHeaderBar />
                 <ConnectionBar />
@@ -99,23 +137,19 @@ const MissionDashboard = (props) => {
                 )}
                 
                 {props.showMissionDashboard === "NFT" && (
-                    <div>
-                        <Whitelist />
-                        <Royalties />
-                        <Blacklist />
-                        <Taxes />
-                        <Splitter />
-                        <TimeLock />
-                        <Metadata />
-                        <Reciept />
-                        <ESign />
-                    </div>
+                    Panels.whitelist.showPanel=true,
+                    Panels.whitelist.isRequired=true,
+                    Panels.royalties.showPanel=true,
+                    Panels.royalties.isRequired=true,
+                    Panels.taxes.showPanel=true,
+                    Panels.taxes.isRequired=true
+                    
                 )}
                 {props.showMissionDashboard === "DeFi" && (
-                    <div>
-                        <Royalties />
-                        <Taxes />
-                    </div>
+                     Panels.royalties.showPanel=true,
+                     Panels.royalties.isRequired=true,
+                     Panels.taxes.showPanel=true,
+                     Panels.taxes.isRequired=true
                 )}
                 {props.showMissionDashboard === "Alternate" && (
                     <div>                        
@@ -123,6 +157,18 @@ const MissionDashboard = (props) => {
                         <Whitelist />
                     </div>
                 )}
+
+                <div>
+                    {Panels.whitelist.showPanel? <Whitelist Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.royalties.showPanel? <Royalties Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.blacklist.showPanel? <Blacklist Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.taxes.showPanel? <Taxes Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.splitter.showPanel? <Splitter Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.timelock.showPanel? <TimeLock Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.metadata.showPanel? <Metadata Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.reciept.showPanel? <Reciept Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.esign.showPanel? <ESign Panels={Panels} setPanels={setPanels}/> : null }
+                </div>
 
                 <div id="add-module-bar" className="text-center p-3">
                     <a data-toggle="modal" data-target="#ModuleSelectionForm">

@@ -18,7 +18,7 @@ const ModuleSelection = (props) => {
                             onClick={() => {
                                 //action
                             }}>
-                            Cancel X
+                            Close X
                         </a>
                         
                     </div>
@@ -26,7 +26,7 @@ const ModuleSelection = (props) => {
                         Find A Module to Add
                     </p>
                 </div>
-                <ModuleSearchForm />
+                <ModuleSearchForm Panels={props.Panels} setPanels={props.setPanels} />/>
             </div>
         </div>
     )

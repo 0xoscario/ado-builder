@@ -24,7 +24,7 @@ const categoryList= [
 
 
 
-const ModuleSearchForm = () => {
+const ModuleSearchForm = (props) => {
     const [searchText, setSearchText] = useState("")
     const [categoryFilter, setCategoryFilter] = useState("all")
 
@@ -76,7 +76,7 @@ const ModuleSearchForm = () => {
                     </div>
                 </div>
             </div>
-                <ModuleSearchResults searchText={searchText} categoryFilter={categoryFilter}/>
+                <ModuleSearchResults searchText={searchText} categoryFilter={categoryFilter} Panels={props.Panels} setPanels={props.setPanels} />
         </div>
 
     )

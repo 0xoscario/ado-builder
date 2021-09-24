@@ -28,7 +28,29 @@ function ModuleBar(props) {
                     <p className="m-0">{props.desc}</p>
                 </div>
                 <div className="col-3">
-                    <button type="button" className="btn btn-primary btn-custom float-right w-100" data-toggle="modal" data-target="#ModuleSelectionForm">Add Module</button>
+                    {/* Only offer Add Module button if not currently present */}
+                    
+
+                    <button 
+                        type="button" 
+                        className={props.Panels[props.action.toString()].showPanel? 
+                            'btn btn-warning disabled float-right w-100'
+                            :
+                            'btn btn-primary btn-custom float-right w-100' 
+                        }
+                        data-toggle="modal" 
+                        data-target="#ModuleSelectionForm"
+                        onClick={() => {
+                            props.setPanels({...props.Panels, [props.action.toString()]:{...props.Panels[props.action.toString()], showPanel:true}})
+                        }}
+                        
+                        >
+                        {/* props.setPanels({...props.Panels, whitelist:{...props.Panels.whitelist, showPanel:true}})} */ }
+                        {props.Panels[props.action.toString()].showPanel? 'In Mission' : 'Add Module'}
+                    </button>
+                            {/* Adding this disabled toggle to button breaks the modal trigger of 
+                                disabled={props.Panels[props.action.toString()].showPanel} 
+                            */}
                 </div>
             </div>
 

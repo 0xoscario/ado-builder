@@ -9,6 +9,7 @@ import ConnectionBar from '../connection-bar'
 const templateList = [
     // id | name | desc | icon | link
     {id: 1, name: 'NFT Collectible', descItems: ["No fees","Earn royalties", "Add an EULA", "Track transactions"], icon: './images/module-icons/placeholder.jpg', link:'NFT', disabled: false},
+    //{id: 2, name: 'Custom Build', descItems: ["Build Your Own"], icon: './images/module-icons/exchange.jpg', link:'CST', disabled: false},
     {id: 2, name: 'Defi Instrument', descItems: ["Automate buy / sell", "Split funds / profits","Tax Management","Smart contracts"], icon: './images/module-icons/exchange.jpg', link:'DeFi', disabled: true},
     {id: 3, name: 'Alternative Use', descItems: ["Track transactions", "Collect funds","Document signing","Cap tables"], icon: './images/module-icons/import-export.jpg', link:'Alternate', disabled: true}
   ];

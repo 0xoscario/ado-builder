@@ -1,4 +1,5 @@
-import React from "react"
+//Roaylties(Panels, setPanels) - Roaylties panel integrated in Mission-Builder
+import React from 'react'
 
 const Royalties = (props) => {
     
@@ -6,6 +7,21 @@ const Royalties = (props) => {
                 <div id="royalties-panel" className="row">
                     <div className="col-1"></div>
                     <div id="inner-content-box" className="col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-2 p-4">
+                        {/* Show removal button only if panel is not set to be required */}
+                        {props.Panels.royalties.isRequired? 
+                            null
+                        :   
+                            <div className="remove-panel float-left">
+                                <button 
+                                    type="button" 
+                                    className="btn btn-danger"
+                                    onClick={() => {
+                                        props.setPanels({...props.Panels, royalties:{...props.Panels.royalties, showPanel:false}})
+                                    }}>
+                                    X
+                                </button>
+                            </div>
+                        }
                         <div className="custom-control custom-switch float-right">
                             <input type="checkbox" className="custom-control-input" id="royalties-switch" data-toggle="collapse" data-target="#RoyaltiesForm" aria-expanded="false" aria-controls="RoyaltiesForm"/>
                             <label className="custom-control-label" htmlFor="royalties-switch"></label>

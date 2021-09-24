@@ -30,6 +30,21 @@ const Whitelist = (props) => {
         <div id="whitelist-panel" className="row">
             <div className="col-1"></div>
             <div id="inner-content-box" className="col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-2 p-4">
+                {/* Show removal button only if panel is not set to be required */}
+                {props.Panels.whitelist.isRequired? 
+                    null
+                :   
+                    <div className="remove-panel float-left">
+                        <button 
+                            type="button" 
+                            className="btn btn-danger"
+                            onClick={() => {
+                                props.setPanels({...props.Panels, whitelist:{...props.Panels.whitelist, showPanel:false}})
+                            }}>
+                            X
+                        </button>
+                    </div>
+                }
                 <div className="custom-control custom-switch float-right">
                     <input type="checkbox" className="custom-control-input" id="whitelist-switch" data-toggle="collapse" data-target="#WhitelistDetailForm" aria-expanded="false" aria-controls="WhitelistDetailForm"/>
                     <label className="custom-control-label" htmlFor="whitelist-switch"></label>
