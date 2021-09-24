@@ -11,9 +11,14 @@ import {Alert} from '@material-ui/lab'
 const Notifications = (props) => {
     const popupDuration = 1500 //time in milliseconds to display popup
     
+    // On Snackbar close
+    const closeNotify = (e, reason) => {
+        props.setNotify({...props.notify, isOpen:false}) //only need to change property 'isOpen' to false
+    }
+
     return (
-        <Snackbar open={props.notify.isOpen} autoHideDuration={popupDuration} >            
-            <Alert severity={props.notify.type}>
+        <Snackbar open={props.notify.isOpen} autoHideDuration={popupDuration} anchorOrigin={{vertical:'top', horizontal:'right'}} onClose={closeNotify}>            
+            <Alert severity={props.notify.type} onClose={closeNotify}>
                 {props.notify.message}
             </Alert>
         </Snackbar>

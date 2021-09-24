@@ -4,6 +4,8 @@ import React, {useState} from 'react'
 // Import components
 import Notifications from '../../notification' //Notify popup component for adding & error catching
 
+//Import Form Validators
+import Validator from '../../../modules/validators'
 
 const Whitelist = (props) => {
     const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
@@ -11,9 +13,12 @@ const Whitelist = (props) => {
     // Test accounts noted at: https://github.com/terra-money/localterra#accounts
     function addToWhitelist() {
         //Uses form data to load address.
-//Needs validator!
-        // impolement with document.getElementById("whitelistAddAddress").value
-        setNotify({isOpen:true, message:document.getElementById("whitelistAddAddress").value + ' added to whitelist.', type:'success'})
+
+        // Validate form field
+        Validator.validateWhitelist_Add(document.getElementById("whitelistAddAddress").value)?
+            setNotify({isOpen:true, message:document.getElementById("whitelistAddAddress").value + ' added to whitelist.', type:'success'})
+            : 
+            setNotify({isOpen:true, message:'Please enter a valid alphanumeric Terra address.', type:'error'})
         document.getElementById("whitelistAddAddress").value = '' //clear form field
     }
     
