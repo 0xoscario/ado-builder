@@ -9,6 +9,7 @@ import Validator from '../../../modules/validators'
 
 const Whitelist = (props) => {
     const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
+    const whitelistAddresses = ['terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v', 'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp'] //Managed list of addresses for 
 
     // Test accounts noted at: https://github.com/terra-money/localterra#accounts
     function addToWhitelist() {
@@ -17,9 +18,12 @@ const Whitelist = (props) => {
         // Validate form field
         Validator.validateWhitelist_Add(document.getElementById("whitelistAddAddress").value)?
             setNotify({isOpen:true, message:document.getElementById("whitelistAddAddress").value + ' added to whitelist.', type:'success'})
-            : 
+        : 
             setNotify({isOpen:true, message:'Please enter a valid alphanumeric Terra address.', type:'error'})
+        whitelistAddresses.push(document.getElementById("whitelistAddAddress").value)
+        //console.info(whitelistAddresses)
         document.getElementById("whitelistAddAddress").value = '' //clear form field
+        document.getElementById("whitelistAddAddress").focus() //set the focus to the form field
     }
     
     function removeFromWhitelist(address) {
@@ -73,6 +77,16 @@ const Whitelist = (props) => {
                             </div>
                             <hr />
                             <p className="h5">Whitelisted</p>
+                            
+                            {whitelistAddresses.map((wl) => (
+                                <div key={wl} className="row mid-opacity rounded-lg text-dark small p-3 mb-2">
+                                    <p className="col text-left m-0">{wl}</p>
+                                    <a className="col-2  text-danger" onClick={() => removeFromWhitelist(wl)}>Remove</a>
+                                </div>
+                                ))
+                            }
+                            
+                        { /*
                             <div key="AddedAddress1" className="row mid-opacity rounded-lg text-dark small p-3 mb-2">
                                 <p className="col text-left m-0">terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v</p>
                                 <a className="col-2  text-danger" onClick={() => removeFromWhitelist('terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v')}>Remove</a>
@@ -81,6 +95,7 @@ const Whitelist = (props) => {
                                 <p className="col text-left m-0">terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp</p>
                                 <a className="col-2  text-danger" onClick={() => removeFromWhitelist('terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp')}>Remove</a>
                             </div>
+                        */ }
                         </div>
                 </div>
             </div>
