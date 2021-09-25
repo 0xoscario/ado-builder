@@ -1,8 +1,31 @@
 //Roaylties(Panels, setPanels) - Roaylties panel integrated in Mission-Builder
-import React from 'react'
+import React, {useState} from 'react'
+
+// Import components
+import Notifications from '../../notification' //Notify popup component for adding & error catching
+
+//Import Form Validators
+import Validator from '../../../modules/validators'
 
 const Royalties = (props) => {
-    
+    const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
+
+    // Test accounts noted at: https://github.com/terra-money/localterra#accounts
+    function addToRoyaltyAddressList() {
+        //Uses form data to load address.
+
+        // Validate form field
+        Validator.validateRoyalty_Add(document.getElementById("royaltyAddAddress").value)?
+            setNotify({isOpen:true, message:document.getElementById("royaltyAddAddress").value + ' added to royalty address list.', type:'success'})
+            : 
+            setNotify({isOpen:true, message:'Please enter a valid alphanumeric Terra address.', type:'error'})
+        document.getElementById("royaltyAddAddress").value = '' //clear form field
+    }
+
+    function removeFromList(address) {
+        setNotify({isOpen:true, message:address + ' removed from royalty address list.', type:'warning'})
+    }
+
     return (
                 <div id="royalties-panel" className="row">
                     <div className="col-1"></div>
@@ -55,8 +78,16 @@ const Royalties = (props) => {
                                             <p className="row h6 text-primary my-2">Reciever of this royalty payout?</p>
                                             <label htmlFor="formGroupExampleInput" className="row lead">Alphanumeric Terra Address</label>
                                             <div className="row">
-                                                <input type="text" className="form-control col" id="formGroupExampleInput" placeholder="terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4" />
-                                                <button type="button" htmlFor="formGroupExampleInput" className="col-2 btn btn-primary ml-2">Add</button>
+                                                <input type="text" className="form-control col" id="royaltyAddAddress" placeholder="terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4" />
+                                                <button 
+                                                    type="button" 
+                                                    htmlFor="formGroupExampleInput" 
+                                                    className="col-2 btn btn-primary ml-2"
+                                                    onClick={
+                                                        () => addToRoyaltyAddressList()
+                                                    }>
+                                                        Add
+                                                </button>
                                             </div>
                                             <label htmlFor="formGroupExampleInput" className="small">Address recieving funds from royalty.</label>
                                         </div>
@@ -64,16 +95,17 @@ const Royalties = (props) => {
                                     <hr />
                                     <p className="h5">Royalty Recipient</p>
                                     <div key="AddedAddress1" className="row mid-opacity rounded-lg text-dark small p-3 mb-2">
-                                        <p className="col text-left m-0">terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4</p>
-                                        <a className="col-2  text-danger" onClick={() => {return(null)}}>Remove</a>
+                                        <p className="col text-left m-0">terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v</p>
+                                        <a className="col-2  text-danger" onClick={() => removeFromList('terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v')}>Remove</a>
                                     </div>
                                     <div key="AddedAddress2" className="row mid-opacity rounded-lg text-dark small p-3">
-                                        <p className="col text-left m-0">terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4</p>
-                                        <a className="col-2  text-danger" onClick={() => {return(null)}}>Remove</a>
+                                        <p className="col text-left m-0">terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp</p>
+                                        <a className="col-2  text-danger" onClick={() => removeFromList('terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp')}>Remove</a>
                                     </div>
                                 </div>
                         </div>
                     </div>
+                    {notify? <Notifications notify={notify} setNotify={setNotify} /> : null }
                 </div>
     )
 }

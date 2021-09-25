@@ -13,6 +13,24 @@ class Validators {
             return true
         }
     }
+
+    validateBlacklist_Add(value) {
+        // When value field is blank?
+        if (!value) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    validateRoyalty_Add(value) {
+        // When value field is blank?
+        if (!value) {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 
 const Validator = new Validators()
