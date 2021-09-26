@@ -177,8 +177,14 @@ const MissionDashboard = (props) => {
                 </div>
 
             </div>
+                
+
+                
                 <div className="text-center">
                     <img src="./images/curly-down-brace.png" />
+                    
+                
+                    
                     <div className="text-center m-4">
                         <button type="button" className="btn btn-primary pad-btn">Build Contract</button>
                     </div>
