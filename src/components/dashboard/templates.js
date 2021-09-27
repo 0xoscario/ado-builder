@@ -36,7 +36,19 @@ const TemplatePage = (props) => {
                     {templateList.map((templateInfo) => (
                         <div key={templateInfo.id} className="col light-opacity rounded-lg text-light m-4 p-5">
                             <div className="col  text-center mb-5">
-                                <img src={templateInfo.icon} />
+                                {templateInfo.disabled? 
+                                    <img src={templateInfo.icon} />
+                                :
+                                    <a 
+                                        href="#"
+                                        onClick={() => {
+                                            props.setShowDashboard(false),
+                                            props.setShowMissionDashboard(templateInfo.link)
+                                        }}
+                                    >
+                                        <img src={templateInfo.icon} />
+                                    </a>
+                                }
                             </div>
                             <p className="h4">{templateInfo.name}</p>
                             <hr className="" />
