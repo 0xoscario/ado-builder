@@ -1,16 +1,19 @@
 // Whitelist - Mission builder form panel for whitelisting
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import _ from 'lodash' //underscores '_.' reference lodash in code below and are not an operator
+
+//Load Module Classes
+import Messages from '../../../modules/messaging' //Messge Constructors
+import Validator from '../../../modules/validators' //Form Validators
 
 // Import components
 import Notifications from '../../notification' //Notify popup component for adding & error catching
 
-//Import Form Validators
-import Validator from '../../../modules/validators'
 
 const Whitelist = (props) => {
     const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
     
+
     /* Test data for dynamic adding addresses */
     //props.Panels.whitelist.toWhitelist =  ['terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v', 'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp'] //Managed list of addresses for whitelisting
 
@@ -26,6 +29,7 @@ const Whitelist = (props) => {
                 //props.Panels.whitelist.toWhitelist.unshift(document.getElementById("whitelistAddAddress").value)
             //console.info(props.Panels.whitelist.toWhitelist)
             props.Panels.whitelist.isValidated = true
+            //Messages.updateMessage(props.Panels)
 
             document.getElementById("whitelistAddAddress").value = '' //clear form field
         } else {

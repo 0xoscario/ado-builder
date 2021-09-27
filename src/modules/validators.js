@@ -1,8 +1,20 @@
 //Validators - Class used to provide validation routines for Mission-Builder panel forms
+//exports as Validator
 
 class Validators {
     constructor() {
         this.passed = false
+    }
+
+    validateNftDetails(name, symbol, url, desc) {
+        //when fields are not empty
+            //console.info(name + " , " + symbol + " , " + url + " , " + desc)
+        if(!name || !symbol || !url || !desc) {
+        //if(!name && !symbol && !url && !desc) {
+            return false
+        } else {
+            return true
+        }
     }
 
     validateWhitelist_Add(value) {

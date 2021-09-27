@@ -1,12 +1,16 @@
 // MissionDashboard(setShowDashboard, showMissionDashboard, setShowMissionDashboard)
 // - Page used to develop, configure, and deploy custom ANDR contracts 
 // (Utilises dynamic development to build custom WYSIWG)
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+
+//Load Module Classes
+import Messages from '../../modules/messaging'
 
 //Load Content Components
 import PrimaryHeaderBar from '../header-bar'
 import ConnectionBar from '../connection-bar'
 import ModuleSelection from './ModuleSelection'
+import Notifications from '../notification' //Notify popup component for adding & error catching
 
 //Dynamicly Loaded Data Modules
 import NFTDetails from './mission-modules/nft-details'
@@ -23,7 +27,8 @@ import ESign from './mission-modules/e-sign'
 
 
 const MissionDashboard = (props) => {
-    
+    const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
+
     //Declare Panel State & Data for use throughout Mission-Builder
     //State is not reset here, but in setPanels()
     /* --Params
@@ -32,8 +37,9 @@ const MissionDashboard = (props) => {
         isValidated - visual validation toggle for failing validation on submission (border highlighting problem panels)|
         Declared $VARIBLES - Panel specific data for passing to messaging and validators (e.g. Array toWhitelist[address1, address2])
     */
-    const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toWhitelist: [],})
-    const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toBlacklist: [],})
+    const [nftdetailsPanel, setNftdetailsPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, name:'', symbol:'', url:'', desc:''})
+    const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toWhitelist: []})
+    const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toBlacklist: []})
     const [royaltiesPanel, setRoyaltiesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
     const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
     const [splitterPanel, setSplitterPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
@@ -42,9 +48,12 @@ const MissionDashboard = (props) => {
     const [recieptPanel, setRecieptPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
     const [esignPanel, setEsignPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
    
+    /* For Validator routine to push error messages on build contract errors */
+    const [validationFault, setValidationFault] = useState({hasFailed: false, messages: []})
    
     //Compile declare panels into stack for prop-drilling through mission-builder
     const [Panels,setPanels] = useState({ 
+        nftdetails:nftdetailsPanel,
         whitelist:whitelistPanel,
         blacklist:blacklistPanel,
         royalties:royaltiesPanel,
@@ -53,12 +62,33 @@ const MissionDashboard = (props) => {
         timelock:timelockPanel,
         metadata:metadataPanel,
         reciept:recieptPanel,
-        esign:esignPanel
+        esign:esignPanel,
+
+        validateFault:validationFault
     } )
     
     //Debugging toggles 
     //console.info(Panels) //show Panel structure for review in console
 
+    /* Template configurations only need be run on initial render (this patches overrides on isRequired showPanel reconfigures by user*/
+    //useEffect(() => {
+        if (props.showMissionDashboard === "NFT") {
+            Panels.nftdetails.showPanel=true
+            Panels.nftdetails.isRequired=true
+            Panels.whitelist.showPanel=true
+            Panels.whitelist.isRequired=true
+            Panels.royalties.showPanel=true
+            Panels.royalties.isRequired=true
+            Panels.taxes.showPanel=true
+            Panels.taxes.isRequired=false //currently fails
+        }
+        if (props.showMissionDashboard === "DeFi") {
+            Panels.royalties.showPanel=true
+            Panels.royalties.isRequired=true
+            Panels.taxes.showPanel=true
+            Panels.taxes.isRequired=true
+        }
+    //},[]);
 
     return (
         <div id="mission-builder-wrapper" className="m-0">
@@ -108,7 +138,7 @@ const MissionDashboard = (props) => {
                 )}
 
                 
-                
+            {/*                
                 {props.showMissionDashboard === "NFT" && (
                     <div>
                         <NFTDetails />
@@ -124,33 +154,10 @@ const MissionDashboard = (props) => {
                         <NFTDetails />
                     </div>
                 )}
+            */}
 
-                {props.showMissionDashboard !== "Custom" && (
-                    <div id="extension-header" className="col-12 text-center">
-                        <p className="h2 text-uppercase">
-                            Add Extensions
-                        </p>
-                        <p className="h5">
-                            Build governance , rules, royalties, and other commercial terms directly into your NFT
-                        </p>
-                    </div>
-                )}
                 
-                {props.showMissionDashboard === "NFT" && (
-                    Panels.whitelist.showPanel=true,
-                    Panels.whitelist.isRequired=true,
-                    Panels.royalties.showPanel=true,
-                    Panels.royalties.isRequired=true,
-                    Panels.taxes.showPanel=true,
-                    Panels.taxes.isRequired=true
-                    
-                )}
-                {props.showMissionDashboard === "DeFi" && (
-                     Panels.royalties.showPanel=true,
-                     Panels.royalties.isRequired=true,
-                     Panels.taxes.showPanel=true,
-                     Panels.taxes.isRequired=true
-                )}
+                
                 {props.showMissionDashboard === "Alternate" && (
                     <div>                        
                         <Taxes />
@@ -159,6 +166,19 @@ const MissionDashboard = (props) => {
                 )}
 
                 <div>
+                    {Panels.nftdetails.showPanel? <NFTDetails Panels={Panels} setPanels={setPanels}/> : null }
+                    
+                    {props.showMissionDashboard !== "Custom" && (
+                        <div id="extension-header" className="col-12 text-center">
+                            <p className="h2 text-uppercase">
+                                Add Extensions
+                            </p>
+                            <p className="h5">
+                                Build governance , rules, royalties, and other commercial terms directly into your NFT
+                            </p>
+                        </div>
+                    )}
+                    
                     {Panels.whitelist.showPanel? <Whitelist Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.royalties.showPanel? <Royalties Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.blacklist.showPanel? <Blacklist Panels={Panels} setPanels={setPanels}/> : null }
@@ -183,12 +203,33 @@ const MissionDashboard = (props) => {
                 <div className="text-center">
                     <img src="./images/curly-down-brace.png" />
                     
-                
-                    
+                    {/* Basic display proofing for message construction */}    
                     <div className="text-center m-4">
-                        <button type="button" className="btn btn-primary pad-btn">Build Contract</button>
+                        <button 
+                            type="button" 
+                            className="btn btn-warning pad-btn" 
+                            onClick={() => {
+                                Messages.updateMessage(Panels)
+                                
+                                if(Panels.validateFault.hasFailed) {
+                                    /* Push pop-up errors if validation failures */
+                                    Panels.validateFault.messages.map((msg) => {
+                                        setNotify(msg)
+                                    });
+                                    //console.info(Panels.validateFault)
+                                } else {
+                                    alert(Messages.data)
+                                }
+                            }}>
+                                Proof Message
+                        </button>
+                    </div>
+
+                    <div className="text-center m-4">
+                        <button type="button" className="btn btn-primary pad-btn disabled">Build Contract</button>
                     </div>
                 </div>
+            {notify? <Notifications notify={notify} setNotify={setNotify} /> : null }
         </div>
     )
 }
