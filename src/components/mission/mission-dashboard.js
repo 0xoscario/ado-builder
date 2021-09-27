@@ -80,7 +80,7 @@ const MissionDashboard = (props) => {
             Panels.royalties.showPanel=true
             Panels.royalties.isRequired=true
             Panels.taxes.showPanel=true
-            Panels.taxes.isRequired=false //currently fails
+            Panels.taxes.isRequired=true //currently fails
         }
         if (props.showMissionDashboard === "DeFi") {
             Panels.royalties.showPanel=true
