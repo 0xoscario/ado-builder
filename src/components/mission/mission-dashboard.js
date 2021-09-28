@@ -42,7 +42,7 @@ const MissionDashboard = (props) => {
     const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toWhitelist: []})
     const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toBlacklist: []})
     const [royaltiesPanel, setRoyaltiesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, royaltieslist: [] })
-    const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, taxeslist: [] })
     const [splitterPanel, setSplitterPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
     const [timelockPanel, setTimelockPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
     const [metadataPanel, setMetadataPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })

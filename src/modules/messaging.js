@@ -43,7 +43,10 @@ class Messaging {
             Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
             Panels.validateFault.messages = [{isOpen:true, message:'Whitelist panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
 
-            document.getElementById("whitelistAddAddress").focus() //set the focus to the whitelist
+            //Set Focus when it is the first error encountered
+            if (Panels.validateFault.messages.length <= 1 ) {
+                document.getElementById("whitelistAddAddress").focus() //set the focus to the whitelist
+            }
         }
 
         //Load when there is a validated Royalty List
@@ -71,7 +74,41 @@ class Messaging {
             Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
             Panels.validateFault.messages = [{isOpen:true, message:'Royalties panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
 
-            document.getElementById("RoyaltyDescription").focus() //set the focus to the Royalty description if panel is open
+            //Set Focus when it is the first error encountered
+            if (Panels.validateFault.messages.length <= 1 ) {
+                document.getElementById("RoyaltyDescription").focus() //set the focus to the Royalty description if panel is open
+            }
+        }
+
+        //Load when there is a validated Tax List
+        if (Panels.taxes.isValidated) {
+            Panels.taxes.taxeslist.map((tax) => (
+                this.data += '        "tax": {\n',
+                this.data += '            "rate": {\n',
+                tax.rateType === "percent" && (
+                    this.data += '                "' + tax.rateType + '": ' + tax.amount,
+                    this.data += '\n    }\n'
+                ),
+                tax.rateType === "flat" && (
+                    this.data += '          "' + tax.rateType + '": {\n',
+                    this.data += '              "amount": ' + tax.amount + '\n',
+                    this.data += '              "denom": "' + tax.denom + '"\n',
+                    this.data += '\n        }\n'
+                ),
+                this.data += '          "recievers": ["' + tax.address + '"] \n',
+                this.data += '          "description": "' + tax.description +'" \n',
+                this.data += '          }\n',
+                this.data += '      }\n'
+            ))
+        } else if (Panels.taxes.showPanel) {
+            /* Post failure notices on validation */
+            Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
+            Panels.validateFault.messages = [{isOpen:true, message:'Taxes panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
+
+            //Set Focus when it is the first error encountered
+            if (Panels.validateFault.messages.length <= 1 ) {
+                document.getElementById("TaxDescription").focus() //set the focus to the Tax description if panel is open
+            }
         }
 
         //Load when there is a validated blacklist
@@ -88,7 +125,10 @@ class Messaging {
             Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
             Panels.validateFault.messages = [{isOpen:true, message:'Blacklist panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
 
-            document.getElementById("blacklistAddAddress").focus() //set the focus to the blacklist
+            //Set Focus when it is the first error encountered
+            if (Panels.validateFault.messages.length <= 1 ) {
+                document.getElementById("blacklistAddAddress").focus() //set the focus to the blacklist
+            }
         }
 
         this.data += '    ]\n' //close modules

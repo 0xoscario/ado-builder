@@ -43,6 +43,15 @@ class Validators {
             return true
         }
     }
+
+    validateTax_Add(description, rateType, rateAmount, address) {
+        // When value field is blank?
+        if (!rateAmount || !address) {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 
 const Validator = new Validators()
