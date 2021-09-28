@@ -35,9 +35,9 @@ class Validators {
         }
     }
 
-    validateRoyalty_Add(value) {
+    validateRoyalty_Add(description, rateType, rateAmount, address) {
         // When value field is blank?
-        if (!value) {
+        if (!rateAmount || !address) {
             return false
         } else {
             return true
