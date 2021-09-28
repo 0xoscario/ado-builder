@@ -74,6 +74,23 @@ class Messaging {
             document.getElementById("RoyaltyDescription").focus() //set the focus to the Royalty description if panel is open
         }
 
+        //Load when there is a validated blacklist
+        if (Panels.blacklist.isValidated) {
+            this.data += '      "blacklist": {\n'
+            this.data += '          "moderators": ['
+            Panels.blacklist.toBlacklist.map((wl) => (
+                this.data += '"' + wl.address + '", '
+            ))
+            this.data += ']\n'
+            this.data += '      }\n'
+        } else if (Panels.blacklist.showPanel) {
+            /* Post failure notices on validation */
+            Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
+            Panels.validateFault.messages = [{isOpen:true, message:'Blacklist panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
+
+            document.getElementById("blacklistAddAddress").focus() //set the focus to the blacklist
+        }
+
         this.data += '    ]\n' //close modules
         
         
