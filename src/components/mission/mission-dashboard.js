@@ -182,8 +182,8 @@ const MissionDashboard = (props) => {
                     
                     {Panels.whitelist.showPanel? <Whitelist Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.royalties.showPanel? <Royalties Panels={Panels} setPanels={setPanels}/> : null }
-                    {Panels.blacklist.showPanel? <Blacklist Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.taxes.showPanel? <Taxes Panels={Panels} setPanels={setPanels}/> : null }
+                    {Panels.blacklist.showPanel? <Blacklist Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.splitter.showPanel? <Splitter Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.timelock.showPanel? <TimeLock Panels={Panels} setPanels={setPanels}/> : null }
                     {Panels.metadata.showPanel? <Metadata Panels={Panels} setPanels={setPanels}/> : null }
@@ -227,13 +227,15 @@ const MissionDashboard = (props) => {
                         </button>
                     </div>
 
-                    <div className="text-center m-4">
+                    <div className="text-center  m-4">
                         <button type="button" className="btn btn-primary pad-btn disabled">Build Contract</button>
                     </div>
-
-                    <div className="light-opacity text-light rounded-lg m-5 p-4">
-                        <code>{msgProof}</code>
+                    
+                {/*
+                    <div className="col-8 offset-lg-2 text-left mid-opacity text-light rounded-lg m-5 p-4">
+                        <code><pre>{msgProof}</pre></code>
                     </div>
+                */}
                 </div>
             {notify? <Notifications notify={notify} setNotify={setNotify} /> : null }
         </div>
