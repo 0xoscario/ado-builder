@@ -28,6 +28,7 @@ import ESign from './mission-modules/e-sign'
 
 const MissionDashboard = (props) => {
     const [notify, setNotify] = useState({isOpen:false, message:'', type:''}) //Used to pass to notification to popup
+    const [msgProof, setMsgeProof] = useState("")
 
     //Declare Panel State & Data for use throughout Mission-Builder
     //State is not reset here, but in setPanels()
@@ -219,6 +220,7 @@ const MissionDashboard = (props) => {
                                     //console.info(Panels.validateFault)
                                 } else {
                                     alert(Messages.data)
+                                    setMsgeProof(Messages.data)
                                 }
                             }}>
                                 Proof Message
@@ -227,6 +229,10 @@ const MissionDashboard = (props) => {
 
                     <div className="text-center m-4">
                         <button type="button" className="btn btn-primary pad-btn disabled">Build Contract</button>
+                    </div>
+
+                    <div className="light-opacity text-light rounded-lg m-5 p-4">
+                        <code>{msgProof}</code>
                     </div>
                 </div>
             {notify? <Notifications notify={notify} setNotify={setNotify} /> : null }

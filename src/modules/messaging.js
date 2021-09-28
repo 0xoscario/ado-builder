@@ -21,10 +21,12 @@ class Messaging {
             this.data += '"symbol": "' + Panels.nftdetails.symbol + '",\n'
             this.data += '"minter": "terra1...",\n'
             this.data += '    "modules": [\n'
-        } else {
+        } else if (Panels.nftdetails.showPanel) {
             /* Post failure notices on validation */
             Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
-            Panels.validateFault.messages = [...Panels.validateFault.messages, {isOpen:true, message:'NFT details panel requires validation!', type:'error'}] //Add error to pool
+            Panels.validateFault.messages = [{isOpen:true, message:'NFT details panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
+
+            document.getElementById("nftName").focus() //set focus on first line item of NFTDetails Panel
         }
 
         //Load when there is a validated whitelist
@@ -36,11 +38,40 @@ class Messaging {
             ))
             this.data += ']\n'
             this.data += '      }\n'
-        } else if (Panels.whitelist.isRequired) {
+        } else if (Panels.whitelist.showPanel) {
             /* Post failure notices on validation */
             Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
-            Panels.validateFault.messages = [...Panels.validateFault.messages, {isOpen:true, message:'Whitelist panel requires validation!', type:'error'}] //Add error to pool
+            Panels.validateFault.messages = [{isOpen:true, message:'Whitelist panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
 
+            document.getElementById("whitelistAddAddress").focus() //set the focus to the whitelist
+        }
+
+        //Load when there is a validated Royalty List
+        if (Panels.royalties.isValidated) {
+            Panels.royalties.royaltieslist.map((royalty) => (
+                this.data += '        "royalty": {\n',
+                this.data += '            "rate": {\n',
+                royalty.rateType === "percent" && (
+                    this.data += '                "' + royalty.rateType + '": ' + royalty.amount,
+                    this.data += '\n    }\n'
+                ),
+                royalty.rateType === "flat" && (
+                    this.data += '          "' + royalty.rateType + '": {\n',
+                    this.data += '              "amount": ' + royalty.amount + '\n',
+                    this.data += '              "denom": "' + royalty.denom + '"\n',
+                    this.data += '\n        }\n'
+                ),
+                this.data += '          "recievers": ["' + royalty.address + '"] \n',
+                this.data += '          "description": "' + royalty.description +'" \n',
+                this.data += '          }\n',
+                this.data += '      }\n'
+            ))
+        } else if (Panels.royalties.showPanel) {
+            /* Post failure notices on validation */
+            Panels.validateFault.hasFailed = true //Trigger Error Popups in Mission-Builder
+            Panels.validateFault.messages = [{isOpen:true, message:'Royalties panel requires validation!', type:'error'}, ...Panels.validateFault.messages] //Add error to pool
+
+            document.getElementById("RoyaltyDescription").focus() //set the focus to the Royalty description if panel is open
         }
 
         this.data += '    ]\n' //close modules
