@@ -38,16 +38,16 @@ const MissionDashboard = (props) => {
         isValidated - visual validation toggle for failing validation on submission (border highlighting problem panels)|
         Declared $VARIBLES - Panel specific data for passing to messaging and validators (e.g. Array toWhitelist[address1, address2])
     */
-    const [nftdetailsPanel, setNftdetailsPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, name:'', symbol:'', url:'', desc:''})
-    const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toWhitelist: []})
-    const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, toBlacklist: []})
-    const [royaltiesPanel, setRoyaltiesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, royaltieslist: [] })
-    const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, taxeslist: [] })
-    const [splitterPanel, setSplitterPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
-    const [timelockPanel, setTimelockPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
-    const [metadataPanel, setMetadataPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
-    const [recieptPanel, setRecieptPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
-    const [esignPanel, setEsignPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false })
+    const [nftdetailsPanel, setNftdetailsPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false, name:'', symbol:'', url:'', desc:''})
+    const [whitelistPanel, setWhitelistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false, toWhitelist: []})
+    const [blacklistPanel, setBlacklistPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false, toBlacklist: []})
+    const [royaltiesPanel, setRoyaltiesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false, royaltieslist: [] })
+    const [taxesPanel, setTaxesPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false, taxeslist: [] })
+    const [splitterPanel, setSplitterPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false })
+    const [timelockPanel, setTimelockPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false })
+    const [metadataPanel, setMetadataPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false })
+    const [recieptPanel, setRecieptPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false })
+    const [esignPanel, setEsignPanel] = useState({showPanel: false, isOpen: false, isRequired:false, depedentOn:'', isValidated: false, highlight: false })
    
     /* For Validator routine to push error messages on build contract errors */
     const [validationFault, setValidationFault] = useState({hasFailed: false, messages: []})

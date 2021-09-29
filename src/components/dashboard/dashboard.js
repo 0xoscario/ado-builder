@@ -250,7 +250,7 @@ const Dashboard = (props) => {
                             </div>
                             
                             {/* Launch Staging */}
-                            <div className="row  text-light ml-4 mr-4 mt-1">
+                            <div className="row  text-light ml-4 mr-4 mt-4">
                                 <div className="col rounded-lg light-opacity p-4">
                                     <img src="./images/connect-icons_extension.png" width="40" className="float-left" />
                                     <p className="h5 float-left p-2">Stage and configure your entire collection to release as NFTs!</p>
@@ -260,7 +260,7 @@ const Dashboard = (props) => {
                                             hideAll(),
                                             setShowStage(true)
                                         }}    
-                                    >Launch Stager</button>
+                                    >Deploy Stager</button>
                                 </div>
                             </div>
 

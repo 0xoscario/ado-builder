@@ -35,7 +35,15 @@ const NFTDetails = (props) => {
     return (
         <div id="NFTD-details" className="row">
             <div className="col-1"></div>
-            <div id="inner-content-box" className="col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-5 p-4">
+            
+            
+                <div id="inner-content-box" 
+                    className={props.Panels.nftdetails.highlight?
+                        "col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-5 p-4 border border-warning"
+                    :
+                        "col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-5 p-4"
+                    }
+                >
                 {/* Show removal button only if panel is not set to be required */}
                 {props.Panels.nftdetails.isRequired? 
                     null
