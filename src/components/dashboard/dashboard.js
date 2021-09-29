@@ -8,12 +8,16 @@ import ConnectionBar from '../connection-bar'
 import CoinBalance from '../coin-balance' //parses coin data for displaying
 import AssetGallery from '../asset-gallery'
 import ANDRChart from '../charts/andr-value'
+
+import Stage from '../staging/stage'
+
 //sub-pages
 import TemplatePage from './templates'
-import PreviewPage from './preview'
+    //import PreviewPage from './preview'
 import TransactionsPage from './transactions'
 import BurnPage from './burn'
 import ArchivePage from './archive'
+
 
 
 //Load Terra-Money Modules
@@ -60,8 +64,9 @@ const Dashboard = (props) => {
     const [showPreloader, setShowPreloader] = useState(false)
     const [showDash, setShowDash] = useState(true)
     const [showTemplates, setShowTemplates] = useState(false)
+    const [showStage, setShowStage] = useState(false)
     const [showTransactions, setShowTransactions] = useState(false)
-    const [showPreview, setShowPreview] = useState(false)
+        //const [showPreview, setShowPreview] = useState(false)
     const [showBurn, setShowBurn] = useState(false)
     const [showArchive, setShowArchive] = useState(false)
 
@@ -71,8 +76,9 @@ const Dashboard = (props) => {
         setShowPreloader(false)
         setShowDash(false)
         setShowTemplates(false)
+        setShowStage(false)
         setShowTransactions(false)
-        setShowPreview(false)
+        //setShowPreview(false)
         setShowBurn(false)
         setShowArchive(false)
     }
@@ -108,56 +114,60 @@ const Dashboard = (props) => {
                 <div id="wrapper" className="m-0">
                     {showDash? 
                     <div id="dashWrapper" className="dash-wrapper row m-0 h-100">
+                        
+                        {/* //////////////////////////// Side-Bar ////////////////////////////////////////*/}
                         <div id="sidebar" className="col-3 dark-opacity text-light pt-5 p-3">
-                        <div id="headerBar" className="container-fluid text-center text-light">
-                            <img src="./images/adp-logo.png" height="40" className="pl-2 pb-2" />
-                            <p className="h1" className="display-4 pb-0 mb-0">Andromeda</p>
-                            <p className="h3" className="">Functional Terra NFTs</p>
-                        </div>
-                        <div id="assets" className="pt-4">
-                            <p className="h2" className="">My Assets</p>
-                            <hr className="text-light" />
-                            
-                            { /*
-                            <div id="nfts" className="">
-                                <p className="h5" className="text-light display-6">NFTs</p>
-                                <div id="NFTs" className="light-opacity rounded-lg p-4 mb-3">
-                                    <div>
-                                        <div className="row">
-                                            <p className="h5" className="col">NFT Title</p>
-                                            <p className="h6" className="col-5 text-right">
-                                                <button type="button" className="btn btn-primary small p1">Details</button>
-                                            </p>
-                                        </div>
-                                        <hr />
-                                        <div id="titles" className="row mt-4">
-                                            <p className="h5" className="col-6 text-dark">Owner</p>
-                                            <p className="h5" className="col-6 text-dark text-right pr-3">Value</p>
-                                        </div>
-                                        <div id="titles" className="row">
-                                            <p className="col-6 primary">Digital Art</p>
-                                            <p className="col-6 text-right">$8,000</p>
+                            <div id="headerBar" className="container-fluid text-center text-light">
+                                <img src="./images/adp-logo.png" height="40" className="pl-2 pb-2" />
+                                <p className="h1" className="display-4 pb-0 mb-0">Andromeda</p>
+                                <p className="h3" className="">Functional Terra NFTs</p>
+                            </div>
+                            <div id="assets" className="pt-4">
+                                <p className="h2" className="">My Assets</p>
+                                <hr className="text-light" />
+                                
+                                { /*
+                                <div id="nfts" className="">
+                                    <p className="h5" className="text-light display-6">NFTs</p>
+                                    <div id="NFTs" className="light-opacity rounded-lg p-4 mb-3">
+                                        <div>
+                                            <div className="row">
+                                                <p className="h5" className="col">NFT Title</p>
+                                                <p className="h6" className="col-5 text-right">
+                                                    <button type="button" className="btn btn-primary small p1">Details</button>
+                                                </p>
+                                            </div>
+                                            <hr />
+                                            <div id="titles" className="row mt-4">
+                                                <p className="h5" className="col-6 text-dark">Owner</p>
+                                                <p className="h5" className="col-6 text-dark text-right pr-3">Value</p>
+                                            </div>
+                                            <div id="titles" className="row">
+                                                <p className="col-6 primary">Digital Art</p>
+                                                <p className="col-6 text-right">$8,000</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            */}
-                            
-                            <div id="tokens" className="">
-                                <p className="h5" className="text-light display-6">Tokens</p>                                
-                            {/* TEMP-HACK : Using Token Count Doubler to patch in over accumulation issue with DeSync Component Loading */}
-                                {usrWalletData.tokensCounted >= (usrBalance.length * 2) && (
-                                    <span>{usrWalletData.resetAccumulators()}</span>
-                                )}
-                                {usrBalance.map((coinBalance) => (
-                                        <div key={coinBalance} id="coins" className="light-opacity rounded-lg p-4 mb-3">
-                                            <CoinBalance dspType="Dash" coinData={coinBalance} setAccountValue={setAccountValue}/>
-                                        </div>  
-                                    ))
-                                }
+                                */}
+                                
+                                <div id="tokens" className="">
+                                    <p className="h5" className="text-light display-6">Tokens</p>                                
+                                {/* TEMP-HACK : Using Token Count Doubler to patch in over accumulation issue with DeSync Component Loading */}
+                                    {usrWalletData.tokensCounted >= (usrBalance.length * 2) && (
+                                        <span>{usrWalletData.resetAccumulators()}</span>
+                                    )}
+                                    {usrBalance.map((coinBalance) => (
+                                            <div key={coinBalance} id="coins" className="light-opacity rounded-lg p-4 mb-3">
+                                                <CoinBalance dspType="Dash" coinData={coinBalance} setAccountValue={setAccountValue}/>
+                                            </div>  
+                                        ))
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        
+                        {/* //////////////////////////// Page Content ////////////////////////////////////////*/}
                         <div id="content" className="col">
                             <div id="topbar" className="row mb-0">
                                 <ConnectionBar />
@@ -224,6 +234,7 @@ const Dashboard = (props) => {
                                 </nav>
                             </div>
     
+                            {/* Launch Builder */}
                             <div className="row  text-light ml-4 mr-4 mt-1">
                                 <div className="col rounded-lg light-opacity p-4">
                                     <img src="./images/connect-icons_mobile.png" width="40" className="float-left" />
@@ -238,6 +249,23 @@ const Dashboard = (props) => {
                                 </div>
                             </div>
                             
+                            {/* Launch Staging */}
+                            <div className="row  text-light ml-4 mr-4 mt-1">
+                                <div className="col rounded-lg light-opacity p-4">
+                                    <img src="./images/connect-icons_extension.png" width="40" className="float-left" />
+                                    <p className="h5 float-left p-2">Stage and configure your entire collection to release as NFTs!</p>
+                                    <button 
+                                        className="btn btn-primary float-right pad-btn"
+                                        onClick={() => {
+                                            hideAll(),
+                                            setShowStage(true)
+                                        }}    
+                                    >Launch Stager</button>
+                                </div>
+                            </div>
+
+
+                            {/* Account Activity */}
                             <div className="row text-light m-4">
                                 <p className="h3 col-12 display-5 mt-3">Recent Account Activity</p>
                                 <div className="col rounded-lg light-opacity p-4">
@@ -314,8 +342,8 @@ const Dashboard = (props) => {
                     </div>
                     :
                     <div id="subPageWrapper" className="m-0 p-0">
-                        
                         {showTemplates? <TemplatePage setShowDash={setShowDash} setShowDashboard={props.setShowDashboard} setShowMissionDashboard={props.setShowMissionDashboard}/> : null}
+                        {showStage? <Stage setShowDash={setShowDash} /> : null}
                         {showTransactions? <TransactionsPage setShowDash={setShowDash}/> : null}
                         {showBurn? <BurnPage setShowDash={setShowDash}/> : null}
                         {showArchive? <ArchivePage setShowDash={setShowDash}/> : null}
