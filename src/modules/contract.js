@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 /* References for Andromeda Contract Functions
 
@@ -30,34 +30,32 @@ Blacklist(address, blacklisted)
 
 */
 
-
 class ADPContract {
-    api;
-    deployed = observable(false);
+    api
+    deployed = observable(false)
 
     constructor() {
-        this.init();
+        this.init()
     }
 
     init = async () => {
-        const isDeployed = await this.isDeployed();
-        this.deployed.update(() => isDeployed);
-    };
+        const isDeployed = await this.isDeployed()
+        this.deployed.update(() => isDeployed)
+    }
 
     isDeployed = async () => {
-        const res = await api.get("/deploy");
+        const res = await api.get('/deploy')
 
-        return res.data;
-    };
+        return res.data
+    }
 
     deploy = async () => {
-        const res = await api.post("/deploy");
-        this.deployed.update(() => true);
-        return res;
-    };
+        const res = await api.post('/deploy')
+        this.deployed.update(() => true)
+        return res
+    }
 }
-  
-  const contract = new ADPContract();
-  
-  export default contract;
-  
+
+const contract = new ADPContract()
+
+export default contract
