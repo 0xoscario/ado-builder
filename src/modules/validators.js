@@ -8,9 +8,9 @@ class Validators {
 
     validateNftDetails(name, symbol, url, desc) {
         //when fields are not empty
-            //console.info(name + " , " + symbol + " , " + url + " , " + desc)
-        if(!name || !symbol || !url || !desc) {
-        //if(!name && !symbol && !url && !desc) {
+        //console.info(name + " , " + symbol + " , " + url + " , " + desc)
+        if (!name || !symbol || !url || !desc) {
+            //if(!name && !symbol && !url && !desc) {
             return false
         } else {
             return true
