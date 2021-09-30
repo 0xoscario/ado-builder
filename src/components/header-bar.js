@@ -2,24 +2,27 @@
 import React from 'react'
 
 const PrimaryHeaderBar = () => {
-    return (
-        <div
-            id='headerBar'
-            className='container-fluid d-flex align-items-center dark-opacity text-light p-2 mb-3'
-        >
-            <img
-                src='./images/adp-logo.png'
-                height='40'
-                className='float-left pl-3 pb-2'
-            />
-            <p className='h1' className='float-left display-4 ml-4 mr-4 p-2'>
-                Andromeda
-            </p>
-            <p className='h4' className='pt-4'>
-                Functional Terra NFTs
-            </p>
-        </div>
-    )
+	return (
+		<div
+			id="headerBar"
+			style={{ height: '48px' }}
+			className="container-fluid d-flex align-items-center dark-opacity text-light"
+		>
+			<img
+				src="./images/AND_Logo-Full.svg"
+				height="18px"
+				width="auto"
+				className="ml-3 mr-2"
+			/>
+			<p
+				className="h2"
+				className="mb-0 pl-3 align-middle font-weight-light"
+				style={{ letterSpacing: '0.1em', fontSize: '0.9em' }}
+			>
+				FUNCTIONAL TERRA NFTs
+			</p>
+		</div>
+	)
 }
 
 export default PrimaryHeaderBar
