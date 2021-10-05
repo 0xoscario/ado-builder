@@ -1,39 +1,49 @@
-# Andromeda ADO-Builder
+# NextWindStory 🐣
 
-A repository for the front-end user interface for the Andromeda Protocol Builder (APB).
+This is a [Next.js](https://nextjs.org/) starter with the following configured out of the box:
 
-## Current Build Notes
-This is currently in proto-typing, and as such has limited functionality, formatting issuses, and bugs.\
-Chain data retrieval modules have yet to be assigned to a preloader and sometimes displays incorrectly.
+- Typescript
+- Tailwind CSS
+- Storybook
+- ESLint
+- Prettier
+- Lint Staged + Husky
 
-## Development
+## Using the Template
 
-### Operating
-npm install (Build out dependency modules)\
-npm start (Launch local dev server version)\
-npm run build (Build package)\
-gh-pages -d build (Wrap package for release to GitHub Pages)
+1. Clone repo
+2. Remove `.git` folder
+3. `git init .`
+4. `git add .`
+5. `gc -m "initial commit"`
 
-### Dependencies
-#### NPM
-React - [ReactJS.org](https://reactjs.org/)\
-Axios - [Axios-HTTP.com](https://axios-http.com/)\
-Lo Dash - [Lodash.com](https://lodash.com/)\
-Material-UI - [Material-UI.com](https://material-ui.com/)\
-Material-UI Lab - [github.com/mui-org/material-ui](https://github.com/mui-org/material-ui/)\
-Apollo Client - [ApolloGraphQL.com](https://www.apollographql.com/)\
-Terra.js - [Terra-Money.Github.io/Terra.js](https://terra-money.github.io/terra.js/)\
-Terra Wallet Provider - [npmjs.com/package/@terra-money/wallet-provider](https://www.npmjs.com/package/@terra-money/wallet-provider)\
-ChartJS - [ChartJS.org](https://www.chartjs.org/)\
-React-ChartJS-2 - [github.com/reactchartjs/react-chartjs-2](https://github.com/reactchartjs/react-chartjs-2/)\
-Node SASS - [github.com/sass/node-sass](https://github.com/sass/node-sass/)\
-Bootstrap - [GetBootstrap.com](https://getbootstrap.com/)
+## Getting Started
 
-#### CDN
-Bootstrap - [GetBootstrap.com](https://getbootstrap.com/)\
-JQuery\
-Popper
+The following two steps will get everything up and running:
 
-#### Deprecated
-ParcelJS\
-Regenerator-Runtime - [npmjs.com/package/regenerator-runtime](https://www.npmjs.com/package/regenerator-runtime/)
+1. Install dependencies 👉 `yarn install`
+2. Install husky 👉 `yarn husky install`
+
+## Scripts
+
+### Development Server
+
+```
+yarn dev
+```
+
+Runs the app on the development server at http://localhost:3000.
+
+### Run Storybook
+
+```
+yarn storybook
+```
+
+Runs storybook at http://localhost:6006.
+
+### Build
+
+```
+yarn build
+```
