@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { LibraryIcon, ClockIcon } from '@heroicons/react/outline';
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
-import Layout from '@/components/Layout';
+import Layout from '@/layouts/DefaultLayout';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');

@@ -15,8 +15,8 @@ import {
 } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
 
-import AppProviders from './AppProviders';
-import ConnectedButton from './ConnectedButton';
+import AppProviders from '@/components/AppProviders';
+import ConnectedButton from '@/components/ConnectedButton';
 
 const navigation = [
   {
