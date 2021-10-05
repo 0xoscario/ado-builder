@@ -18,6 +18,7 @@
       "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*"],
       "@/constants/*": ["src/constants/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@/packages/*": ["src/packages/*"],
       "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["src/styles/*"],
