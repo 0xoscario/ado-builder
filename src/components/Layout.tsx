@@ -1,6 +1,7 @@
 import { Fragment, useState, FunctionComponent, ReactNode } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
   BellIcon,
@@ -116,27 +117,27 @@ const Layout: FunctionComponent<Props> = ({
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
                     {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                        )}
-                      >
-                        <item.icon
+                      <Link key={item.name} href={item.href}>
+                        <a
                           className={classNames(
                             item.current
-                              ? 'text-gray-300'
-                              : 'text-gray-400 group-hover:text-gray-300',
-                            'mr-4 flex-shrink-0 h-6 w-6'
+                              ? 'bg-gray-900 text-white'
+                              : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                           )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
+                        >
+                          <item.icon
+                            className={classNames(
+                              item.current
+                                ? 'text-gray-300'
+                                : 'text-gray-400 group-hover:text-gray-300',
+                              'mr-4 flex-shrink-0 h-6 w-6'
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>
@@ -166,27 +167,27 @@ const Layout: FunctionComponent<Props> = ({
               <div className="flex-1 flex flex-col overflow-y-auto">
                 <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
                   {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                      )}
-                    >
-                      <item.icon
+                    <Link key={item.name} href={item.href}>
+                      <a
                         className={classNames(
                           item.current
-                            ? 'text-gray-300'
-                            : 'text-gray-400 group-hover:text-gray-300',
-                          'mr-3 flex-shrink-0 h-6 w-6'
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                         )}
-                        aria-hidden="true"
-                      />
-                      {item.name}
-                    </a>
+                      >
+                        <item.icon
+                          className={classNames(
+                            item.current
+                              ? 'text-gray-300'
+                              : 'text-gray-400 group-hover:text-gray-300',
+                            'mr-3 flex-shrink-0 h-6 w-6'
+                          )}
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                      </a>
+                    </Link>
                   ))}
                 </nav>
               </div>

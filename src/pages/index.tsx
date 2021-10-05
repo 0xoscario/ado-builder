@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { LibraryIcon, ClockIcon } from '@heroicons/react/outline';
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
@@ -46,12 +47,11 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className="sm:flex-shrink-0 sm:flex sm:items-center">
-              <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
-              >
-                Launch builder
-              </button>
+              <Link href="/contract-builder">
+                <a className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm">
+                  Launch builder
+                </a>
+              </Link>
             </div>
           </div>
         </div>
