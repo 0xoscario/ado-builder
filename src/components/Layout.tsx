@@ -4,24 +4,27 @@ import Image from 'next/image';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
   FolderIcon,
-  HomeIcon,
-  InboxIcon,
+  PresentationChartBarIcon,
+  DocumentTextIcon,
   MenuAlt2Icon,
   UsersIcon,
+  BriefcaseIcon,
   XIcon,
 } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
+  {
+    name: 'Dashboard',
+    href: '/',
+    icon: PresentationChartBarIcon,
+    current: true,
+  },
+  { name: 'Marketplace', href: '#', icon: UsersIcon, current: false },
+  { name: 'My missions', href: '#', icon: BriefcaseIcon, current: false },
+  { name: 'My assets', href: '#', icon: FolderIcon, current: false },
+  { name: 'Contracts', href: '#', icon: DocumentTextIcon, current: false },
 ];
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -102,14 +105,14 @@ const Layout: FunctionComponent<Props> = ({
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex-shrink-0 flex items-center px-4">
-                  <Image
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
-                    height="32px"
-                    width="100%"
-                  />
+                <div className=" flex-shrink-0 flex items-center px-4">
+                  <div className="h-8 w-4/6	relative">
+                    <Image
+                      src="/images/AND_Logo-Full.svg"
+                      alt="Workflow"
+                      layout="fill"
+                    />
+                  </div>
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
@@ -151,14 +154,14 @@ const Layout: FunctionComponent<Props> = ({
           <div className="flex flex-col w-64">
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                <Image
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Workflow"
-                  height="32px"
-                  width="100%"
-                />
+              <div className="flex relative items-center h-16 flex-shrink-0 px-4 bg-gray-900">
+                <div className="relative w-5/6 h-8 w-auto">
+                  <Image
+                    src="/images/AND_Logo-Full.svg"
+                    alt="Workflow"
+                    layout="fill"
+                  />
+                </div>
               </div>
               <div className="flex-1 flex flex-col overflow-y-auto">
                 <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
