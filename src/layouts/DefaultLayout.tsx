@@ -2,9 +2,8 @@ import { Fragment, useState, FunctionComponent, ReactNode } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Dialog, Menu, Transition } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import {
-  BellIcon,
   FolderIcon,
   PresentationChartBarIcon,
   DocumentTextIcon,
@@ -15,6 +14,7 @@ import {
 } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
 
+import { classnames } from '@/utils/styles';
 import AppProviders from '@/components/AppProviders';
 import ConnectedButton from '@/components/ConnectedButton';
 
@@ -30,10 +30,6 @@ const navigation = [
   { name: 'My assets', href: '#', icon: FolderIcon, current: false },
   { name: 'Contracts', href: '#', icon: DocumentTextIcon, current: false },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 type Props = {
   title?: string;
@@ -119,7 +115,7 @@ const Layout: FunctionComponent<Props> = ({
                     {navigation.map((item) => (
                       <Link key={item.name} href={item.href}>
                         <a
-                          className={classNames(
+                          className={classnames(
                             item.current
                               ? 'bg-gray-900 text-white'
                               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -127,7 +123,7 @@ const Layout: FunctionComponent<Props> = ({
                           )}
                         >
                           <item.icon
-                            className={classNames(
+                            className={classnames(
                               item.current
                                 ? 'text-gray-300'
                                 : 'text-gray-400 group-hover:text-gray-300',
@@ -169,7 +165,7 @@ const Layout: FunctionComponent<Props> = ({
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <a
-                        className={classNames(
+                        className={classnames(
                           item.current
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
@@ -177,7 +173,7 @@ const Layout: FunctionComponent<Props> = ({
                         )}
                       >
                         <item.icon
-                          className={classNames(
+                          className={classnames(
                             item.current
                               ? 'text-gray-300'
                               : 'text-gray-400 group-hover:text-gray-300',

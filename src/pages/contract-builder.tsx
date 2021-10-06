@@ -1,8 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
-
-import { LibraryIcon, ClockIcon } from '@heroicons/react/outline';
-import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
 import Layout from '@/layouts/DefaultLayout';
 

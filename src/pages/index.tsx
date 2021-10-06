@@ -1,15 +1,11 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import Link from 'next/link';
 
 import { LibraryIcon, ClockIcon } from '@heroicons/react/outline';
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
 import Layout from '@/layouts/DefaultLayout';
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+import { classnames } from '@/utils/styles';
 
 const transactions = [
   {
@@ -135,7 +131,7 @@ const Home: NextPage = () => {
                       </td>
                       <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
                         <span
-                          className={classNames(
+                          className={classnames(
                             statusStyles[transaction.status],
                             'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
                           )}
