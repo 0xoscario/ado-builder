@@ -43,7 +43,7 @@ const Home: NextPage = () => {
               </div>
             </div>
             <div className="sm:flex-shrink-0 sm:flex sm:items-center">
-              <Link href="/contract-builder">
+              <Link href="/smart-contract-builder">
                 <a className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm">
                   Launch builder
                 </a>

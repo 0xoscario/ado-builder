@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-
+import Link from 'next/link';
 import Layout from '@/layouts/DefaultLayout';
 
-const ContractBuilder: NextPage = () => {
+const SmartContractBuilder: NextPage = () => {
   return (
     <Layout title="Andromeda">
       <section className="text-gray-600">
@@ -34,7 +34,7 @@ const ContractBuilder: NextPage = () => {
                   </h2>
                 </div>
                 <div className="flex-grow">
-                  <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                  <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                     <a>
                       <span className="bg-green-100 text-green-500 w-4 h-4 mr-2 rounded-full inline-flex items-center justify-center">
                         <svg
@@ -100,20 +100,22 @@ const ContractBuilder: NextPage = () => {
                       Track transactions
                     </a>
                   </nav>
-                  <a className="content-end text-center flex  items-center mt-8 px-4 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 sm:text-sm">
-                    Get Started
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
+                  <Link href="/smart-contract-builder/nft">
+                    <a className="content-end text-center flex  items-center mt-8 px-4 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 sm:text-sm">
+                      Get Started
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        className="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -139,7 +141,7 @@ const ContractBuilder: NextPage = () => {
                   </h2>
                 </div>
                 <div className="flex-grow">
-                  <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                  <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                     <a>
                       <span className="bg-green-100 text-green-500 w-4 h-4 mr-2 rounded-full inline-flex items-center justify-center">
                         <svg
@@ -234,7 +236,7 @@ const ContractBuilder: NextPage = () => {
                   </h2>
                 </div>
                 <div className="flex-grow">
-                  <nav class="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
+                  <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
                     <a>
                       <span className="bg-green-100 text-green-500 w-4 h-4 mr-2 rounded-full inline-flex items-center justify-center">
                         <svg
@@ -313,4 +315,4 @@ const ContractBuilder: NextPage = () => {
   );
 };
 
-export default ContractBuilder;
+export default SmartContractBuilder;
