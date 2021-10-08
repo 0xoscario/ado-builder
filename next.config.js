@@ -34,5 +34,6 @@ module.exports = {
   poweredByHeader: false,
   images: {
     domains: ['tailwindui.com', 'images.unsplash.com'],
+    path: 'https://noop/',
   },
 };

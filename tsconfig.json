@@ -20,11 +20,10 @@
       "@/constants/*": ["src/constants/*"],
       "@/contexts/*": ["src/contexts/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/layouts/*": ["src/layouts/*"],
       "@/packages/*": ["src/packages/*"],
       "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/typings/*": ["src/typings/*"],
+      "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"]
     }
   },

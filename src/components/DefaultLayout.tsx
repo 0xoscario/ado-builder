@@ -1,6 +1,5 @@
 import { Fragment, useState, FunctionComponent, ReactNode } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import {
@@ -15,7 +14,6 @@ import {
 import { SearchIcon } from '@heroicons/react/solid';
 
 import { classnames } from '@/utils/styles';
-import AppProviders from '@/components/AppProviders';
 import ConnectedButton from '@/components/ConnectedButton';
 
 const navigation = [
@@ -36,14 +34,14 @@ type Props = {
   children?: ReactNode;
 };
 
-const Layout: FunctionComponent<Props> = ({
+const DefaultLayout: FunctionComponent<Props> = ({
   title = 'Andromeda',
   children,
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <AppProviders>
+    <>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -102,7 +100,7 @@ const Layout: FunctionComponent<Props> = ({
                 </Transition.Child>
                 <div className=" flex-shrink-0 flex items-center px-4">
                   <div className="h-8	relative">
-                    <Image
+                    <img
                       src="/images/AND_Logo-Full.svg"
                       alt="Andromeda"
                       width="190"
@@ -152,7 +150,7 @@ const Layout: FunctionComponent<Props> = ({
             <div className="flex-1 flex flex-col min-h-0">
               <div className="flex relative items-center h-16 flex-shrink-0 px-4 bg-gray-900">
                 <div className="relative h-8 w-auto">
-                  <Image
+                  <img
                     src="/images/AND_Logo-Full.svg"
                     alt="Andromeda"
                     width="150"
@@ -237,8 +235,8 @@ const Layout: FunctionComponent<Props> = ({
           </main>
         </div>
       </div>
-    </AppProviders>
+    </>
   );
 };
 
-export default Layout;
+export default DefaultLayout;

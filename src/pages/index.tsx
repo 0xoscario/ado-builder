@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { LibraryIcon, ClockIcon } from '@heroicons/react/outline';
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
-import Layout from '@/layouts/DefaultLayout';
+import Layout from '@/components/DefaultLayout';
 import { classnames } from '@/utils/styles';
 
 const transactions = [
@@ -19,12 +19,14 @@ const transactions = [
   },
   // More transactions...
 ];
+
+/** 
 const statusStyles = {
   success: 'bg-green-100 text-green-800',
   processing: 'bg-yellow-100 text-yellow-800',
   failed: 'bg-gray-100 text-gray-800',
 };
-
+*/
 const Home: NextPage = () => {
   return (
     <Layout title="Andromeda">
@@ -132,7 +134,7 @@ const Home: NextPage = () => {
                       <td className="hidden px-6 py-4 whitespace-nowrap text-sm text-gray-500 md:block">
                         <span
                           className={classnames(
-                            statusStyles[transaction.status],
+                            /** statusStyles[transaction.status], **/
                             'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize'
                           )}
                         >

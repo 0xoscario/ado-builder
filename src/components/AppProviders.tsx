@@ -1,3 +1,5 @@
+import { FunctionComponent, ReactNode } from 'react';
+
 import {
   StaticWalletProvider,
   WalletProvider,
@@ -15,7 +17,11 @@ const testnet = {
   lcd: 'https://tequila-lcd.terra.dev',
 };
 
-export default function AppProviders({ children }) {
+type Props = {
+  children?: ReactNode;
+};
+
+const AppProviders: FunctionComponent<Props> = ({ children }) => {
   return process.browser ? (
     <WalletProvider
       defaultNetwork={mainnet}
@@ -31,4 +37,6 @@ export default function AppProviders({ children }) {
       {children}
     </StaticWalletProvider>
   );
-}
+};
+
+export default AppProviders;

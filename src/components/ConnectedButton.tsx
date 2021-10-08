@@ -77,7 +77,7 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
         setBank(ust);
       });
     } else {
-      setBank(null);
+      setBank('');
     }
   }, [connectedWallet, lcd]);
 
