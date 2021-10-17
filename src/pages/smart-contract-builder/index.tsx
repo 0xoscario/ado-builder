@@ -7,12 +7,15 @@ const SmartContractBuilder: NextPage = () => {
     <Layout title="Andromeda">
       <section className="text-gray-600">
         <div className="container mx-auto">
+          
           <div className="flex flex-col text-center w-full mt-4 mb-8">
             <h1 className="sm:text-2xl text-xl font-medium title-font text-gray-900 py-8">
               NFT & Smart Contract Builder
             </h1>
           </div>
+{/*//////////////// This section needs to be build out with a map component load for each and all template types /////////////////*/}                
           <div className="flex flex-wrap -m-4">
+            {/* NFT Collectible Template */}
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-white shadow sm:rounded-lg p-8 flex-col">
                 <div className="flex items-center mb-8">
@@ -100,7 +103,7 @@ const SmartContractBuilder: NextPage = () => {
                       Track transactions
                     </a>
                   </nav>
-                  <Link href="/smart-contract-builder/nft">
+                  <Link href="/smart-contract-builder/mission">
                     <a className="content-end text-center flex  items-center mt-8 px-4 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 sm:text-sm">
                       Get Started
                       <svg
@@ -119,6 +122,8 @@ const SmartContractBuilder: NextPage = () => {
                 </div>
               </div>
             </div>
+
+            {/* DeFi Contract Template */}
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-white shadow sm:rounded-lg p-8 flex-col">
                 <div className="flex items-center mb-8">
@@ -213,6 +218,8 @@ const SmartContractBuilder: NextPage = () => {
                 </div>
               </div>
             </div>
+
+            {/* Custom Contract Builder */}
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-white shadow sm:rounded-lg p-8 flex-col">
                 <div className="flex items-center mb-8">
