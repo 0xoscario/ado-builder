@@ -47,7 +47,7 @@ const Home: NextPage = () => {
             <div className="sm:flex-shrink-0 sm:flex sm:items-center">
               <Link href="/smart-contract-builder">
                 <a className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm">
-                  Launch builder
+                  Launch Builder
                 </a>
               </Link>
             </div>
@@ -55,8 +55,8 @@ const Home: NextPage = () => {
         </div>
       </div>
       <h2 className="max-w-6xl mx-auto mt-8 text-lg leading-6 font-medium text-gray-900 flex items-center">
-        <ClockIcon className="inline h-5 w-5 text-gray-400 mr-2" /> Recent
-        activity
+        <ClockIcon className="inline h-5 w-5 text-gray-400 mr-2" /> 
+        Recent Activity
       </h2>
       {/* Activity list (smallest breakpoint only) */}
       <div className="shadow sm:hidden">

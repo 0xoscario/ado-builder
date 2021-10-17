@@ -47,7 +47,9 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
   const connectedWallet = useConnectedWallet();
 
   const [showConnectOptions, setShowConnectOptions] = useState(false);
+  const [compressedAddress, setCompressedAddress] = useState(''); //Sliced and concatinated address for shortened display (e.g. "terra...37b6")
   const [bank, setBank] = useState('');
+
 
   const lcd = useMemo(() => {
     if (!connectedWallet) {
@@ -74,9 +76,11 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
           balances[symbol] = amount;
         });
         const ust = balances['UST']?.toFixed(2).toString() ?? '0.00';
+        setCompressedAddress(connectedWallet.walletAddress.slice(0,6) + "..." + connectedWallet.walletAddress.slice(-6))
         setBank(ust);
       });
     } else {
+      setCompressedAddress('')
       setBank('');
     }
   }, [connectedWallet, lcd]);
@@ -117,6 +121,7 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
         : []
     );
 
+  /* Wallet Connected / Not Connected Button Display */
   return (
     <>
       {status === WalletStatus.WALLET_NOT_CONNECTED ? (
@@ -134,7 +139,7 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
         <>
           <Popover className="relative">
             <Popover.Button className="inline-flex m-4 items-center py-1.5 border-transparent font-medium rounded border text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 shadow">
-              <span className="text-xs mx-4">{bank} UST</span>
+              <span className="text-xs mx-4">{compressedAddress}</span>
             </Popover.Button>
 
             <Popover.Panel className="absolute z-10">
