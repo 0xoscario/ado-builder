@@ -5,6 +5,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -23,9 +25,9 @@
       "@/packages/*": ["src/packages/*"],
       "@/pages/*": ["src/pages/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/types/*": ["src/types/*"],
+      "@/types/*": ["src/types/*"],, "src/utils/messaging.js, "src/utils/validators.js""
       "@/utils/*": ["src/utils/*"]
-    }
+    }, "src/utils/validators.js"
   },
   "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]

@@ -31,12 +31,20 @@ import Messages from '../../utils/messaging' //Message Constructors
 
 /* See .getInitialProps() below for pre-loading configurations and data */
 const Mission: NextPage = (props) => {
+    
+    /* Assign Props to variables (ignoring TS conflicts for moment)*/
+    //@ts-ignore
     const [Panels, setPanels] = useState(props.Panels)
+    //@ts-ignore
+    const stager = props.stager
+    //@ts-ignore
+    const template = props.template
     
     return (
         <Layout title="Andromeda Mission Builder">
             {/* When staging is available show a notice bar for launching the related stager information */}
-            {props.stager?
+
+            {stager?
                 <div className="bg-white shadow sm:rounded-lg">
                     <div className="mb-5 px-4 py-5 sm:p-6">
                         <div className="sm:flex sm:items-center sm:justify-between">
@@ -46,7 +54,7 @@ const Mission: NextPage = (props) => {
                                     <FolderIcon className="h-6 w-6" aria-hidden="true" />
                                     </span>
                                     <p className="md:inline-block md:px-4">
-                                    Do you need to run this template more than a few times? There is a "Stager" available for the {props.template.toUpperCase()} template.
+                                    Do you need to run this template more than a few times? There is a &quot;Stager&quot; available for the {template.toUpperCase()} template.
                                     </p>
                                 </div>
                             </div>
@@ -73,14 +81,14 @@ const Mission: NextPage = (props) => {
 
                             <form action="#" method="POST" className="mt-12 max-w-4xl mx-auto">
                                 {/** {Profile} */}
-                                {props.Panels.title.showPanel ? (
+                                {Panels.title.showPanel ? (
                                     <Title Panels={Panels} setPanels={setPanels}/>
                                 ) : null}
-                                {props.Panels.nftdetails.showPanel ? (
+                                {Panels.nftdetails.showPanel ? (
                                     <NFTDetails Panels={Panels} setPanels={setPanels}/>
                                 ) : null}
 
-                                {props.Panels.subtitle.showPanel ? (
+                                {Panels.subtitle.showPanel ? (
                                     <Subtitle Panels={Panels} setPanels={setPanels}/>
                                 ) : null}
 

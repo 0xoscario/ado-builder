@@ -26,10 +26,10 @@ const Royalties = (props) => {
         if (rateTypeSelected === 'percent') {
             if (
                 Validator.validateRoyalty_Add(
-                    document.getElementById('RoyaltyDescription').value,
-                    document.getElementById('RoyaltyRateType').value,
-                    document.getElementById('RoyaltyRatePercent').value,
-                    document.getElementById('RoyaltyAddress').value
+                    (document.getElementById('RoyaltyDescription') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyRateType') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyRatePercent') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyAddress') as HTMLInputElement).value
                 )
             ) {
                 setNotify({
@@ -38,7 +38,7 @@ const Royalties = (props) => {
                     type: 'success',
                 })
                 setIdCount(idCount + '1')
-                //document.getElementById("RoyaltyRatePercentage").value = '' //clear form field
+                //document.getElementById("RoyaltyRatePercentage") as HTMLInputElement).value = '' //clear form field
 
                 /* Post validated data to Panel array "royaltieslist" (for Perctage) */
                 props.Panels.royalties.royaltieslist = [
@@ -46,14 +46,13 @@ const Royalties = (props) => {
                     {
                         id: idCount,
                         description:
-                            document.getElementById('RoyaltyDescription').value,
+                            (document.getElementById('RoyaltyDescription') as HTMLInputElement).value,
                         rateType:
-                            document.getElementById('RoyaltyRateType').value,
-                        amount: document.getElementById('RoyaltyRatePercent')
-                            .value,
+                            (document.getElementById('RoyaltyRateType') as HTMLInputElement).value,
+                        amount: (document.getElementById('RoyaltyRatePercent') as HTMLInputElement).value,
                         denom: '',
                         address:
-                            document.getElementById('RoyaltyAddress').value,
+                            (document.getElementById('RoyaltyAddress') as HTMLInputElement).value,
                     },
                 ]
                 props.Panels.royalties.isValidated = true
@@ -67,10 +66,10 @@ const Royalties = (props) => {
         } else {
             if (
                 Validator.validateRoyalty_Add(
-                    document.getElementById('RoyaltyDescription').value,
-                    document.getElementById('RoyaltyRateType').value,
-                    document.getElementById('RoyaltyFlatAmount').value,
-                    document.getElementById('RoyaltyAddress').value
+                    (document.getElementById('RoyaltyDescription') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyRateType') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyFlatAmount') as HTMLInputElement).value,
+                    (document.getElementById('RoyaltyAddress') as HTMLInputElement).value
                 )
             ) {
                 setNotify({
@@ -79,25 +78,20 @@ const Royalties = (props) => {
                     type: 'success',
                 })
                 setIdCount(idCount + '1')
-                //document.getElementById("RoyaltyFlatAmount").value = '' //clear form field
+                //document.getElementById("RoyaltyFlatAmount") as HTMLInputElement).value = '' //clear form field
 
                 /* Post validated data to Panel array "royaltieslist" (for Perctage) */
                 props.Panels.royalties.royaltieslist = [
                     ...props.Panels.royalties.royaltieslist,
                     {
                         id: idCount,
-                        description:
-                            document.getElementById('RoyaltyDescription').value,
-                        rateType:
-                            document.getElementById('RoyaltyRateType').value,
-                        amount: document.getElementById('RoyaltyFlatAmount')
-                            .value,
-                        denom: document.getElementById('RoyaltyRateDenom')
-                            .value,
-                        address:
-                            document.getElementById('RoyaltyAddress').value,
+                        description: (document.getElementById('RoyaltyDescription') as HTMLInputElement).value,
+                        rateType: (document.getElementById('RoyaltyRateType') as HTMLInputElement).value,
+                        amount: (document.getElementById('RoyaltyFlatAmount') as HTMLInputElement).value,
+                        denom: (document.getElementById('RoyaltyRateDenom') as HTMLInputElement).value,
+                        address: (document.getElementById('RoyaltyAddress') as HTMLInputElement).value
                     },
-                ]
+                ];
                 props.Panels.royalties.isValidated = true
             } else {
                 setNotify({
@@ -109,8 +103,8 @@ const Royalties = (props) => {
         }
 
         //Only once submitted
-        document.getElementById('RoyaltyAddress').value = '' //clear form field
-        document.getElementById('RoyaltyDescription').value = '' //clear form field
+        (document.getElementById('RoyaltyAddress') as HTMLInputElement).value = ''; //clear form field
+        (document.getElementById('RoyaltyDescription') as HTMLInputElement).value = ''; //clear form field
         document.getElementById('RoyaltyDescription').focus() //place focus back to top of panel form
     }
 
@@ -315,7 +309,6 @@ const Royalties = (props) => {
                                     />
                                     <button
                                         type='button'
-                                        htmlFor='RoyaltyAddress'
                                         className='col-2 btn btn-primary ml-2'
                                         onClick={() => addToRoyaltyList()}
                                     >

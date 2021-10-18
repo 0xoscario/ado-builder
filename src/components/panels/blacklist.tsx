@@ -1,5 +1,5 @@
 // Blacklist - Mission builder form panel for blacklisting
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import _ from 'lodash' //underscores '_.' reference lodash in code below and are not an operator
 
 //Load Module Classes
@@ -26,31 +26,31 @@ const Blacklist = (props) => {
         // Validate form field
         if (
             Validator.validateBlacklist_Add(
-                document.getElementById('blacklistAddAddress').value
+                //document.getElementById('blacklistAddAddress').value
+                (document.getElementById("blacklistAddAddress") as HTMLInputElement).value
             )
         ) {
             setNotify({
                 isOpen: true,
                 message:
-                    document.getElementById('blacklistAddAddress').value +
-                    ' added to blacklist.',
-                type: 'success',
+                    //document.getElementById('blacklistAddAddress').value + ' added to blacklist.',
+                    (document.getElementById('blacklistAddAddress') as HTMLInputElement).value + ' added to blacklist.',
+                    type: 'success',
             })
 
             props.Panels.blacklist.toBlacklist = [
                 {
                     id: props.Panels.blacklist.toBlacklist.length + 1,
-                    address: document.getElementById('blacklistAddAddress')
-                        .value,
+                    address: (document.getElementById('blacklistAddAddress') as HTMLInputElement).value,
                 },
                 ...props.Panels.blacklist.toBlacklist,
             ]
             //props.Panels.blacklist.toBlacklist.unshift(document.getElementById("blacklistAddAddress").value)
             //console.info(props.Panels.blacklist.toBlacklist)
-            props.Panels.blacklist.isValidated = true
+            props.Panels.blacklist.isValidated = true;
             //Messages.updateMessage(props.Panels)
 
-            document.getElementById('blacklistAddAddress').value = '' //clear form field
+            (document.getElementById('blacklistAddAddress') as HTMLInputElement).value = '' //clear form field
         } else {
             setNotify({
                 isOpen: true,
@@ -157,7 +157,6 @@ const Blacklist = (props) => {
                                 />
                                 <button
                                     type='button'
-                                    htmlFor='formGroupExampleInput'
                                     className='col-2 btn btn-primary ml-2'
                                     onClick={() => {
                                         addToBlacklist()

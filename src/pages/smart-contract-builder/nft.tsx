@@ -1,4 +1,4 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import type { NextPage } from 'next';
 import { CogIcon } from '@heroicons/react/outline';
 import { Switch } from '@headlessui/react';
@@ -104,7 +104,7 @@ const NFT: NextPage = () => {
                           defaultValue={''}
                         />
                         <p className="text-xs mt-2 text-gray-400">
-                          This will be included on the item's detail page. -
+                          This will be included on the item&apos;s detail page. -
                           Markdown syntax is supported.
                         </p>
                       </div>

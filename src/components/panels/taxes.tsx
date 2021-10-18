@@ -26,10 +26,10 @@ const Taxes = (props) => {
         if (rateTypeSelected === 'percent') {
             if (
                 Validator.validateTax_Add(
-                    document.getElementById('TaxDescription').value,
-                    document.getElementById('TaxRateType').value,
-                    document.getElementById('TaxRatePercent').value,
-                    document.getElementById('TaxAddress').value
+                    (document.getElementById('TaxDescription') as HTMLInputElement).value,
+                    (document.getElementById('TaxRateType') as HTMLInputElement).value,
+                    (document.getElementById('TaxRatePercent') as HTMLInputElement).value,
+                    (document.getElementById('TaxAddress') as HTMLInputElement).value
                 )
             ) {
                 setNotify({
@@ -38,7 +38,7 @@ const Taxes = (props) => {
                     type: 'success',
                 })
                 setIdCount(idCount + '1')
-                //document.getElementById("TaxRatePercentage").value = '' //clear form field
+                //document.getElementById("TaxRatePercentage") as HTMLInputElement).value = '' //clear form field
 
                 /* Post validated data to Panel array "taxeslist" (for Perctage) */
                 props.Panels.taxes.taxeslist = [
@@ -46,11 +46,11 @@ const Taxes = (props) => {
                     {
                         id: idCount,
                         description:
-                            document.getElementById('TaxDescription').value,
-                        rateType: document.getElementById('TaxRateType').value,
-                        amount: document.getElementById('TaxRatePercent').value,
+                            (document.getElementById('TaxDescription') as HTMLInputElement).value,
+                        rateType: (document.getElementById('TaxRateType') as HTMLInputElement).value,
+                        amount: (document.getElementById('TaxRatePercent') as HTMLInputElement).value,
                         denom: '',
-                        address: document.getElementById('TaxAddress').value,
+                        address: (document.getElementById('TaxAddress') as HTMLInputElement).value,
                     },
                 ]
                 props.Panels.taxes.isValidated = true
@@ -64,10 +64,10 @@ const Taxes = (props) => {
         } else {
             if (
                 Validator.validateTax_Add(
-                    document.getElementById('TaxDescription').value,
-                    document.getElementById('TaxRateType').value,
-                    document.getElementById('TaxFlatAmount').value,
-                    document.getElementById('TaxAddress').value
+                    (document.getElementById('TaxDescription') as HTMLInputElement).value,
+                    (document.getElementById('TaxRateType') as HTMLInputElement).value,
+                    (document.getElementById('TaxFlatAmount') as HTMLInputElement).value,
+                    (document.getElementById('TaxAddress') as HTMLInputElement).value
                 )
             ) {
                 setNotify({
@@ -76,7 +76,7 @@ const Taxes = (props) => {
                     type: 'success',
                 })
                 setIdCount(idCount + '1')
-                //document.getElementById("TaxFlatAmount").value = '' //clear form field
+                //document.getElementById("TaxFlatAmount") as HTMLInputElement).value = '' //clear form field
 
                 /* Post validated data to Panel array "taxeslist" (for Perctage) */
                 props.Panels.taxes.taxeslist = [
@@ -84,11 +84,11 @@ const Taxes = (props) => {
                     {
                         id: idCount,
                         description:
-                            document.getElementById('TaxDescription').value,
-                        rateType: document.getElementById('TaxRateType').value,
-                        amount: document.getElementById('TaxFlatAmount').value,
-                        denom: document.getElementById('TaxRateDenom').value,
-                        address: document.getElementById('TaxAddress').value,
+                            (document.getElementById('TaxDescription') as HTMLInputElement).value,
+                        rateType: (document.getElementById('TaxRateType') as HTMLInputElement).value,
+                        amount: (document.getElementById('TaxFlatAmount') as HTMLInputElement).value,
+                        denom: (document.getElementById('TaxRateDenom') as HTMLInputElement).value,
+                        address: (document.getElementById('TaxAddress') as HTMLInputElement).value,
                     },
                 ]
                 props.Panels.taxes.isValidated = true
@@ -102,8 +102,8 @@ const Taxes = (props) => {
         }
 
         //Only once submitted
-        document.getElementById('TaxAddress').value = '' //clear form field
-        document.getElementById('TaxDescription').value = '' //clear form field
+        (document.getElementById('TaxAddress') as HTMLInputElement).value = ''; //clear form field
+        (document.getElementById('TaxDescription') as HTMLInputElement).value = ''; //clear form field
         document.getElementById('TaxDescription').focus() //place focus back to top of panel form
     }
 
@@ -306,7 +306,6 @@ const Taxes = (props) => {
                                     />
                                     <button
                                         type='button'
-                                        htmlFor='TaxAddress'
                                         className='col-2 btn btn-primary ml-2'
                                         onClick={() => addToTaxList()}
                                     >

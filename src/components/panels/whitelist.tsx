@@ -25,13 +25,13 @@ const Whitelist = (props) => {
         // Validate form field
         if (
             Validator.validateWhitelist_Add(
-                document.getElementById('whitelistAddAddress').value
+                (document.getElementById('whitelistAddAddress') as HTMLInputElement).value
             )
         ) {
             setNotify({
                 isOpen: true,
                 message:
-                    document.getElementById('whitelistAddAddress').value +
+                    (document.getElementById('whitelistAddAddress') as HTMLInputElement).value +
                     ' added to whitelist.',
                 type: 'success',
             })
@@ -39,17 +39,16 @@ const Whitelist = (props) => {
             props.Panels.whitelist.toWhitelist = [
                 {
                     id: props.Panels.whitelist.toWhitelist.length + 1,
-                    address: document.getElementById('whitelistAddAddress')
-                        .value,
+                    address: (document.getElementById('whitelistAddAddress') as HTMLInputElement).value,
                 },
                 ...props.Panels.whitelist.toWhitelist,
             ]
-            //props.Panels.whitelist.toWhitelist.unshift(document.getElementById("whitelistAddAddress").value)
+            //props.Panels.whitelist.toWhitelist.unshift(document.getElementById("whitelistAddAddress") as HTMLInputElement).value)
             //console.info(props.Panels.whitelist.toWhitelist)
-            props.Panels.whitelist.isValidated = true
+            props.Panels.whitelist.isValidated = true;
             //Messages.updateMessage(props.Panels)
 
-            document.getElementById('whitelistAddAddress').value = '' //clear form field
+            (document.getElementById('whitelistAddAddress') as HTMLInputElement).value = '' //clear form field
         } else {
             setNotify({
                 isOpen: true,
@@ -155,7 +154,6 @@ const Whitelist = (props) => {
                                 />
                                 <button
                                     type='button'
-                                    htmlFor='formGroupExampleInput'
                                     className='col-2 btn btn-primary ml-2'
                                     onClick={() => {
                                         addToWhitelist()

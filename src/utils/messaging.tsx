@@ -3,7 +3,7 @@
 
 class Messaging {
     constructor() {
-        this.data = ''
+        this.data = '';
     }
 
     //Clears validation panel highlighting

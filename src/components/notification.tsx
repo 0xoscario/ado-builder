@@ -10,7 +10,8 @@ const Notifications = (props) => {
     const popupDuration = 1500 //time in milliseconds to display popup
 
     // On Snackbar close
-    const closeNotify = (e, reason) => {
+    /* const closeNotify = (e, reason)=> { //original passing event and reason */
+    const closeNotify = ()=> {
         props.setNotify({ ...props.notify, isOpen: false }) //only need to change property 'isOpen' to false
     }
 

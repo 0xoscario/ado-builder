@@ -11,10 +11,10 @@ const NFTDetails = (props) => {
         /* Need to assign validation routines to Validator */
         if (
             Validator.validateNftDetails(
-                document.getElementById('nftName').value,
-                document.getElementById('nftSymbol').value,
-                document.getElementById('nftURL').value,
-                document.getElementById('nftDescription').value
+                (document.getElementById('nftName') as HTMLInputElement).value,
+                (document.getElementById('nftSymbol') as HTMLInputElement).value,
+                (document.getElementById('nftURL') as HTMLInputElement).value,
+                (document.getElementById('nftDescription') as HTMLInputElement).value
             )
         ) {
             props.Panels.nftdetails.isValidated = true
@@ -25,12 +25,10 @@ const NFTDetails = (props) => {
         }
 
         //Assign values to Panel data (should be nested in validation returns)
-        props.Panels.nftdetails.name = document.getElementById('nftName').value
-        props.Panels.nftdetails.symbol =
-            document.getElementById('nftSymbol').value
-        props.Panels.nftdetails.url = document.getElementById('nftURL').value
-        props.Panels.nftdetails.desc =
-            document.getElementById('nftDescription').value
+        props.Panels.nftdetails.name = (document.getElementById('nftName') as HTMLInputElement).value
+        props.Panels.nftdetails.symbol = (document.getElementById('nftSymbol') as HTMLInputElement).value
+        props.Panels.nftdetails.url = (document.getElementById('nftURL') as HTMLInputElement).value
+        props.Panels.nftdetails.desc = (document.getElementById('nftDescription') as HTMLInputElement).value
     }
 
     return (
@@ -161,7 +159,7 @@ const NFTDetails = (props) => {
                                             className='form-control'
                                             id='nftDescription'
                                             placeholder='Provide a detailed description'
-                                            rows='3'
+                                            rows={3}
                                             onBlur={() => {
                                                 setValues()
                                             }}
@@ -170,7 +168,7 @@ const NFTDetails = (props) => {
                                             htmlFor='formGroupExampleInput-2'
                                             className='small'
                                         >
-                                            This will be included on the item's detail
+                                            This will be included on the item&apos;s detail
                                             page. - Markdown syntax is supported.
                                         </label>
                                     </div>
