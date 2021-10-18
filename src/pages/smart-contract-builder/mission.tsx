@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 // Load Visual Layouts & Assetts
 import Layout from '@/components/DefaultLayout';
-import {DocumentTextIcon, FolderIcon} from '@heroicons/react/outline';
+import {FolderIcon} from '@heroicons/react/outline';
 
 /* To be adapted for responsive loading  and perhaps pushed to "constants"*/
 //Load Panels to Use in Mission Builder
@@ -27,7 +27,7 @@ import Reciept from '../../components/panels/reciept'
 import ESign from '../../components/panels/e-sign'
 
 // Load Utility Classes
-import Messages from '../../utils/messaging' //Message Constructors
+//import Messages from '../../utils/messaging' //Message Constructors
 
 /* See .getInitialProps() below for pre-loading configurations and data */
 const Mission: NextPage = (props) => {

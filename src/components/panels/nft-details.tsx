@@ -72,7 +72,7 @@ const NFTDetails = (props) => {
                             </div>
                         ) : null}
                         <h4 className='h4 pt-5'>DETAILS</h4>
-                        <h6 className='h6'>Tell us about what you're creating.</h6>
+                        <h6 className='h6'>Tell us about what you&apos;re creating.</h6>
                         <hr />
                         <div id='detailForm' className=' col-6 offset-lg-3 text-left'>
                             {/* <form id='mainForm'> */}
@@ -97,7 +97,7 @@ const NFTDetails = (props) => {
                                             htmlFor='formGroupExampleInput'
                                             className='small'
                                         >
-                                            Give your creation a name you'll easily
+                                            Give your creation a name you&apos;ll easily
                                             identify it with.
                                         </label>
                                     </div>
