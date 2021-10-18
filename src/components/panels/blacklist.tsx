@@ -1,14 +1,15 @@
-// Whitelist - Mission builder form panel for whitelisting
+// Blacklist - Mission builder form panel for blacklisting
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash' //underscores '_.' reference lodash in code below and are not an operator
 
-//Load Utility Classes
+//Load Module Classes
+//import Messages from '../../../modules/messaging' //Messge Constructors
 import Validator from '../../utils/validators' //Form Validators
 
 // Import components
 import Notifications from '../notification' //Notify popup component for adding & error catching
 
-const Whitelist = (props) => {
+const Blacklist = (props) => {
     const [notify, setNotify] = useState({
         isOpen: false,
         message: '',
@@ -16,40 +17,40 @@ const Whitelist = (props) => {
     }) //Used to pass to notification to popup
 
     /* Test data for dynamic adding addresses */
-    //props.Panels.whitelist.toWhitelist =  ['terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v', 'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp'] //Managed list of addresses for whitelisting
+    //props.Panels.blacklist.toBlacklist =  ['terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v', 'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp'] //Managed list of addresses for blacklisting
 
     // Test accounts noted at: https://github.com/terra-money/localterra#accounts
-    function addToWhitelist() {
+    function addToBlacklist() {
         //Uses form data to load address.
 
         // Validate form field
         if (
-            Validator.validateWhitelist_Add(
-                document.getElementById('whitelistAddAddress').value
+            Validator.validateBlacklist_Add(
+                document.getElementById('blacklistAddAddress').value
             )
         ) {
             setNotify({
                 isOpen: true,
                 message:
-                    document.getElementById('whitelistAddAddress').value +
-                    ' added to whitelist.',
+                    document.getElementById('blacklistAddAddress').value +
+                    ' added to blacklist.',
                 type: 'success',
             })
 
-            props.Panels.whitelist.toWhitelist = [
+            props.Panels.blacklist.toBlacklist = [
                 {
-                    id: props.Panels.whitelist.toWhitelist.length + 1,
-                    address: document.getElementById('whitelistAddAddress')
+                    id: props.Panels.blacklist.toBlacklist.length + 1,
+                    address: document.getElementById('blacklistAddAddress')
                         .value,
                 },
-                ...props.Panels.whitelist.toWhitelist,
+                ...props.Panels.blacklist.toBlacklist,
             ]
-            //props.Panels.whitelist.toWhitelist.unshift(document.getElementById("whitelistAddAddress").value)
-            //console.info(props.Panels.whitelist.toWhitelist)
-            props.Panels.whitelist.isValidated = true
+            //props.Panels.blacklist.toBlacklist.unshift(document.getElementById("blacklistAddAddress").value)
+            //console.info(props.Panels.blacklist.toBlacklist)
+            props.Panels.blacklist.isValidated = true
             //Messages.updateMessage(props.Panels)
 
-            document.getElementById('whitelistAddAddress').value = '' //clear form field
+            document.getElementById('blacklistAddAddress').value = '' //clear form field
         } else {
             setNotify({
                 isOpen: true,
@@ -58,36 +59,36 @@ const Whitelist = (props) => {
             })
         }
 
-        document.getElementById('whitelistAddAddress').focus() //set the focus to the form field
+        document.getElementById('blacklistAddAddress').focus() //set the focus to the form field
     }
 
-    function removeFromWhitelist(address) {
-        props.Panels.whitelist.toWhitelist = _.reject(
-            props.Panels.whitelist.toWhitelist,
+    function removeFromBlacklist(address) {
+        props.Panels.blacklist.toBlacklist = _.reject(
+            props.Panels.blacklist.toBlacklist,
             { address: address }
         )
-        if (props.Panels.whitelist.toWhitelist.length <= 0) {
-            props.Panels.whitelist.isValidated = false
+        if (props.Panels.blacklist.toBlacklist.length <= 0) {
+            props.Panels.blacklist.isValidated = false
         } //pull validation if no addresses left
         setNotify({
             isOpen: true,
-            message: address + ' removed from whitelist.',
+            message: address + ' removed from blacklist.',
             type: 'warning',
         })
     }
 
     return (
-        <div id='whitelist-panel' className='bg-white shadow sm:rounded-md sm:overflow-hidden px-4 py-4 my-4'>
+        <div id='blacklist-panel' className='bg-white px-4 py-4 my-4'>
             <div
                 id='inner-content-box'
                 className={
-                    props.Panels.whitelist.highlight
+                    props.Panels.blacklist.highlight
                         ? 'col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-5 p-4 border border-warning'
                         : 'col-9 mid-opacity rounded-lg text-light text-center mt-4 mx-5 mb-5 p-4'
                 }
             >
                 {/* Show removal button only if panel is not set to be required */}
-                {props.Panels.whitelist.isRequired ? null : (
+                {props.Panels.blacklist.isRequired ? null : (
                     <div className='remove-panel float-left'>
                         <button
                             type='button'
@@ -95,8 +96,8 @@ const Whitelist = (props) => {
                             onClick={() => {
                                 props.setPanels({
                                     ...props.Panels,
-                                    whitelist: {
-                                        ...props.Panels.whitelist,
+                                    blacklist: {
+                                        ...props.Panels.blacklist,
                                         showPanel: false,
                                     },
                                 })
@@ -107,7 +108,7 @@ const Whitelist = (props) => {
                     </div>
                 )}
                 {/* Show a validation indicator if the data has been validated */}
-                {props.Panels.whitelist.isValidated ? (
+                {props.Panels.blacklist.isValidated ? (
                     <div className='validate-panel float-left'>
                         <p className='text-danger fload-left small'>
                             Validated
@@ -118,23 +119,24 @@ const Whitelist = (props) => {
                     <input
                         type='checkbox'
                         className='custom-control-input'
-                        id='whitelist-switch'
+                        id='blacklist-switch'
                         data-toggle='collapse'
-                        data-target='#WhitelistDetailForm'
+                        data-target='#BlacklistDetailForm'
                         aria-expanded='false'
-                        aria-controls='WhitelistDetailForm'
+                        aria-controls='BlacklistDetailForm'
                     />
                     <label
                         className='custom-control-label'
-                        htmlFor='whitelist-switch'
+                        htmlFor='blacklist-switch'
                     ></label>
                 </div>
-                <p className='h4 pt-1 text-uppercase'>Whitelist Addressess</p>
+                <p className='h4 pt-1 text-uppercase'>Blacklist Addressess</p>
                 <p className='h6'>
-                    A list of addresses allowed to interact with your NFT.
+                    A list of addresses prohibited from interaction with your
+                    NFT.
                 </p>
                 <div
-                    id='WhitelistDetailForm'
+                    id='BlacklistDetailForm'
                     className=' col-6 offset-lg-3 text-left collapse'
                 >
                     <hr />
@@ -150,7 +152,7 @@ const Whitelist = (props) => {
                                 <input
                                     type='text'
                                     className='form-control col'
-                                    id='whitelistAddAddress'
+                                    id='blacklistAddAddress'
                                     placeholder='terra14lxhx09fyemu9lw46c9m9jk63cg6u8wdc8pdu4'
                                 />
                                 <button
@@ -158,7 +160,7 @@ const Whitelist = (props) => {
                                     htmlFor='formGroupExampleInput'
                                     className='col-2 btn btn-primary ml-2'
                                     onClick={() => {
-                                        addToWhitelist()
+                                        addToBlacklist()
                                     }}
                                 >
                                     Add
@@ -172,9 +174,9 @@ const Whitelist = (props) => {
                             </label>
                         </div>
                         <hr />
-                        <p className='h5'>Whitelisted</p>
+                        <p className='h5'>Blacklisted</p>
 
-                        {props.Panels.whitelist.toWhitelist.map((tAddress) => (
+                        {props.Panels.blacklist.toBlacklist.map((tAddress) => (
                             <div
                                 key={tAddress.id}
                                 className='row mid-opacity rounded-lg text-dark small p-3 mb-2'
@@ -185,7 +187,7 @@ const Whitelist = (props) => {
                                 <a
                                     className='col-2  text-danger'
                                     onClick={() =>
-                                        removeFromWhitelist(tAddress.address)
+                                        removeFromBlacklist(tAddress.address)
                                     }
                                 >
                                     Remove
@@ -202,4 +204,4 @@ const Whitelist = (props) => {
     )
 }
 
-export default Whitelist
+export default Blacklist

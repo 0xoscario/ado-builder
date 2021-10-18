@@ -12,10 +12,10 @@ import NFTDetails from '../../components/panels/nft-details'
 /* To be adapted for responsive loading  and perhaps pushed to "constants"*/
 //Load Panels to Use in Mission Builder
 import Whitelist from '../../components/panels/whitelist'
-/*
 import Blacklist from '../../components/panels/blacklist'
 import Royalties from '../../components/panels/royalties'
 import Taxes from '../../components/panels/taxes'
+/*
 import Splitter from '../../components/panels/splitter'
 import TimeLock from '../../components/panels/time-lock'
 import Metadata from '../../components/panels/metadata'
@@ -41,23 +41,12 @@ const Mission: NextPage = (props) => {
                                 NFT Collectible
                                 </h1>
                                 <p className="text-sm text-gray-500">
-                                {props.template}
-                                </p>
-                                <hr/>
-                                <p>
-                                    { props.Panels.whitelist.showPanel.toString()} | {props.Panels.whitelist.isOpen.toString() }
-                                </p>
+                                Configure draft of your NFT.
+                                </p>                                
                             </div>
 
                             <form action="#" method="POST" className="mt-12 max-w-4xl mx-auto">
                                 {/** {Profile} */}
-                                <div className="shadow sm:rounded-md sm:overflow-hidden">
-                                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                        <div className="md:grid md:grid-cols-3 md:gap-6">
-                                            <h2>Panel</h2>
-                                        </div>
-                                    </div>
-                                </div>
                                 {props.Panels.nftdetails.showPanel ? (
                                     <NFTDetails Panels={Panels} setPanels={setPanels}/>
                                 ) : null}
@@ -238,15 +227,13 @@ Mission.getInitialProps = async (ctx) => {
             Panels.nftdetails.showPanel = true
             Panels.nftdetails.isRequired = true
             Panels.whitelist.showPanel = true
-        /*
             Panels.whitelist.isRequired = true
             Panels.royalties.showPanel = true
             Panels.royalties.isRequired = true
             Panels.taxes.showPanel = true
             Panels.taxes.isRequired = true
             Panels.blacklist.showPanel = true
-            Panels.blacklist.isRequired = false //currently fails reset
-        */
+            Panels.blacklist.isRequired = false
         }
 
 
