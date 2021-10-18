@@ -73,11 +73,11 @@ const NFTDetails = (props) => {
                                 </p>
                             </div>
                         ) : null}
-                        <p className='h4 pt-5'>DETAILS</p>
-                        <p className='h6'>Tell us about what you're creating.</p>
+                        <h4 className='h4 pt-5'>DETAILS</h4>
+                        <h6 className='h6'>Tell us about what you're creating.</h6>
                         <hr />
                         <div id='detailForm' className=' col-6 offset-lg-3 text-left'>
-                            <form id='mainForm'>
+                            {/* <form id='mainForm'> */}
                                 <div>
                                     <div className='form-group'>
                                         <label
@@ -175,7 +175,7 @@ const NFTDetails = (props) => {
                                         </label>
                                     </div>
                                 </div>
-                            </form>
+                            {/* </form> */}
                         </div>
                     </div>
                 </div>

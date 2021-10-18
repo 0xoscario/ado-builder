@@ -92,7 +92,7 @@ const Blacklist = (props) => {
                     <div className='remove-panel float-left'>
                         <button
                             type='button'
-                            className='btn btn-danger'
+                            className='inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm'
                             onClick={() => {
                                 props.setPanels({
                                     ...props.Panels,
