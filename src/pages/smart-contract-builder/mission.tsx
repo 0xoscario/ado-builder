@@ -133,7 +133,8 @@ const Mission: NextPage = (props) => {
 Mission.getInitialProps = async (ctx) => {
     const {query} = ctx;
     // set case to lowercase to remove case sensitivity
-    const template = query.template.toString().toLowerCase()
+    const tmp = "" + query.template
+    const template = tmp.toString().toLowerCase(); //used for "next export" pre-conversion conflict
 
     // Shows the staging info / launch panel if one is declared as available in template
     let stagerAvailable = false

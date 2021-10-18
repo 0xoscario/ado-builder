@@ -16,7 +16,7 @@ npm run lint (deLint project)\
 npm run build-storybook (Build Storybook packages)\
 npm run build (Build the Next packages)\
 npm run export (Build packages for deployment)\
-gh-pages -d build (Wrap package for release to GitHub Pages)
+gh-pages -d out (Wrap package for release to GitHub Pages)
 
 ### Dependencies
 #### NPM
