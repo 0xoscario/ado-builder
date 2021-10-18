@@ -1,12 +1,15 @@
-// MissionDashboard(template)
+// Mission(Panels, template, stager)
 // - Page used to develop, configure, and deploy custom ANDR contracts
-// - Uses "template" prop (string) for loading pre-defined mission templates
+// - Uses "URL?template="(string) for path loading pre-defined mission templates
 // (Utilises dynamic development to build custom WYSIWG)
 
 import { useState } from 'react';
 import type { NextPage } from 'next';
-import Layout from '@/components/DefaultLayout';
+import Link from 'next/link';
 
+// Load Visual Layouts & Assetts
+import Layout from '@/components/DefaultLayout';
+import {DocumentTextIcon, FolderIcon} from '@heroicons/react/outline';
 
 /* To be adapted for responsive loading  and perhaps pushed to "constants"*/
 //Load Panels to Use in Mission Builder
@@ -32,10 +35,41 @@ const Mission: NextPage = (props) => {
     
     return (
         <Layout title="Andromeda Mission Builder">
+            {/* When staging is available show a notice bar for launching the related stager information */}
+            {props.stager?
+                <div className="bg-white shadow sm:rounded-lg">
+                    <div className="mb-5 px-4 py-5 sm:p-6">
+                        <div className="sm:flex sm:items-center sm:justify-between">
+                            <div className="max-w-xl text-sm text-gray-500">
+                                <div className="flex items-center">
+                                    <span className="rounded-lg inline-flex p-3 ring-4 ring-white text-gray-600 bg-gray-50">
+                                    <FolderIcon className="h-6 w-6" aria-hidden="true" />
+                                    </span>
+                                    <p className="md:inline-block md:px-4">
+                                    Do you need to run this template more than a few times? There is a "Stager" available for the {props.template.toUpperCase()} template.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="sm:flex-shrink-0 sm:flex sm:items-center">
+                                <Link href="#">
+                                    <a className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm">
+                                    Launch Stager
+                                    </a>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            :
+                null
+            }
+
             <section className="text-gray-600">
                 <div className="container mx-auto ">
                     <div className="shadow sm:rounded-md sm:overflow-hidden">
                         <div className="px-4 py-5 bg-gray-200 space-y-6 sm:p-6">
+
+                        
 
                             <form action="#" method="POST" className="mt-12 max-w-4xl mx-auto">
                                 {/** {Profile} */}
@@ -90,8 +124,11 @@ const Mission: NextPage = (props) => {
 
 Mission.getInitialProps = async (ctx) => {
     const {query} = ctx;
-// set case to lowercase to remove case sensitivity
+    // set case to lowercase to remove case sensitivity
     const template = query.template.toString().toLowerCase()
+
+    // Shows the staging info / launch panel if one is declared as available in template
+    let stagerAvailable = false
 
 /* Panel data devlarations to be moved to JSON loading */
     //Declare Panel State & Data for use throughout Mission-Builder
@@ -263,6 +300,8 @@ Mission.getInitialProps = async (ctx) => {
         }
 
         if (template === 'nft') {
+            stagerAvailable = true //show panel as there is a stager available for this mission
+            
             Panels.title.title = "NFT Collectible"
             Panels.title.description = "Configure draft of your NFT."
             Panels.title.showPanel = true
@@ -289,7 +328,7 @@ Mission.getInitialProps = async (ctx) => {
         }
 
 
-    return {Panels: Panels, template: template}
+    return {Panels: Panels, template: template, stager: stagerAvailable}
 }
 
 export default Mission;
