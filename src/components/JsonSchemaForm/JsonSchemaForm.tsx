@@ -7,6 +7,7 @@ import TitleField from './TitleField';
 import DescriptionField from './DescriptionField';
 import TextWidget from './TextWidget';
 import CheckboxWidget from './CheckboxWidget';
+import TextareaWidget from './TextareaWidget';
 
 const theme: ThemeProps = {
   ArrayFieldTemplate,
@@ -16,6 +17,7 @@ const theme: ThemeProps = {
     SelectWidget,
     TextWidget,
     CheckboxWidget,
+    TextareaWidget,
   },
   fields: {
     TitleField,

@@ -1,4 +1,5 @@
 {
+  "$id": "/schemas/nft-detail",
   "title": "NFT Collectible",
   "description": "Configure draft of your NFT.",
   "type": "object",
