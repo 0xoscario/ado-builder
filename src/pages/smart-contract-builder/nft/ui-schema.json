@@ -1,8 +1,5 @@
 {
-  "name": {
-    "ui:autofocus": true
-  },
-  "description": {
-    "ui:widget": "textarea"
+  "nft_details": {
+    "ui:widget": "panel"
   }
 }

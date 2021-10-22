@@ -4,7 +4,6 @@
       "$id": "/schemas/nft-detail",
       "type": "object",
       "required": ["name", "symbol"],
-      "ui:widget": "panel",
       "properties": {
         "name": {
           "type": "string",
@@ -30,8 +29,6 @@
     }
   },
   "type": "object",
-  "title": "NFT Collectible",
-  "description": "Configure draft of your NFT.",
   "properties": {
     "nft_details": {
       "title": "Profile",
