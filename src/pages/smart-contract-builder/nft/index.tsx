@@ -4,7 +4,7 @@ import { CogIcon } from '@heroicons/react/outline';
 import { Switch } from '@headlessui/react';
 import { classnames } from '@/utils/styles';
 import Layout from '@/components/DefaultLayout';
-import JsonSchemaForm from '@/components/JsonSchemaForm/JsonSchemaForm';
+import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
 import schema from './schema.json';
 import uiSchema from './ui-schema.json';

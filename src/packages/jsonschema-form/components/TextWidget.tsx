@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { WidgetProps } from '@rjsf/core';
-import TextInput from '@/components/Form/TextInput';
+import TextInput from './Form/TextInput';
 
 export interface TextWidgetProps extends WidgetProps {
   type?: string;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WidgetProps } from '@rjsf/core';
 
-import TextArea from '@/components/Form/TextArea';
+import TextArea from './Form/TextArea';
 
 type CustomWidgetProps = WidgetProps & {
   options: any;

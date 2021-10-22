@@ -31,8 +31,8 @@
   "type": "object",
   "properties": {
     "nft_details": {
-      "title": "Profile",
-      "description": "This information will be displayed publicly so be careful what you share.",
+      "title": "Details",
+      "description": "Tell us about what you're creating.",
       "$ref": "#/definitions/nft_details"
     }
   }
