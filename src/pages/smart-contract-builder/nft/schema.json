@@ -1,29 +1,42 @@
 {
-  "$id": "/schemas/nft-detail",
+  "definitions": {
+    "nft_details": {
+      "$id": "/schemas/nft-detail",
+      "type": "object",
+      "required": ["name", "symbol"],
+      "ui:widget": "panel",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name your NFT",
+          "description": "Give your creation a name you’ll easily identify it  with."
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Create a NFT symbol",
+          "description": "A publicly searchable identifier."
+        },
+        "url": {
+          "type": "string",
+          "title": "External link / url to image",
+          "description": "Where users will go to loearn more about this item."
+        },
+        "description": {
+          "type": "string",
+          "title": "Message",
+          "description": "This will be included on the item's detail page. - Markdown syntax is supported."
+        }
+      }
+    }
+  },
+  "type": "object",
   "title": "NFT Collectible",
   "description": "Configure draft of your NFT.",
-  "type": "object",
-  "required": ["name", "symbol"],
   "properties": {
-    "name": {
-      "type": "string",
-      "title": "Name your NFT",
-      "description": "Give your creation a name you’ll easily identify it  with."
-    },
-    "symbol": {
-      "type": "string",
-      "title": "Create a NFT symbol",
-      "description": "A publicly searchable identifier."
-    },
-    "url": {
-      "type": "string",
-      "title": "External link / url to image",
-      "description": "Where users will go to loearn more about this item."
-    },
-    "description": {
-      "type": "string",
-      "title": "Message",
-      "description": "This will be included on the item's detail page. - Markdown syntax is supported."
+    "nft_details": {
+      "title": "Profile",
+      "description": "This information will be displayed publicly so be careful what you share.",
+      "$ref": "#/definitions/nft_details"
     }
   }
 }

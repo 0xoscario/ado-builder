@@ -6,7 +6,7 @@ export default function TitleField({ description }: FieldProps) {
   }
 
   return (
-    <div className="flex flex-col text-center w-full mt-4 mb-8">
+    <div className="flex flex-col text-center w-full">
       <p className="text-sm text-gray-500">{description}</p>
     </div>
   );

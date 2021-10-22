@@ -18,8 +18,6 @@ const NFT: NextPage = () => {
         <div className="container mx-auto">
           <JsonSchemaForm
             schema={schema}
-            uiSchema={uiSchema}
-            formData={formData}
             onChange={({ formData }) => setFormData(formData)}
             onSubmit={() => console.log('form submitted')}
           >
