@@ -3,6 +3,7 @@
     "ui:group": true
   },
   "whitelist": {
-    "ui:group": true
+    "ui:group": true,
+    "ui:toggle": true
   }
 }

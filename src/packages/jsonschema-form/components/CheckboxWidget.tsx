@@ -31,26 +31,27 @@ export default function CheckboxWidget({
 
   if (schema['ui:toggle']) {
     return (
-      <div className="absolute right-0">
-        <Switch
-          checked={checked}
-          required={required}
-          disabled={disabled || readonly}
-          autoFocus={autofocus}
-          onChange={onChange}
-          onBlur={_onBlur}
-          onFocus={_onFocus}
-          className={`${
-            checked ? 'bg-blue-600' : 'bg-gray-200'
-          } relative inline-flex items-center h-6 rounded-full w-11`}
-        >
-          <span className="sr-only">Enable notifications</span>
-          <span
+      <div className="absolute right-0 ">
+        <div className="relative">
+          <Switch
+            checked={checked}
+            required={required}
+            disabled={disabled || readonly}
+            autoFocus={autofocus}
+            onChange={onChange}
             className={`${
-              checked ? 'translate-x-6' : 'translate-x-1'
-            } inline-block w-4 h-4 transform bg-white rounded-full`}
-          />
-        </Switch>
+              checked ? 'bg-indigo-600' : 'bg-gray-200'
+            } relative inline-flex flex-shrink-0 h-6 w-20 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+          >
+            <span className="sr-only">Enable</span>
+            <span
+              aria-hidden="true"
+              className={`${
+                checked ? 'translate-x-5' : 'translate-x-0'
+              } pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200`}
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

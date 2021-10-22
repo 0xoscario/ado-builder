@@ -10,8 +10,17 @@ const ObjectFieldTemplate = ({
   required,
   uiSchema,
   idSchema,
+  formData,
 }: ObjectFieldTemplateProps) => {
   if (uiSchema['ui:group']) {
+    if (uiSchema['ui:toggle']) {
+      const id = idSchema['$id'].substring(
+        idSchema['$id'].lastIndexOf('_') + 1
+      );
+      properties = formData[`${id}_enabled`]
+        ? properties
+        : properties.filter((prop) => prop.name === `${id}_enabled`);
+    }
     return (
       <Panel title={title} description={description}>
         {properties.map((element: any) => element.content)}

@@ -37,6 +37,7 @@
       "properties": {
         "whitelist_enabled": {
           "type": "boolean",
+          "default": false,
           "ui:toggle": true
         },
         "whitelist_address": {
