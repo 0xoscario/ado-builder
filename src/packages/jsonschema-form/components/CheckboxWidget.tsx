@@ -1,4 +1,5 @@
 import { WidgetProps } from '@rjsf/core';
+import { Switch } from '@headlessui/react';
 
 export default function CheckboxWidget({
   id,
@@ -25,6 +26,34 @@ export default function CheckboxWidget({
   }: React.FocusEvent<HTMLInputElement>) => onFocus(id, checked);
 
   const checked = typeof value === 'undefined' ? false : value;
+
+  console.log('schema', schema);
+
+  if (schema['ui:toggle']) {
+    return (
+      <div className="absolute right-0">
+        <Switch
+          checked={checked}
+          required={required}
+          disabled={disabled || readonly}
+          autoFocus={autofocus}
+          onChange={onChange}
+          onBlur={_onBlur}
+          onFocus={_onFocus}
+          className={`${
+            checked ? 'bg-blue-600' : 'bg-gray-200'
+          } relative inline-flex items-center h-6 rounded-full w-11`}
+        >
+          <span className="sr-only">Enable notifications</span>
+          <span
+            className={`${
+              checked ? 'translate-x-6' : 'translate-x-1'
+            } inline-block w-4 h-4 transform bg-white rounded-full`}
+          />
+        </Switch>
+      </div>
+    );
+  }
 
   return (
     <div className={`checkbox ${disabled || readonly ? 'disabled' : ''}`}>

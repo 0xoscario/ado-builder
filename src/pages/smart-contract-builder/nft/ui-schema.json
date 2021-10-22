@@ -1,5 +1,8 @@
 {
-  "nft_details": {
-    "ui:widget": "panel"
+  "nft-details": {
+    "ui:group": true
+  },
+  "whitelist": {
+    "ui:group": true
   }
 }

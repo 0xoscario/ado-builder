@@ -29,7 +29,10 @@ const NFT: NextPage = () => {
               schema={schema}
               uiSchema={uiSchema}
               formData={formData}
-              onChange={({ formData }) => setFormData(formData)}
+              onChange={({ formData }) => {
+                console.log('formData', formData);
+                setFormData(formData);
+              }}
               onSubmit={() => console.log('form submitted')}
             >
               <div className="text-center">
