@@ -73,23 +73,19 @@ export default function SelectWidget({
     }
   }
   return (
-    <div className="my-2">
-      <label className={rawErrors.length > 0 ? 'text-red-400' : ''}>
+    <div className="mt-8">
+      <label
+        className={
+          rawErrors.length > 0
+            ? 'block text-sm font-medium text-red-600'
+            : 'block text-sm font-medium text-gray-700'
+        }
+      >
         {label || schema.title}
         {(label || schema.title) && required ? (
           <span className="text-red-400">*</span>
         ) : null}
       </label>
-      {schema.description ? (
-        <p
-          className={
-            'text-sm mb-4 ' +
-            (rawErrors.length > 0 ? 'text-red-400' : 'text-gray-400')
-          }
-        >
-          {schema.description}
-        </p>
-      ) : null}
       <select
         id={id}
         value={typeof value === 'undefined' ? emptyValue : value}
@@ -99,7 +95,7 @@ export default function SelectWidget({
         // readOnly={readonly}
         autoFocus={autofocus}
         className={
-          'block bg-gray-700 rounded px-2 py-1 ' +
+          'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md ' +
           (rawErrors.length > 0 ? ' border border-red-400' : '')
         }
         onBlur={
@@ -129,18 +125,22 @@ export default function SelectWidget({
             Array.isArray(enumDisabled) &&
             (enumDisabled as any).indexOf(value) != -1;
           return (
-            <option
-              key={i}
-              className="bg-gray-700"
-              id={label}
-              value={value}
-              disabled={disabled}
-            >
+            <option key={i} id={label} value={value} disabled={disabled}>
               {label}
             </option>
           );
         })}
       </select>
+      {schema.description ? (
+        <p
+          className={
+            'text-xs mt-2 text-gray-400 ' +
+            (rawErrors.length > 0 ? 'text-red-400' : 'text-gray-400')
+          }
+        >
+          {schema.description}
+        </p>
+      ) : null}
     </div>
   );
 }

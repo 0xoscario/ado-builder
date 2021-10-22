@@ -46,6 +46,55 @@
           "description": "Address allowed to interact with your NFT."
         }
       }
+    },
+    "royalties": {
+      "title": "Setup Royalties",
+      "description": "Fees paid to the author, owner of the NFT. By percentage or flat fee.",
+      "$id": "/schemas/royalties",
+      "type": "object",
+      "properties": {
+        "royalties_enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "royalties_description": {
+          "type": "string",
+          "title": "Royalty Description",
+          "description": "*Optional - Information is solely for organizational use."
+        },
+        "royalties_distribution-type": {
+          "type": "object",
+          "title": "Distribution Type",
+          "anyOf": [
+            {
+              "title": "By Percentage",
+              "properties": {
+                "royalties_distribution_percentage": {
+                  "title": "% fee of sale price",
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "title": "By Flat Fee",
+              "properties": {
+                "royalties_distribution_fiat-fee": {
+                  "type": "number",
+                  "title": "Flat fee"
+                },
+                "royalties_distribution_fiat-fee-currency": {
+                  "type": "string",
+                  "title": "Currency type",
+                  "enum": ["usd"],
+                  "enumNames": ["USD"],
+                  "default": "usd"
+                }
+              }
+            }
+          ]
+        }
+      }
     }
   },
   "type": "object",
@@ -55,6 +104,9 @@
     },
     "whitelist": {
       "$ref": "#/definitions/whitelist"
+    },
+    "royalties": {
+      "$ref": "#/definitions/royalties"
     }
   }
 }

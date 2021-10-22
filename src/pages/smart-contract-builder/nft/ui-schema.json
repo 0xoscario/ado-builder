@@ -5,5 +5,9 @@
   "whitelist": {
     "ui:group": true,
     "ui:toggle": true
+  },
+  "royalties": {
+    "ui:group": true,
+    "ui:toggle": true
   }
 }
