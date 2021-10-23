@@ -21,7 +21,7 @@
         "nft-details_url": {
           "type": "string",
           "title": "External link / url to image",
-          "description": "Where users will go to loearn more about this item."
+          "description": "Where users will go to learn more about this item."
         },
         "nft-details_description": {
           "type": "string",
@@ -30,6 +30,39 @@
         }
       }
     },
+
+    "metadata": {
+      "title": "Metadata",
+      "description": "Metadata of your NFT",
+      "$id": "/schemas/metadata",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "required": ["url"],
+      "properties": {
+        "metadata_enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "metadata_image-name": {
+          "type": "string",
+          "title": "Image Name",
+          "description": "Name / title of your NFT"
+        },
+        "metadata_description": {
+          "type": "string",
+          "title": "Description",
+          "description": "Descriptive text about your NFT"
+        },
+        "metadata_url": {
+          "type": "string",
+          "title": "URL",
+          "description": "External URL (link address) to your source file."
+        }
+      }
+    },
+
     "whitelist": {
       "title": "Whitelist Addressess",
       "description": "A list of addresses allowed to interact with your NFT.",
@@ -50,6 +83,9 @@
         }
       }
     },
+
+
+
     "royalties": {
       "title": "Setup Royalties",
       "description": "Fees paid to the author, owner of the NFT. By percentage or flat fee.",
@@ -102,20 +138,55 @@
               }
             }
           ]
+        },
+        "payment_address": {
+          "type": "string",
+          "title": "Alphanumeric Terra Address",
+          "description": "Address for royalty distributions to be provided."
+        }
+      }
+    },
+
+    "blacklist": {
+      "title": "Blacklist Addressess",
+      "description": "A list of addresses prohibited from interact with your NFT.",
+      "$id": "/schemas/blacklist",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "properties": {
+        "blacklist_enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "blacklist_address": {
+          "type": "string",
+          "title": "Alphanumeric Terra Address",
+          "description": "Address prohibited from interact with your NFT."
         }
       }
     }
+
+
+
   },
   "type": "object",
   "properties": {
     "nft-details": {
       "$ref": "#/definitions/nft-details"
     },
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    },
     "whitelist": {
       "$ref": "#/definitions/whitelist"
     },
     "royalties": {
       "$ref": "#/definitions/royalties"
+    },
+    "blacklist": {
+      "$ref": "#/definitions/blacklist"
     }
   }
 }
