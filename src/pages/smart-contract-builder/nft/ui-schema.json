@@ -1,0 +1,7 @@
+{
+  "nft-details": {
+    "description": {
+      "ui:widget": "textarea"
+    }
+  }
+}

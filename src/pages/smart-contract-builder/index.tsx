@@ -103,7 +103,7 @@ const SmartContractBuilder: NextPage = () => {
                       Track transactions
                     </a>
                   </nav>
-                  <Link href="/smart-contract-builder/mission?template=nft">
+                  <Link href="/smart-contract-builder/nft">
                     <a className="content-end text-center flex  items-center mt-8 px-4 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 sm:text-sm">
                       Get Started
                       <svg
