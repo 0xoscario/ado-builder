@@ -11,9 +11,11 @@ const ObjectFieldTemplate = ({
   uiSchema,
   idSchema,
   formData,
+  schema,
 }: ObjectFieldTemplateProps) => {
-  if (uiSchema['ui:group']) {
-    if (uiSchema['ui:toggle']) {
+  console.log('schema', schema);
+  if (schema['ui:panel']) {
+    if (schema['ui:toggle']) {
       const id = idSchema['$id'].substring(
         idSchema['$id'].lastIndexOf('_') + 1
       );
@@ -25,6 +27,14 @@ const ObjectFieldTemplate = ({
       <Panel title={title} description={description}>
         {properties.map((element: any) => element.content)}
       </Panel>
+    );
+  }
+
+  if (schema['ui:group']) {
+    return (
+      <div className="bg-gray-50 p-8">
+        {properties.map((element: any) => element.content)}
+      </div>
     );
   }
 

@@ -1,13 +1,7 @@
 {
   "nft-details": {
-    "ui:group": true
-  },
-  "whitelist": {
-    "ui:group": true,
-    "ui:toggle": true
-  },
-  "royalties": {
-    "ui:group": true,
-    "ui:toggle": true
+    "nft-details_description": {
+      "ui:widget": "textarea"
+    }
   }
 }

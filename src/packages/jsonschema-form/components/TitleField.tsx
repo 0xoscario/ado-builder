@@ -5,13 +5,7 @@ export interface TitleFieldProps extends Partial<FieldProps> {
 }
 
 const TitleField = ({ title }: Partial<FieldProps>) => (
-  <>
-    <div className="flex flex-col text-center w-full">
-      <h1 className="pb-0 sm:text-2xl text-xl font-medium title-font text-gray-900">
-        {title}
-      </h1>
-    </div>
-  </>
+  <p className="block text-sm font-medium text-gray-700">{title}</p>
 );
 
 export default TitleField;

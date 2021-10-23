@@ -5,6 +5,7 @@
       "description": "Tell us about what you're creating.",
       "$id": "/schemas/nft-detail",
       "type": "object",
+      "ui:panel": true,
       "required": ["name", "symbol"],
       "properties": {
         "nft-details_name": {
@@ -34,6 +35,8 @@
       "description": "A list of addresses allowed to interact with your NFT.",
       "$id": "/schemas/whitelist",
       "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
       "properties": {
         "whitelist_enabled": {
           "type": "boolean",
@@ -52,6 +55,8 @@
       "description": "Fees paid to the author, owner of the NFT. By percentage or flat fee.",
       "$id": "/schemas/royalties",
       "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
       "properties": {
         "royalties_enabled": {
           "type": "boolean",
@@ -69,6 +74,8 @@
           "anyOf": [
             {
               "title": "By Percentage",
+              "type": "object",
+              "ui:group": true,
               "properties": {
                 "royalties_distribution_percentage": {
                   "title": "% fee of sale price",
@@ -78,6 +85,8 @@
             },
             {
               "title": "By Flat Fee",
+              "type": "object",
+              "ui:group": true,
               "properties": {
                 "royalties_distribution_fiat-fee": {
                   "type": "number",
