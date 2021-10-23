@@ -29,7 +29,7 @@ export default function CheckboxWidget({
 
   if (schema['ui:toggle']) {
     return (
-      <div className="absolute right-0 ">
+      <div className="absolute right-0 top-0">
         <div className="relative">
           <Switch
             checked={checked}

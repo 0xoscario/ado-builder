@@ -115,8 +115,9 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   const fieldTitle = props.uiSchema['ui:title'] || props.title;
 
+  console.log('props ', props);
   return (
-    <>
+    <div className="relative">
       <ArrayFieldTitle
         key={`array-field-title-${props.idSchema.$id}`}
         TitleField={props.TitleField}
@@ -124,6 +125,16 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
         title={fieldTitle}
         required={props.required}
       />
+      {props.items && props.items.map((p) => DefaultArrayItem(p))}
+      {props.canAdd && (
+        <span className="float-right">
+          <AddButton
+            className=""
+            onClick={props.onAddClick}
+            disabled={props.disabled || props.readonly}
+          />
+        </span>
+      )}
       {(props.uiSchema['ui:description'] || props.schema.description) && (
         <ArrayFieldDescription
           key={`array-field-description-${props.idSchema.$id}`}
@@ -134,19 +145,7 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
           }
         />
       )}
-
-      {props.items && props.items.map((p) => DefaultArrayItem(p))}
-
-      {props.canAdd && (
-        <span className="float-right">
-          <AddButton
-            className=""
-            onClick={props.onAddClick}
-            disabled={props.disabled || props.readonly}
-          />
-        </span>
-      )}
-    </>
+    </div>
   );
 };
 

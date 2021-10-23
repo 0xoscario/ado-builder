@@ -8,22 +8,22 @@
       "ui:panel": true,
       "required": ["name", "symbol"],
       "properties": {
-        "nft-details_name": {
+        "name": {
           "type": "string",
           "title": "Name your NFT",
           "description": "Give your creation a name you’ll easily identify it  with."
         },
-        "nft-details_symbol": {
+        "symbol": {
           "type": "string",
           "title": "Create a NFT symbol",
           "description": "A publicly searchable identifier."
         },
-        "nft-details_url": {
+        "url": {
           "type": "string",
           "title": "External link / url to image",
           "description": "Where users will go to learn more about this item."
         },
-        "nft-details_description": {
+        "description": {
           "type": "string",
           "title": "Message",
           "description": "This will be included on the item's detail page. - Markdown syntax is supported."
@@ -71,13 +71,16 @@
       "ui:panel": true,
       "ui:toggle": true,
       "properties": {
-        "whitelist_enabled": {
+        "enabled": {
           "type": "boolean",
           "default": false,
           "ui:toggle": true
         },
-        "whitelist_address": {
-          "type": "string",
+        "address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address allowed to interact with your NFT."
         }
@@ -155,17 +158,17 @@
       "ui:panel": true,
       "ui:toggle": true,
       "properties": {
-        "royalties_enabled": {
+        "enabled": {
           "type": "boolean",
           "default": false,
           "ui:toggle": true
         },
-        "royalties_description": {
+        "description": {
           "type": "string",
           "title": "Royalty Description",
           "description": "*Optional - Information is solely for organizational use."
         },
-        "royalties_distribution-type": {
+        "distribution-type": {
           "type": "object",
           "title": "Distribution Type",
           "anyOf": [
@@ -174,7 +177,7 @@
               "type": "object",
               "ui:group": true,
               "properties": {
-                "royalties_distribution_percentage": {
+                "distribution_percentage": {
                   "title": "% fee of sale price",
                   "type": "number"
                 }
@@ -185,11 +188,11 @@
               "type": "object",
               "ui:group": true,
               "properties": {
-                "royalties_distribution_fiat-fee": {
+                "distribution_fiat-fee": {
                   "type": "number",
                   "title": "Flat fee"
                 },
-                "royalties_distribution_fiat-fee-currency": {
+                "distribution_fiat-fee-currency": {
                   "type": "string",
                   "title": "Currency type",
                   "enum": ["usd"],
@@ -226,6 +229,26 @@
           "type": "string",
           "title": "Alphanumeric Terra Address",
           "description": "Address prohibited from interact with your NFT."
+        }
+      }
+    },
+    "blacklist": {
+      "title": "Blacklist Addressess",
+      "description": "A list of addresses prohibited from interaction with your NFT.",
+      "$id": "/schemas/blacklist",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "address": {
+          "type": "string",
+          "title": "Alphanumeric Terra Address",
+          "description": "Address blacklisted to interact with your NFT."
         }
       }
     }

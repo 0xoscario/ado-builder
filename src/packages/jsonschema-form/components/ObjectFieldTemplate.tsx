@@ -16,12 +16,9 @@ const ObjectFieldTemplate = ({
   console.log('schema', schema);
   if (schema['ui:panel']) {
     if (schema['ui:toggle']) {
-      const id = idSchema['$id'].substring(
-        idSchema['$id'].lastIndexOf('_') + 1
-      );
-      properties = formData[`${id}_enabled`]
+      properties = formData['enabled']
         ? properties
-        : properties.filter((prop) => prop.name === `${id}_enabled`);
+        : properties.filter((prop) => prop.name === 'enabled');
     }
     return (
       <Panel title={title} description={description}>
@@ -32,7 +29,7 @@ const ObjectFieldTemplate = ({
 
   if (schema['ui:group']) {
     return (
-      <div className="bg-gray-50 p-8">
+      <div className="bg-gray-50 p-8 grid gap-y-6">
         {properties.map((element: any) => element.content)}
       </div>
     );
