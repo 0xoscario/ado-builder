@@ -19,7 +19,7 @@ export default function IconButton(props: IconButtonProps) {
   return (
     <button
       disabled={props.disabled}
-      className={'mx-1 ' + (props.disabled ? 'text-gray-500 ' : '')}
+      className={'mx-1 ' + ' text-opacity-25'}
       onClick={(e) => props.onClick(e as any)}
     >
       {mappings[props.icon]}
