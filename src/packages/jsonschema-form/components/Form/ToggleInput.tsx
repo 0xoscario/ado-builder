@@ -25,7 +25,7 @@ export default function ToggleInput({
                              checked:translate-x-5 ' +
               className
             }
-            checked={props.value}
+            checked={props.value.toString().toLowerCase() == "true"?true:false}
             {...props}
           />
         </div>

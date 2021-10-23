@@ -6,12 +6,22 @@ import { classnames } from '@/utils/styles';
 import Layout from '@/components/DefaultLayout';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
+
 import schema from './schema.json';
 import uiSchema from './ui-schema.json';
 import givenFormData from './form-data.json';
 
+/* Resolve typecheck failures when passing JSON props */
+import { JSONSchema7 } from "json-schema"; //Appropriate Type for props
+
+
 const NFT: NextPage = () => {
+  /* Patch JSON7 typeConflicts */
+  const [json7Schema, setJson7Schema] = useState(schema as JSONSchema7)
+  const [json7UiSchema, setJson7UiSchema] = useState(uiSchema as JSONSchema7)
+  
   const [formData, setFormData] = useState(givenFormData);
+
   return (
     <Layout title="Andromeda">
       <section className="text-gray-600">
@@ -26,8 +36,8 @@ const NFT: NextPage = () => {
           </div>
           <div className="mt-12 max-w-4xl mx-auto">
             <JsonSchemaForm
-              schema={schema}
-              uiSchema={uiSchema}
+              schema={json7Schema}
+              uiSchema={json7UiSchema}
               formData={formData}
               onChange={({ formData }) => {
                 //console.log('formData', formData);
