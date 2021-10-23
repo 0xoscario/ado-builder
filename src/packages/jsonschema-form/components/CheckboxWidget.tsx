@@ -1,10 +1,6 @@
 import { WidgetProps } from '@rjsf/core';
 import { Switch } from '@headlessui/react';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
-
 export default function CheckboxWidget({
   id,
   value,
@@ -31,8 +27,6 @@ export default function CheckboxWidget({
 
   const checked = typeof value === 'undefined' ? false : value;
 
-  console.log('checked', checked);
-
   if (schema['ui:toggle']) {
     return (
       <div className="absolute right-0 top-0">
@@ -49,17 +43,17 @@ export default function CheckboxWidget({
             />
             <span
               aria-hidden="true"
-              className={classNames(
-                checked ? 'bg-red-600' : 'bg-red-200',
-                'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200'
-              )}
+              className={[
+                `${checked ? 'bg-green-500' : 'bg-gray-200'}`,
+                'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200',
+              ].join(' ')}
             />
             <span
               aria-hidden="true"
-              className={classNames(
-                checked ? 'translate-x-5' : 'translate-x-0',
-                'pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200'
-              )}
+              className={[
+                `${checked ? 'translate-x-5' : 'translate-x-0'}`,
+                'pointer-events-none absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform ring-0 transition-transform ease-in-out duration-200',
+              ].join(' ')}
             />
           </Switch>
         </div>
