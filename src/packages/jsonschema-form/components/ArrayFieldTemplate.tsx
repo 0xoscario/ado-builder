@@ -61,11 +61,11 @@ const ArrayFieldDescription = ({
 // Used in the two templates
 const DefaultArrayItem = (props: any) => {
   return (
-    <div key={props.key}>
-      <div>
+    <div key={props.key} className="flex">
+      <div className="flex-1">
         <div>{props.children}</div>
       </div>
-      <div className="text-right">
+      <div className="w-11 ml-2">
         <IconButton
           icon="up"
           className=""
@@ -93,7 +93,7 @@ const DefaultFixedArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
   return (
     <fieldset className={props.className}>
       <div
-        className="row array-item-list"
+        className="row array-item-list "
         key={`array-item-list-${props.idSchema.$id}`}
       >
         {props.items && props.items.map(DefaultArrayItem)}
@@ -117,7 +117,7 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
 
   console.log('props ', props);
   return (
-    <div className="relative">
+    <div>
       <ArrayFieldTitle
         key={`array-field-title-${props.idSchema.$id}`}
         TitleField={props.TitleField}
@@ -125,16 +125,9 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
         title={fieldTitle}
         required={props.required}
       />
-      {props.items && props.items.map((p) => DefaultArrayItem(p))}
-      {props.canAdd && (
-        <span className="float-right">
-          <AddButton
-            className=""
-            onClick={props.onAddClick}
-            disabled={props.disabled || props.readonly}
-          />
-        </span>
-      )}
+      <div>
+        <div>{props.items && props.items.map((p) => DefaultArrayItem(p))}</div>
+      </div>
       {(props.uiSchema['ui:description'] || props.schema.description) && (
         <ArrayFieldDescription
           key={`array-field-description-${props.idSchema.$id}`}
@@ -145,6 +138,17 @@ const DefaultNormalArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
           }
         />
       )}
+      <div className="mt-4">
+        {props.canAdd && (
+          <span>
+            <AddButton
+              className=""
+              onClick={props.onAddClick}
+              disabled={props.disabled || props.readonly}
+            />
+          </span>
+        )}
+      </div>
     </div>
   );
 };

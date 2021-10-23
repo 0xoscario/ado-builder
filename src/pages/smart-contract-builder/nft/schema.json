@@ -246,7 +246,10 @@
           "ui:toggle": true
         },
         "address": {
-          "type": "string",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address blacklisted to interact with your NFT."
         }
