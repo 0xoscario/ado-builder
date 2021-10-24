@@ -1,0 +1,33 @@
+{
+    "schema": {
+        "blacklist": {
+            "title": "Blacklist Addressess",
+            "description": "A list of addresses prohibited from interaction with your NFT.",
+            "$id": "/schemas/blacklist",
+            "type": "object",
+            "ui:panel": true,
+            "ui:toggle": true,
+            "properties": {
+                "enabled": {
+                "type": "boolean",
+                "default": false,
+                "ui:toggle": true
+                },
+                "address": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                },
+                "title": "Alphanumeric Terra Address",
+                "description": "Address blacklisted to interact with your NFT."
+                }
+            }
+        }
+    },
+    "ui-schema": {
+
+    },
+    "formdata": {
+        
+    }
+}
