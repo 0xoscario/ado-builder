@@ -3,7 +3,9 @@
 //Stylization types of: error | info | success | warning
 
 import React from 'react'
-import { Snackbar, Alert } from '@mui/material'
+import { Snackbar } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
+//import { Snackbar, Alert } from '@mui/material'
 
 const Notifications = (props) => {
     const popupDuration = 1500 //time in milliseconds to display popup

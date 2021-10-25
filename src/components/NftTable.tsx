@@ -54,6 +54,9 @@ const NftTable = (props) => {
         }
 
     }
+    
+    /* Ignore prefer constant declarations for flexible reassignment without state */
+    /*eslint prefer-const:off*/
     const handleExpand = (nftData) => {
         let newExpandedRows = [...expandedRows];
         let index = _.findIndex(expandedRows, nftData);
@@ -123,7 +126,7 @@ const NftTable = (props) => {
         if (isExpan) {
             const expandedRow = (<tr key={data.Name + "_expanded"}>
                 <td></td>
-                <td colSpan="5" >
+                <td colSpan={5} >
                     <div className="p-5 pl-10">
                         <img
                             className="inline-block w-20 h-20 rounded ring-2 ring-white"
