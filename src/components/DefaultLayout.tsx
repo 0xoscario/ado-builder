@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   FolderIcon,
+  BeakerIcon,
   PresentationChartBarIcon,
   DocumentTextIcon,
   MenuAlt2Icon,
@@ -132,6 +133,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     ))}
                   </nav>
                 </div>
+                <div className="pt-3 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
+                  <BeakerIcon
+                    className="text-gray-500 group-hover:text-gray-300 mr-4 flex-shrink-0 h-4 w-4"
+                    aria-hidden="true"
+                  />
+                  <div className="pb-1">
+                    <span>version&nbsp;</span>
+                    <strong>{process.env.appVersion}</strong>
+                  </div>
+                </div>
               </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -181,6 +192,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     </Link>
                   ))}
                 </nav>
+              </div>
+              <div className="p-4 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
+                <BeakerIcon
+                  className="text-gray-500 group-hover:text-gray-300 mr-4 flex-shrink-0 h-4 w-4"
+                  aria-hidden="true"
+                />
+                <div className="pb-1">
+                  <span>version&nbsp;</span>
+                  <strong>{process.env.appVersion}</strong>
+                </div>
               </div>
             </div>
           </div>
