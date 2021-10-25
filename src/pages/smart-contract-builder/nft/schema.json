@@ -31,38 +31,6 @@
       }
     },
 
-    "metadata": {
-      "title": "Metadata",
-      "description": "Metadata of your NFT",
-      "$id": "/schemas/metadata",
-      "type": "object",
-      "ui:panel": false,
-      "ui:toggle": true,
-      "required": ["url"],
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "default": false,
-          "ui:toggle": true
-        },
-        "image-name": {
-          "type": "string",
-          "title": "Image Name",
-          "description": "Name / title of your NFT"
-        },
-        "description": {
-          "type": "string",
-          "title": "Description",
-          "description": "Descriptive text about your NFT"
-        },
-        "url": {
-          "type": "string",
-          "title": "URL",
-          "description": "External URL (link address) to your source file."
-        }
-      }
-    },
-
     "whitelist": {
       "title": "Whitelist Addressess",
       "description": "A list of addresses allowed to interact with your NFT.",
@@ -141,7 +109,10 @@
           ]
         },
         "payment_address": {
-          "type": "string",
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address recieving funds from tax."
         }
@@ -211,6 +182,7 @@
         }
       }
     },
+
     "blacklist": {
       "title": "Blacklist Addressess",
       "description": "A list of addresses prohibited from interaction with your NFT.",
@@ -271,9 +243,6 @@
     "nft-details": {
       "$ref": "#/definitions/nft-details"
     },
-    "metadata": {
-      "$ref": "#/definitions/metadata"
-    },
     "whitelist": {
       "$ref": "#/definitions/whitelist"
     },
@@ -285,6 +254,9 @@
     },
     "blacklist": {
       "$ref": "#/definitions/blacklist"
+    },
+    "splitter": {
+      "$ref": "#/definitions/splitter"
     }
   }
 }
