@@ -29,6 +29,12 @@
       }
     }
   },
-  "ui-schema": {},
+  "ui-schema": {
+    "nft-details": {
+      "description": {
+          "ui:widget": "textarea"
+      }
+    }
+  },
   "form-data": {}
 }
