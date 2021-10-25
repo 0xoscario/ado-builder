@@ -36,7 +36,7 @@
       "description": "Metadata of your NFT",
       "$id": "/schemas/metadata",
       "type": "object",
-      "ui:panel": true,
+      "ui:panel": false,
       "ui:toggle": true,
       "required": ["url"],
       "properties": {
@@ -231,6 +231,37 @@
           },
           "title": "Alphanumeric Terra Address",
           "description": "Address blacklisted to interact with your NFT."
+        }
+      }
+    },
+
+    "splitter": {
+      "title": "Splitter",
+      "description": "Distribute funds by percentage to others.",
+      "$id": "/schemas/splitter",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "required": ["percentage"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "percentage": {
+          "type": "string",
+          "title": "Percentage",
+          "description": "The percentage to distribute to addresses.",
+          "maximum": 100
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alphanumeric Terra Address",
+          "description": "Address to distribute funds amongst."
         }
       }
     }
