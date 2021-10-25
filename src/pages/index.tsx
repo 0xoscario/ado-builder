@@ -29,7 +29,7 @@ const statusStyles = {
 */
 const Home: NextPage = () => {
   return (
-    <Layout title="Andromeda">
+    <Layout title="Andromeda" currentNavIndex = "0">
       <div className="bg-white shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <div className="sm:flex sm:items-center sm:justify-between">

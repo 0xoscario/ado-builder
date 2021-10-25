@@ -17,25 +17,22 @@ import { classnames } from '@/utils/styles';
 import ConnectedButton from '@/components/ConnectedButton';
 
 const navigation = [
-  {
-    name: 'Dashboard',
-    href: '/',
-    icon: PresentationChartBarIcon,
-    current: true,
-  },
-  { name: 'Marketplace', href: '#', icon: UsersIcon, current: false },
-  { name: 'My missions', href: '#', icon: BriefcaseIcon, current: false },
-  { name: 'My assets', href: '#', icon: FolderIcon, current: false },
-  { name: 'Contracts', href: '#', icon: DocumentTextIcon, current: false },
+  { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon  },
+  { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
+  { name: 'My missions', href: '#', icon: BriefcaseIcon },
+  { name: 'My assets', href: '#', icon: FolderIcon },
+  { name: 'Contracts', href: '#', icon: DocumentTextIcon },
 ];
 
 type Props = {
   title?: string;
+  currentNavIndex?: string;
   children?: ReactNode;
 };
 
 const DefaultLayout: FunctionComponent<Props> = ({
   title = 'Andromeda',
+  currentNavIndex = 0,
   children,
 }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -110,11 +107,11 @@ const DefaultLayout: FunctionComponent<Props> = ({
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
                   <nav className="px-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <Link key={item.name} href={item.href}>
                         <a
                           className={classnames(
-                            item.current
+                            currentNavIndex == index
                               ? 'bg-gray-900 text-white'
                               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                             'group flex items-center px-2 py-2 text-base font-medium rounded-md'
@@ -122,7 +119,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                         >
                           <item.icon
                             className={classnames(
-                              item.current
+                              currentNavIndex == index
                                 ? 'text-gray-300'
                                 : 'text-gray-400 group-hover:text-gray-300',
                               'mr-4 flex-shrink-0 h-6 w-6'
@@ -160,11 +157,11 @@ const DefaultLayout: FunctionComponent<Props> = ({
               </div>
               <div className="flex-1 flex flex-col overflow-y-auto">
                 <nav className="flex-1 px-2 py-4 bg-gray-800 space-y-1">
-                  {navigation.map((item) => (
+                  {navigation.map((item, index) => (
                     <Link key={item.name} href={item.href}>
                       <a
                         className={classnames(
-                          item.current
+                          currentNavIndex == index
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
@@ -172,7 +169,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                       >
                         <item.icon
                           className={classnames(
-                            item.current
+                            currentNavIndex == index
                               ? 'text-gray-300'
                               : 'text-gray-400 group-hover:text-gray-300',
                             'mr-3 flex-shrink-0 h-6 w-6'
