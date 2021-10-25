@@ -42,7 +42,7 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "ui:toggle": true
         },
         "image-name": {
@@ -202,7 +202,10 @@
           ]
         },
         "payment_address": {
-          "type": "string",
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address for royalty distributions to be provided."
         }
