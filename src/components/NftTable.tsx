@@ -1,83 +1,12 @@
 import React from 'react';
-import { TableContainer, Table, TableHead, TableRow, TableBody, TableCell, Paper, TableSortLabel, Box } from '@mui/material';
-import { tableCellClasses } from '@mui/material/TableCell';
-import { styled } from '@mui/material/styles';
-import { visuallyHidden } from '@mui/utils';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import _ from 'lodash';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-        backgroundColor: "rgba(31, 41, 55, var(--tw-bg-opacity))",
-        color: theme.palette.common.white,
-        fontWeight: 800,
-    },
-    [`&.${tableCellClasses.body}`]: {
-        fontSize: 14,
-    },
-}));
+import { ArrowNarrowUpIcon, ArrowNarrowDownIcon, PlusIcon, MinusIcon, SearchIcon, ChevronLeftIcon, ChevronDoubleLeftIcon, ChevronRightIcon, ChevronDoubleRightIcon } from '@heroicons/react/solid';
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-        border: 0,
-    },
-}));
-
-const StyledTableSortLabel = styled(TableSortLabel)`
-    color:white !important;
-    span,
-    svg {
-        color: white !important;
-        font-weight: bold;
-    }
-    :hover{
-        color: white
-    }
-`;
-
-function EnhancedTableHead(props) {
-    const { order, orderBy, rowCount, onRequestSort } =
-        props;
-    const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
-    };
-
-    return (
-        <TableHead>
-            <StyledTableRow>
-                {props.headCells.map((headCell) => (
-                    <StyledTableCell
-                        key={headCell.id}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
-                        <StyledTableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                            classes={{ icon: "" }}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </Box>
-                            ) : null}
-                        </StyledTableSortLabel>
-                    </StyledTableCell>
-                ))}
-            </StyledTableRow>
-        </TableHead>
-    );
-}
+import AudioSvg from '@/assets/audio.svg';
+import ImageSvg from '@/assets/image.svg';
+import DomainSvg from '@/assets/domain.svg';
+import OtherSvg from '@/assets/other.svg';
 
 interface Item {
     Name: string,
@@ -87,123 +16,253 @@ interface Item {
     Publisher: string
 }
 
-function Row(props: Item) {
-    const [open, setOpen] = React.useState(false);
-    return (
-        <React.Fragment>
-            <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-                <TableCell>
-                    <IconButton
-                        aria-label="expand row"
-                        size="small"
-                        onClick={() => setOpen(!open)}
-                    >
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                    </IconButton>
-                </TableCell>
-                <TableCell component="th" scope="row">
-                    {props.Name}
-                </TableCell>
-                <TableCell align="left">{props.Price}</TableCell>
-                <TableCell align="left">{props.Type}</TableCell>
-                <TableCell align="left">{props.Owner}</TableCell>
-                <TableCell align="left">{props.Publisher}</TableCell>
-            </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box sx={{ margin: 1 }}>
-                            <Table size="small" aria-label="purchases">
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell />
-                                        <TableCell component="th" scope="row" align="center" className="flex">
-                                            <div className="flex mr-4">
-                                                <Avatar
-                                                    alt="Image"
-                                                    src="/static/images/avatar/1.jpg"
-                                                    sx={{ width: 100, height: 100 }}
-                                                    variant="rounded"
-                                                />
-                                                <Button variant="contained" className="m-auto ml-4">
-                                                    Purchase
-                                                </Button>
-                                            </div>
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </Box>
-                    </Collapse>
-                </TableCell>
-            </TableRow>
-        </React.Fragment>
-    );
+enum NftType {
+    Image = "Image",
+    Audio = "Audio",
+    Domain = "Domain",
+    Other = "Other"
 }
 
 
 const NftTable = (props) => {
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('item');
+    const [expandedRows, setExpandedRows] = React.useState([]);
+    const [searchText, setSearchText] = React.useState("");
+    const [filterType, setFilterType] = React.useState("All");
+    const [itemPerPage, setItemPerPage] = React.useState(25);
+    const [curPage, setCurPage] = React.useState(0);
 
-    const handleRequestSort = (event, property) => {
+
+
+    const handleRequestSort = (property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
 
-    const descendingComparator = (a, b, orderBy) => {
-        if (b[orderBy] < a[orderBy]) {
-            return -1;
+    const iconNftType = (data: NftType) => {
+
+        if (data == NftType.Audio) {
+            return <AudioSvg className="l-6 w-8" alt="Audio" />
+        } else if (data == NftType.Image) {
+            return <ImageSvg className="l-6 w-8" />
+        } else if (data == NftType.Domain) {
+            return <DomainSvg className="l-6 w-8" />
+        } else if (data == NftType.Other){
+            return <OtherSvg className="l-6 w-8" />
         }
-        if (b[orderBy] > a[orderBy]) {
-            return 1;
-        }
-        return 0;
+
+    }
+    const handleExpand = (nftData) => {
+        let newExpandedRows = [...expandedRows];
+        let index = _.findIndex(expandedRows, nftData);
+        index > -1 ? newExpandedRows.splice(index, 1) : newExpandedRows.push(nftData);
+        setExpandedRows(newExpandedRows);
     }
 
-    const getComparator = (order, orderBy) => {
-        return order === 'desc'
-            ? (a, b) => descendingComparator(a, b, orderBy)
-            : (a, b) => -descendingComparator(a, b, orderBy);
-    };
+    const isExpanded = (nftData) => {
+        return _.findIndex(expandedRows, nftData) > -1
+    }
 
-    const stableSort = (array, comparator) => {
-        const stabilizedThis = array.map((el, index) => [el, index]);
-        stabilizedThis.sort((a, b) => {
-            const order = comparator(a[0], b[0]);
-            if (order !== 0) {
-                return order;
+    const handleSearchText = (event) => {
+        setSearchText(event.target.value.toLowerCase());
+        setCurPage(0);
+    }
+    const filterNftType = (event) => {
+        setFilterType(event.target.value);
+        setCurPage(0);
+    }
+    const handleItemPerPage = (event) => {
+        setItemPerPage(event.target.value);
+    }
+
+    const handleFirstPage = (event) => {
+        setCurPage(0)
+    }
+    const handlePreviousPage = (event) => {
+        if (curPage > 0)
+            setCurPage(curPage - 1)
+    }
+    const handleNextPage = (event) => {
+        if ( curPage < Math.ceil(total_count / itemPerPage)-1 ){
+            setCurPage( curPage + 1 )
+        }
+    }
+    const handleLastPage = (event) => {
+        setCurPage( Math.ceil(total_count / itemPerPage)-1 );
+    }
+
+    const getRow = (data) => {
+        let rows = [];
+        let isExpan = _.findIndex(expandedRows, data) > -1;
+
+        const firstRow = (<tr key={data.Name}>
+            <td className="px-6 py-4 text-gray-900" >
+                <div className="m-auto h-6 w-6 cursor-pointer" onClick={() => handleExpand(data)}>
+                    {isExpan ? <MinusIcon /> : <PlusIcon />}
+                </div>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-gray-900">
+                {data.Name}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-gray-900">
+                {data.Price}
+            </td>
+            <td className="px-6 py-1 whitespace-nowrap text-gray-900">
+                {iconNftType(data.Type)}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {data.Owner}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                {data.Publisher}
+            </td>
+        </tr>)
+        rows.push(firstRow);
+        if (isExpan) {
+            const expandedRow = (<tr key={data.Name + "_expanded"}>
+                <td></td>
+                <td colSpan="5" >
+                    <div className="p-5 pl-10">
+                        <img
+                            className="inline-block w-20 h-20 rounded ring-2 ring-white"
+                            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                        />
+
+                        <button type="button"
+                            className="inline-flex justify-center item-center ml-10 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Purchase
+                        </button>
+                    </div>
+                </td>
+            </tr>);
+            rows.push(expandedRow);
+        }
+        return rows;
+    }
+
+    const orderByDataList = (dataList, limit:number) => {
+
+        let results = [];
+        let orderData = _.orderBy(dataList, [orderBy], [order]);
+        orderData.map((data,idx) => {
+            if (searchText === "" ||
+                _.includes(data.Name.toLowerCase(), searchText) ||
+                _.includes(data.Publisher.toLowerCase(), searchText)
+            ) {
+                if (filterType === "All" || filterType === data.Type) {
+                    total_count ++;
+                    if (results.length == limit){
+                        return;
+                    }
+                    if (idx < curPage * itemPerPage)
+                        return;
+                    results.push(getRow(data));
+                }
             }
-            return a[1] - b[1];
         });
-        return stabilizedThis.map((el) => el[0]);
+        return results;
     }
-
+    let total_count = 0;
+    let orderList = orderByDataList(props.dataList, itemPerPage)
 
     return (
-        <TableContainer
-            component={Paper}
-            variant="outlined"
-        >
-            <Table>
-                <EnhancedTableHead
-                    order={order}
-                    orderBy={orderBy}
-                    onRequestSort={handleRequestSort}
-                    rowCount={props.dataList.length}
-                    headCells={props.headCells}
-                />
-                <TableBody>
-                    {stableSort(props.dataList, getComparator(order, orderBy))
-                        .map((row, index) => {
-                            return (
-                                <Row {...row} key={index} />
-                            );
-                        })}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div className="flex flex-col">
+            <div className="flex justify-between mb-3">
+                <div className="flex items-end">
+                    <label className="text-gray-800">Result Count: {total_count}</label>
+                </div>
+                <div className="flex">
+                    <div className="items-center w-1/2 mr-3 mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm flex">
+                        <SearchIcon className="w-5 h-5 text-gray-500" />
+                        <input
+                            className="w-5/6  border-transparent focus:border-transparent focus:ring-0 focus:placeholder-gray-400 focus:outline-none"
+                            type="text"
+                            name="first-name"
+                            id="first-name"
+                            placeholder="Search Text"
+                            autoComplete="off"
+                            onChange={handleSearchText}
+                        />
+                    </div>
+
+                    <select
+                        id="country"
+                        name="country"
+                        autoComplete="country-name"
+                        className="w-1/2  mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        onChange={filterNftType}
+                    >
+                        <option>All</option>
+                        <option>Image</option>
+                        <option>Audio</option>
+                        <option>Domain</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-800 text-gray-200">
+                                <tr>
+                                    <th className="w-20"></th>
+                                    {
+                                        props.headCells.map(headCell => (
+
+                                            <th key={headCell.id}
+                                                scope="col"
+                                                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                                            >
+                                                <div className="flex">
+                                                    <div className="cursor-pointer" onClick={() => { handleRequestSort(headCell.id), setOrderBy(headCell.id) }}> {headCell.label}</div>
+                                                    {
+                                                        order === "asc" ?
+                                                            <ArrowNarrowUpIcon className={`h-4 w-4 ${headCell.id === orderBy ? "visible" : "invisible"}`} />
+                                                            :
+                                                            <ArrowNarrowDownIcon className={`h-4 w-4 ${headCell.id === orderBy ? "visible" : "invisible"}`} />
+                                                    }
+                                                </div>
+                                            </th>
+                                        ))
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {
+                                    orderList
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="flex mt-3 justify-end h-10">
+                        <div className="flex justify-between w-1/4 gap-2">
+                            <div className={`w-1/5 p-1 cursor-pointer border-gray-300 bg-white rounded-md shadow-sm ${curPage === 0?"text-gray-200":"text-gray-700 hover:bg-gray-300"} `} onClick={handleFirstPage}><ChevronDoubleLeftIcon className="h-8 m-auto" /></div>
+                            <div className={`w-1/5 p-1 cursor-pointer border-gray-300 bg-white rounded-md shadow-sm ${curPage === 0?"text-gray-200":"text-gray-700 hover:bg-gray-300"} `} onClick={handlePreviousPage}><ChevronLeftIcon className="h-8 m-auto"/></div>
+                            <div className="w-1/5 text-gray-700  items-center flex" ><span className="w-full text-center">{total_count == 0 ? 0 : curPage+1}/{Math.ceil(total_count/itemPerPage)}</span></div>
+                            <div className={`w-1/5 p-1 cursor-pointer border-gray-300 bg-white rounded-md shadow-sm ${total_count == 0 || curPage === Math.ceil(total_count/itemPerPage)-1?"text-gray-200":"text-gray-700 hover:bg-gray-300"} `} onClick={handleNextPage}><ChevronRightIcon className="h-8 m-auto"/></div>
+                            <div className={`w-1/5 p-1 cursor-pointer border-gray-300 bg-white rounded-md shadow-sm ${total_count == 0 || curPage === Math.ceil(total_count/itemPerPage)-1?"text-gray-200":"text-gray-700 hover:bg-gray-300"} `} onClick={handleLastPage}><ChevronDoubleRightIcon className="h-8 m-auto"/></div>
+                        </div>
+                        <select
+                            id="country"
+                            name="country"
+                            autoComplete="country-name"
+                            className=" w-20 ml-5 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            onChange={handleItemPerPage}
+                        >
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 export default NftTable;
