@@ -17,7 +17,7 @@ import { classnames } from '@/utils/styles';
 import ConnectedButton from '@/components/ConnectedButton';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon  },
+  { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon },
   { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
   { name: 'My missions', href: '#', icon: BriefcaseIcon },
   { name: 'My assets', href: '#', icon: FolderIcon },
@@ -202,6 +202,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     Search
                   </label>
                   <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                    {/**
                     <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                       <SearchIcon className="h-5 w-5" aria-hidden="true" />
                     </div>
@@ -211,7 +212,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                       placeholder="Search"
                       type="search"
                       name="search"
-                    />
+                    />*/}
                   </div>
                 </form>
               </div>
