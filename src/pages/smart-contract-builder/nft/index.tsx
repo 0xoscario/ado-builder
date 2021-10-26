@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import { v4 as uuidv4 } from 'uuid';
 import { CogIcon } from '@heroicons/react/outline';
@@ -7,19 +7,20 @@ import { classnames } from '@/utils/styles';
 import Layout from '@/components/DefaultLayout';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
+import useUUID from '@/hooks/useUUID';
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
 import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-builder';
 
 const NFT: NextPage = () => {
   const { schema, uiSchema, formData } = generateSchema([
-    { type: 'nft-details', id: uuidv4() },
-    { type: 'whitelist', id: uuidv4() },
-    { type: 'taxes', id: uuidv4() },
-    { type: 'royalties', id: uuidv4() },
-    { type: 'blacklist', id: uuidv4() },
-    { type: 'splitter', id: uuidv4() },
-    { type: 'timelock', id: uuidv4() },
+    { type: 'nft-details', id: useUUID() },
+    { type: 'whitelist', id: useUUID() },
+    { type: 'taxes', id: useUUID() },
+    { type: 'royalties', id: useUUID() },
+    { type: 'blacklist', id: useUUID() },
+    { type: 'splitter', id: useUUID() },
+    { type: 'timelock', id: useUUID() },
   ]);
 
   return (
@@ -39,9 +40,10 @@ const NFT: NextPage = () => {
               schema={schema as JSONSchema7}
               uiSchema={uiSchema as JSONSchema7}
               formData={formData as JSONSchema7}
+              /** 
               onChange={({ formData }) => {
                 console.log('formData', formData);
-              }}
+              }}*/
               onSubmit={() => console.log('form submitted')}
             >
               <div className="text-center">
