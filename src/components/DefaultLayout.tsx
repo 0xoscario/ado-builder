@@ -12,7 +12,7 @@ import {
   BriefcaseIcon,
   XIcon,
 } from '@heroicons/react/outline';
-import { SearchIcon } from '@heroicons/react/solid';
+// import { SearchIcon } from '@heroicons/react/solid';
 
 import { classnames } from '@/utils/styles';
 import ConnectedButton from '@/components/ConnectedButton';
@@ -97,7 +97,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                   </div>
                 </Transition.Child>
                 <div className=" flex-shrink-0 flex items-center px-4">
-                  <div className="h-8	relative">
+                  <div className="relative">
                     <img
                       src="/images/AND_Logo-Full.svg"
                       alt="Andromeda"
@@ -156,8 +156,8 @@ const DefaultLayout: FunctionComponent<Props> = ({
           <div className="flex flex-col w-64">
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex relative items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                <div className="relative h-8 w-auto">
+              <div className="flex relative items-center jus h-16 flex-shrink-0 px-4 bg-gray-900">
+                <div className="relative w-auto flex">
                   <img
                     src="/images/AND_Logo-Full.svg"
                     alt="Andromeda"
@@ -238,9 +238,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                 </form>
               </div>
               <div className="ml-4 flex items-center md:ml-6">
-                <div className="relative">
-                  <ConnectedButton />
-                </div>
+                <ConnectedButton />
               </div>
             </div>
           </div>
