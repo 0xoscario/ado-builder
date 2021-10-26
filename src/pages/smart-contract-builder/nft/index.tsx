@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import type { NextPage } from 'next';
+import { v4 as uuidv4 } from 'uuid';
 import { CogIcon } from '@heroicons/react/outline';
 import { Switch } from '@headlessui/react';
 import { classnames } from '@/utils/styles';
 import Layout from '@/components/DefaultLayout';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
-
-import schemaExample from './schema.json';
-import uiSchemaExample from './ui-schema.json';
-import givenFormDataEample from './form-data.json';
 
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
@@ -16,13 +13,13 @@ import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-build
 
 const NFT: NextPage = () => {
   const { schema, uiSchema, formData } = generateSchema([
-    'nft-details',
-    'whitelist',
-    'taxes',
-    'royalties',
-    'blacklist',
-    'splitter',
-    'timelock',
+    { type: 'nft-details', id: uuidv4() },
+    { type: 'whitelist', id: uuidv4() },
+    { type: 'taxes', id: uuidv4() },
+    { type: 'royalties', id: uuidv4() },
+    { type: 'blacklist', id: uuidv4() },
+    { type: 'splitter', id: uuidv4() },
+    { type: 'timelock', id: uuidv4() },
   ]);
 
   return (

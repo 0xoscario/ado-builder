@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { JSONSchema7 } from 'json-schema';
 
 const schemasADO = {
@@ -12,7 +11,7 @@ const schemasADO = {
   whitelist: require('./whitelist.json'),
 };
 
-export const generateSchema = (panels: string[]): any => {
+export const generateSchema = (panels: SchemaPanel[]): any => {
   const schemaDefinitions = [];
   const schemaProperties = [];
 
@@ -20,14 +19,13 @@ export const generateSchema = (panels: string[]): any => {
   const formData = [];
 
   for (const panel of panels) {
-    const schemaADO = schemasADO[panel];
-    const panelID = uuidv4();
+    const schemaADO = schemasADO[panel.type];
 
-    schemaDefinitions[`${panelID}`] = schemaADO['schema'];
-    schemaProperties[`${panelID}`] = { $ref: `#/definitions/${panelID}` };
+    schemaDefinitions[`${panel.id}`] = schemaADO['schema'];
+    schemaProperties[`${panel.id}`] = { $ref: `#/definitions/${panel.id}` };
 
-    uiSchema[`${panelID}`] = schemaADO['ui-schema'];
-    formData[`${panelID}`] = schemaADO['form-data'];
+    uiSchema[`${panel.id}`] = schemaADO['ui-schema'];
+    formData[`${panel.id}`] = schemaADO['form-data'];
   }
 
   const schema = {
