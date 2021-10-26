@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "title": "Metadata",
+    "description": "Metadata of your NFT",
+    "$id": "/schemas/metadata",
+    "type": "object",
+    "ui:panel": true,
+    "ui:toggle": true,
+    "required": ["url"],
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": false,
+        "ui:toggle": true
+      },
+      "image-name": {
+        "type": "string",
+        "title": "Image Name",
+        "description": "Name / title of your NFT"
+      },
+      "description": {
+        "type": "string",
+        "title": "Description",
+        "description": "Descriptive text about your NFT"
+      },
+      "url": {
+        "type": "string",
+        "title": "URL",
+        "description": "External URL (link address) to your source file."
+      }
+    }
+  },
+  "ui-schema": {},
+  "form-data": {}
+}

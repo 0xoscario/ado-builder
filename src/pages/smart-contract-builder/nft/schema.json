@@ -31,38 +31,6 @@
       }
     },
 
-    "metadata": {
-      "title": "Metadata",
-      "description": "Metadata of your NFT",
-      "$id": "/schemas/metadata",
-      "type": "object",
-      "ui:panel": true,
-      "ui:toggle": true,
-      "required": ["url"],
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "default": true,
-          "ui:toggle": true
-        },
-        "image-name": {
-          "type": "string",
-          "title": "Image Name",
-          "description": "Name / title of your NFT"
-        },
-        "description": {
-          "type": "string",
-          "title": "Description",
-          "description": "Descriptive text about your NFT"
-        },
-        "url": {
-          "type": "string",
-          "title": "URL",
-          "description": "External URL (link address) to your source file."
-        }
-      }
-    },
-
     "whitelist": {
       "title": "Whitelist Addressess",
       "description": "A list of addresses allowed to interact with your NFT.",
@@ -141,7 +109,10 @@
           ]
         },
         "payment_address": {
-          "type": "string",
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address recieving funds from tax."
         }
@@ -202,12 +173,16 @@
           ]
         },
         "payment_address": {
-          "type": "string",
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
           "title": "Alphanumeric Terra Address",
           "description": "Address for royalty distributions to be provided."
         }
       }
     },
+
     "blacklist": {
       "title": "Blacklist Addressess",
       "description": "A list of addresses prohibited from interaction with your NFT.",
@@ -230,15 +205,100 @@
           "description": "Address blacklisted to interact with your NFT."
         }
       }
+    },
+
+    "splitter": {
+      "title": "Splitter",
+      "description": "Distribute funds by percentage to others.",
+      "$id": "/schemas/splitter",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "required": ["percentage"],
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "percentage": {
+          "type": "string",
+          "title": "Percentage",
+          "description": "The percentage to distribute to addresses.",
+          "maximum": 100
+        },
+        "address": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alphanumeric Terra Address",
+          "description": "Address to distribute funds amongst."
+        }
+      }
+    },
+
+    "timelock": {
+      "title": "Timelock",
+      "description": "Allows users to lock funds until a specified time or block height.",
+      "$id": "/schemas/timmelock",
+      "type": "object",
+      "ui:panel": true,
+      "ui:toggle": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false,
+          "ui:toggle": true
+        },
+        "payment_address": {
+          "type":"array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Alphanumeric Terra Address",
+          "description": "Address for distribution recipients. *(Defaults to sender if undeclared.)"
+        },
+        "expiration-type": {
+          "type": "object",
+          "title": "Expiration Type",
+          "anyOf": [
+            {
+              "title": "By Date",
+              "type": "object",
+              "ui:group": true,
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "title": "Time & Date to Unlock",
+                  "description": "The time and date to be reached for funds to be available for release.",
+                  "format": "date-time"
+                }
+              }
+            },
+            {
+              "title": "By Block Height",
+              "type": "object",
+              "ui:group": true,
+              "properties": {
+                "block-height": {
+                  "type": "string",
+                  "title": "Height to Unlock",
+                  "description": "The height to be reached for funds to be available for release."
+                }
+              }
+            }
+          ]
+        }
+        
+      }
     }
+
   },
   "type": "object",
   "properties": {
     "nft-details": {
       "$ref": "#/definitions/nft-details"
-    },
-    "metadata": {
-      "$ref": "#/definitions/metadata"
     },
     "whitelist": {
       "$ref": "#/definitions/whitelist"
@@ -251,6 +311,12 @@
     },
     "blacklist": {
       "$ref": "#/definitions/blacklist"
+    },
+    "splitter": {
+      "$ref": "#/definitions/splitter"
+    },
+    "timelock": {
+      "$ref": "#/definitions/timelock"
     }
   }
 }

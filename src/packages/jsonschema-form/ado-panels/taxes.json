@@ -1,0 +1,67 @@
+{
+  "schema": {
+    "title": "Add Built-In Taxes",
+    "description": "Fees built into the NFT, applied upon its sale.",
+    "$id": "/schemas/taxes",
+    "type": "object",
+    "ui:panel": true,
+    "ui:toggle": true,
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "default": false,
+        "ui:toggle": true
+      },
+      "description": {
+        "type": "string",
+        "title": "Tax Description",
+        "description": "* Optional - Information is solely for organizational use."
+      },
+      "distribution-type": {
+        "type": "object",
+        "title": "Distribution Type",
+        "anyOf": [
+          {
+            "title": "By Percentage",
+            "type": "object",
+            "ui:group": true,
+            "properties": {
+              "distribution_percentage": {
+                "title": "% fee of sale price",
+                "type": "number"
+              }
+            }
+          },
+          {
+            "title": "By Flat Fee",
+            "type": "object",
+            "ui:group": true,
+            "properties": {
+              "distribution_fiat-fee": {
+                "type": "number",
+                "title": "Flat fee"
+              },
+              "distribution_fiat-fee-currency": {
+                "type": "string",
+                "title": "Currency type",
+                "enum": ["usd"],
+                "enumNames": ["USD"],
+                "default": "usd"
+              }
+            }
+          }
+        ]
+      },
+      "payment_address": {
+        "type":"array",
+        "items": {
+          "type": "string"
+        },
+        "title": "Alphanumeric Terra Address",
+        "description": "Address recieving funds for tax."
+      }
+    }
+  },
+  "ui-schema": {},
+  "form-data": {}
+}
