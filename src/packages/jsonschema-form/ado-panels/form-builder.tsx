@@ -12,19 +12,23 @@ const schemasADO = {
 };
 
 export const generateSchema = (panels: SchemaPanel[]): any => {
-  const schemaDefinitions = [];
-  const schemaProperties = [];
+  const schemaDefinitions = {};
+  const schemaProperties = {};
 
-  const uiSchema = [];
-  const formData = [];
+  const uiSchema = {};
+  const formData = {};
 
   for (const panel of panels) {
     const schemaADO = schemasADO[panel.type];
 
+    // schema
     schemaDefinitions[`${panel.id}`] = schemaADO['schema'];
     schemaProperties[`${panel.id}`] = { $ref: `#/definitions/${panel.id}` };
 
+    // ui-schema
     uiSchema[`${panel.id}`] = schemaADO['ui-schema'];
+
+    // form-data
     formData[`${panel.id}`] = schemaADO['form-data'];
   }
 
