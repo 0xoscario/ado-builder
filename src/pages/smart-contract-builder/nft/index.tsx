@@ -1,26 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
+import { v4 as uuidv4 } from 'uuid';
 import { CogIcon } from '@heroicons/react/outline';
 import { Switch } from '@headlessui/react';
 import { classnames } from '@/utils/styles';
 import Layout from '@/components/DefaultLayout';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
-
-import schema from './schema.json';
-import uiSchema from './ui-schema.json';
-import givenFormData from './form-data.json';
-
+import useUUID from '@/hooks/useUUID';
 /* Resolve typecheck failures when passing JSON props */
-import { JSONSchema7 } from "json-schema"; //Appropriate Type for props
-
+import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
+import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-builder';
 
 const NFT: NextPage = () => {
-  /* Patch JSON7 typeConflicts */
-  const [json7Schema, setJson7Schema] = useState(schema as JSONSchema7)
-  const [json7UiSchema, setJson7UiSchema] = useState(uiSchema as JSONSchema7)
-  
-  const [formData, setFormData] = useState(givenFormData);
+  const { schema, uiSchema, formData } = generateSchema([
+    { type: 'nft-details', id: useUUID() },
+    { type: 'whitelist', id: useUUID() },
+    { type: 'taxes', id: useUUID() },
+    { type: 'royalties', id: useUUID() },
+    { type: 'blacklist', id: useUUID() },
+    { type: 'splitter', id: useUUID() },
+    { type: 'timelock', id: useUUID() },
+  ]);
 
   return (
     <Layout title="Andromeda">
@@ -36,13 +37,13 @@ const NFT: NextPage = () => {
           </div>
           <div className="mt-12 max-w-4xl mx-auto">
             <JsonSchemaForm
-              schema={json7Schema}
-              uiSchema={json7UiSchema}
-              formData={formData}
+              schema={schema as JSONSchema7}
+              uiSchema={uiSchema as JSONSchema7}
+              formData={formData as JSONSchema7}
+              /** 
               onChange={({ formData }) => {
-                //console.log('formData', formData);
-                setFormData(formData);
-              }}
+                console.log('formData', formData);
+              }}*/
               onSubmit={() => console.log('form submitted')}
             >
               <div className="text-center">

@@ -13,7 +13,6 @@ const ObjectFieldTemplate = ({
   formData,
   schema,
 }: ObjectFieldTemplateProps) => {
-  console.log('schema', schema);
   if (schema['ui:panel']) {
     if (schema['ui:toggle']) {
       properties = formData['enabled']
