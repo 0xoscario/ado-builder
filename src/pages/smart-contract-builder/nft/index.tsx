@@ -15,6 +15,7 @@ import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-build
 const NFT: NextPage = () => {
   const { schema, uiSchema, formData } = generateSchema([
     { type: 'nft-details', id: useUUID() },
+    { type: 'metadata', id: useUUID() },
     { type: 'whitelist', id: useUUID() },
     { type: 'taxes', id: useUUID() },
     { type: 'royalties', id: useUUID() },
