@@ -1,32 +1,82 @@
 {
   "schema": {
     "title": "Metadata",
-    "description": "Metadata of your NFT",
+    "description": "Optional Metadata of your NFT",
     "$id": "/schemas/metadata",
     "type": "object",
     "ui:panel": true,
     "ui:toggle": true,
-    "required": ["url"],
     "properties": {
       "enabled": {
         "type": "boolean",
         "default": false,
         "ui:toggle": true
       },
-      "image-name": {
+      "name": {
         "type": "string",
-        "title": "Image Name",
-        "description": "Name / title of your NFT"
+        "title": "Name",
+        "description": "The name / title of your NFT."
+      },
+      "image": {
+        "type": "string",
+        "title": "Image",
+        "description": "Image"
+      },
+      "image_data": {
+        "type": "string",
+        "title": "Image Data",
+        "description": ""
+      },
+      "external_url": {
+        "type": "string",
+        "title": "External URL",
+        "description": "An external URL related to the NFT."
       },
       "description": {
         "type": "string",
         "title": "Description",
         "description": "Descriptive text about your NFT"
       },
-      "url": {
+
+      "attributes": {
+        "title":"Attributes",
+        "type": "array",
+        "items": {
+          "properties": {
+            "display_type": {
+              "type": "string",
+              "title": "Display Type",
+              "description": "The display type of trait."
+            },
+            "trait_type": {
+              "type": "string",
+              "title": "Trait Type",
+              "description": "The type of trait."
+            },
+            "value": {
+              "type": "string",
+              "title": "Trait Value",
+              "description": "The value of the trait."
+            }
+          }
+        }
+        
+      },
+
+      "background_color": {
         "type": "string",
-        "title": "URL",
-        "description": "External URL (link address) to your source file."
+        "title": "Background color",
+        "description": "Background Color"
+      },
+      "animation_url": {
+        "type": "string",
+        "title": "Animation URL",
+        "description": "URL path to NFT related animation."
+      },
+      "youtube_url": {
+        "type": "string",
+        "title": "YouTube URL",
+        "description": "URL path to NFT related youtube video."
       }
     }
   },

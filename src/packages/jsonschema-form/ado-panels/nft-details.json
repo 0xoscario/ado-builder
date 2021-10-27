@@ -5,7 +5,7 @@
     "$id": "/schemas/nft-detail",
     "type": "object",
     "ui:panel": true,
-    "required": ["name", "symbol"],
+    "required": ["name", "symbol", "url"],
     "properties": {
       "name": {
         "type": "string",
