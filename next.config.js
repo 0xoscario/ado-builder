@@ -1,4 +1,5 @@
 module.exports = {
+  swcMinify: true,
   env: {
     appVersion: process.env.npm_package_version,
   },
