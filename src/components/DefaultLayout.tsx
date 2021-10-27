@@ -97,13 +97,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                   </div>
                 </Transition.Child>
                 <div className=" flex-shrink-0 flex items-center px-4">
-                  <div className="relative">
+                  <div className="relative flex">
                     <img
                       src="/images/AND_Logo-Full.svg"
                       alt="Andromeda"
                       width="190"
                       height="32"
                     />
+                    <small className="ml-2 uppercase text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded-md">
+                      Beta
+                    </small>
                   </div>
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
@@ -164,6 +167,9 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     width="150"
                     height="32"
                   />
+                  <small className="ml-2 uppercase text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded-md">
+                    Beta
+                  </small>
                 </div>
               </div>
               <div className="flex-1 flex flex-col overflow-y-auto">
