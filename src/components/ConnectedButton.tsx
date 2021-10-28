@@ -97,11 +97,11 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
         : []
     )
     .concat(
-      availableConnectTypes.includes(ConnectType.WEBEXTENSION)
+      availableConnectTypes.includes(ConnectType.WEB_CONNECT)
         ? {
             label: 'Terra Station Extension',
             image: <Terra {...size} />,
-            onClick: () => connect(ConnectType.WEBEXTENSION),
+            onClick: () => connect(ConnectType.WEB_CONNECT),
           }
         : availableConnectTypes.includes(ConnectType.CHROME_EXTENSION)
         ? {
