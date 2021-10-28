@@ -13,14 +13,16 @@ import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-build
 const NFT: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+//List all available panels to be shown at one time for proofing all ado-panels
   const { schema, uiSchema, formData } = generateSchema([
     { type: 'nft-details', id: useUUID() },
     { type: 'metadata', id: useUUID() },
     { type: 'whitelist', id: useUUID() },
-    { type: 'blacklist', id: useUUID() },
     { type: 'taxes', id: useUUID() },
     { type: 'royalties', id: useUUID() },
-    
+    { type: 'blacklist', id: useUUID() },
+    { type: 'splitter', id: useUUID() },
+    { type: 'timelock', id: useUUID() },
   ]);
 
   function closeModal() {
@@ -29,10 +31,6 @@ const NFT: NextPage = () => {
 
   function openModal() {
     setIsOpen(true);
-  }
-
-  function changeSchema() {
-    console.log(schema)
   }
 
   return (
@@ -52,28 +50,12 @@ const NFT: NextPage = () => {
               schema={schema as JSONSchema7}
               uiSchema={uiSchema as JSONSchema7}
               formData={formData as JSONSchema7}
-              
-              /*
+              /** 
               onChange={({ formData }) => {
                 console.log('formData', formData);
-              }}
-              */
-
+              }}*/
               onSubmit={openModal}
             >
-              
-              {/*
-              <div className="mt-2 sm:mt-3 text-center">
-                <button
-                  type="button"
-                  className="my-3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
-                  onClick={changeSchema}
-                >
-                  Change Schema
-                </button>
-              </div>
-              */}
-
               <div className="text-center">
                 <button
                   type="submit"
@@ -86,8 +68,6 @@ const NFT: NextPage = () => {
                   Publish NFT
                 </button>
               </div>
-
-              
             </JsonSchemaForm>
           </div>
           <Transition.Root show={isOpen} as={Fragment}>
