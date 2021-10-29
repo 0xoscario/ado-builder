@@ -11,7 +11,7 @@
           "type": "string"
         },
         "title": "Alphanumeric Terra Address",
-        "description": "Address for distribution recipients. *(Defaults to sender if undeclared.)"
+        "ui:help": "Address for distribution recipients. *(Defaults to sender if undeclared.)"
       },
       "expiration-type": {
         "type": "object",
@@ -25,7 +25,7 @@
               "date": {
                 "type": "string",
                 "title": "Time & Date to Unlock",
-                "description": "The time and date to be reached for funds to be available for release.",
+                "ui:help": "The time and date to be reached for funds to be available for release.",
                 "format": "date-time"
               }
             }
@@ -38,7 +38,7 @@
               "block-height": {
                 "type": "string",
                 "title": "Height to Unlock",
-                "description": "The height to be reached for funds to be available for release."
+                "ui:help": "The height to be reached for funds to be available for release."
               }
             }
           }

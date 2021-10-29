@@ -9,7 +9,7 @@
       "percentage": {
         "type": "string",
         "title": "Percentage",
-        "description": "The percentage to distribute to addresses.",
+        "ui:help": "The percentage to distribute to addresses.",
         "maximum": 100
       },
       "address": {
@@ -18,7 +18,7 @@
           "type": "string"
         },
         "title": "Alphanumeric Terra Address",
-        "description": "Address to distribute funds amongst."
+        "ui:help": "Address to distribute funds amongst."
       }
     }
   },
