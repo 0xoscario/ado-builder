@@ -4,6 +4,7 @@ import {
   FunctionComponent,
   ReactNode,
   useEffect,
+  useRef,
 } from 'react';
 import { Switch } from '@headlessui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
@@ -28,10 +29,15 @@ const Panel: FunctionComponent<Props> = ({
   children,
 }) => {
   const [open, setOpen] = useState(autoOpen);
+  const loadedRef = useRef(false);
 
   useEffect(() => {
-    setOpen(enabled);
+    loadedRef.current && setOpen(enabled);
   }, [enabled]);
+
+  useEffect(() => {
+    loadedRef.current = true;
+  }, []);
 
   return (
     <div className="mb-4 shadow sm:rounded-md sm:overflow-hidden">
