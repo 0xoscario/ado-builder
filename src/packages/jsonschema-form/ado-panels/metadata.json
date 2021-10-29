@@ -4,7 +4,7 @@
     "description": "Optional Metadata of your NFT",
     "$id": "/schemas/metadata",
     "type": "object",
-    "required": ["name"],
+    "required": [],
     "properties": {
       "name": {
         "type": "string",

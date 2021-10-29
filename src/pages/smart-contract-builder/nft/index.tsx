@@ -1,26 +1,35 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState, useEffect, useCallback, useRef } from 'react';
 import type { NextPage } from 'next';
 import { Dialog, Transition } from '@headlessui/react';
-import { CogIcon, CheckIcon } from '@heroicons/react/outline';
+import { CogIcon, CheckIcon, PlusCircleIcon } from '@heroicons/react/outline';
+import { v4 as uuidv4 } from 'uuid';
 import Layout from '@/components/DefaultLayout';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
-import useUUID from '@/hooks/useUUID';
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
 import { generateSchemaPanels } from '@/packages/jsonschema-form/ado-panels/form-builder';
 
-const NFT: NextPage = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const defaultPanels: SchemaPanel[] = [
+  { type: 'nft-details', id: uuidv4(), required: true },
+  { type: 'metadata', id: uuidv4() },
+  { type: 'whitelist', id: uuidv4() },
+  { type: 'taxes', id: uuidv4() },
+  { type: 'royalties', id: uuidv4() },
+];
 
-  const { schema, uiSchema, formData } = generateSchemaPanels([
-    { type: 'nft-details', id: useUUID(), required: true },
-    { type: 'metadata', id: useUUID(), open: true },
-    { type: 'whitelist', id: useUUID() },
-    { type: 'blacklist', id: useUUID() },
-    { type: 'taxes', id: useUUID() },
-    { type: 'royalties', id: useUUID() },
-  ]);
+const NFT: NextPage = () => {
+  const formDataRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [schema, setSchema] = useState(null);
+  const [uiSchema, setUiSchema] = useState(null);
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    const formPanels = generateSchemaPanels(defaultPanels);
+    updateFormPanels(formPanels);
+  }, []);
 
   function closeModal() {
     setIsOpen(false);
@@ -30,9 +39,24 @@ const NFT: NextPage = () => {
     setIsOpen(true);
   }
 
-  function changeSchema() {
-    console.log(schema);
+  function updateFormPanels(form) {
+    setSchema(form.schema);
+    setUiSchema(form.uiSchema);
+    setFormData(form.formData);
   }
+
+  const addModule = useCallback(
+    (panel: SchemaPanel) => {
+      const formPanels = generateSchemaPanels([panel], {
+        schemaDefinitions: schema.definitions,
+        schemaProperties: schema.properties,
+        uiSchema: uiSchema,
+        formData: { ...formData, ...formDataRef.current },
+      });
+      updateFormPanels(formPanels);
+    },
+    [schema, uiSchema, formData]
+  );
 
   function submitForm({ formData }) {
     openModal();
@@ -51,44 +75,50 @@ const NFT: NextPage = () => {
               Configure draft of your NFT.
             </p>
           </div>
+
           <div className="mt-12 max-w-4xl mx-auto">
-            <JsonSchemaForm
-              schema={schema as JSONSchema7}
-              uiSchema={uiSchema as JSONSchema7}
-              formData={formData as JSONSchema7}
-              /*
-              onChange={({ formData }) => {
-                console.log('formData', formData);
-              }}
-              */
-
-              onSubmit={submitForm}
-            >
-              {/*
-              <div className="mt-2 sm:mt-3 text-center">
-                <button
-                  type="button"
-                  className="my-3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
-                  onClick={changeSchema}
-                >
-                  Change Schema
-                </button>
-              </div>
-              */}
-
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="my-8 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
-                >
-                  <CogIcon
-                    className="-ml-0.5 mr-2 h-4 w-4"
-                    aria-hidden="true"
-                  />
-                  Publish NFT
-                </button>
-              </div>
-            </JsonSchemaForm>
+            {schema && (
+              <JsonSchemaForm
+                schema={schema as JSONSchema7}
+                uiSchema={uiSchema as JSONSchema7}
+                formData={formData as JSONSchema7}
+                onChange={({ formData }) => {
+                  formDataRef.current = formData;
+                }}
+                onSubmit={submitForm}
+              >
+                <div className="text-center border-4 border-dashed	border-gray-300">
+                  <button
+                    type="button"
+                    className="my-8 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
+                    onClick={() => {
+                      addModule({
+                        type: 'royalties',
+                        id: uuidv4(),
+                      });
+                    }}
+                  >
+                    <PlusCircleIcon
+                      className="-ml-0.5 mr-2 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                    Add module
+                  </button>
+                </div>
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="my-8 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
+                  >
+                    <CogIcon
+                      className="-ml-0.5 mr-2 h-4 w-4"
+                      aria-hidden="true"
+                    />
+                    Publish NFT
+                  </button>
+                </div>
+              </JsonSchemaForm>
+            )}
           </div>
           <Transition.Root show={isOpen} as={Fragment}>
             <Dialog

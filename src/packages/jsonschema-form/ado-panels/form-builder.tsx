@@ -11,12 +11,19 @@ const schemasADO = {
   whitelist: require('./whitelist.json'),
 };
 
-export const generateSchemaPanels = (panels: SchemaPanel[]): any => {
-  const schemaDefinitions = {};
-  const schemaProperties = {};
+export const generateSchemaPanels = (
+  panels: SchemaPanel[],
+  defaults?: any
+): any => {
+  const schemaDefinitions = defaults?.schemaDefinitions || {};
+  const schemaProperties = defaults?.schemaProperties || {};
 
-  const uiSchema = {};
-  const formData = {};
+  console.log('schemaDefinitions', schemaDefinitions);
+  console.log('schemaProperties', schemaProperties);
+  console.log('panels', panels);
+
+  const uiSchema = defaults?.uiSchema || {};
+  const formData = defaults?.formData || {};
 
   for (const panel of panels) {
     const schemaADO = schemasADO[panel.type];
@@ -39,6 +46,28 @@ export const generateSchemaPanels = (panels: SchemaPanel[]): any => {
         default: false,
         'ui:toggle': true,
       };
+
+      /** 
+      
+      Support for if, else, then rules
+      @see https://github.com/rjsf-team/react-jsonschema-form/pull/2506
+
+      schemaDefinitions[`${panel.id}`]['if'] = {};
+      schemaDefinitions[`${panel.id}`]['if']['properties'] = {
+        $enabled: {
+          enum: [true],
+        },
+      };
+      schemaDefinitions[`${panel.id}`]['then'] = {};
+      schemaDefinitions[`${panel.id}`]['then']['required'] =
+        schemaDefinitions[`${panel.id}`]['required'];
+
+      schemaDefinitions[`${panel.id}`]['else'] = {};
+      schemaDefinitions[`${panel.id}`]['else']['required'] = [];
+
+      schemaDefinitions[`${panel.id}`]['required'] = [];
+
+      */
     }
 
     schemaProperties[`${panel.id}`] = { $ref: `#/definitions/${panel.id}` };

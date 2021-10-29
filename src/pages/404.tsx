@@ -28,12 +28,6 @@ const links = [
     icon: FolderIcon,
     href: '#',
   },
-  {
-    title: 'Contracts',
-    description: '...',
-    icon: DocumentTextIcon,
-    href: '#',
-  },
 ];
 
 const Custom404: NextPage = () => {
