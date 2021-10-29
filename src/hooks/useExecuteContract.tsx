@@ -1,7 +1,7 @@
 // Import Hooks
 import useAddress from './useConnectedAddress';
 import useLCDClient from './useLCDClient';
-import useGasPrices from './useGasPrices'; //to be integrated into making costs
+import {useGasPrice} from './useGasPrices'; //to be integrated into making costs
 
 // Import Terra-Money
 import { 
@@ -20,6 +20,13 @@ import {
 const useExecuteContract = async (contractAddr, executeMsg, coins={}) => {
     const connectedWallet = useConnectedWallet();
     
+    const tx = {
+        costs: null,
+        gasPrice: null,
+        address: useAddress(),
+    }
+    tx.gasPrice = useGasPrice("uusd") //reolve for type memo conflicts?
+
     const txResult = {
         txResult: null,
         txHash: null,
@@ -28,51 +35,54 @@ const useExecuteContract = async (contractAddr, executeMsg, coins={}) => {
 
     const executeContractMsg = [
         new MsgExecuteContract(
-        connectedWallet.walletAddress,                
+        tx.address,                
         contractAddr,                   
         JSON.parse(executeMsg),
         coins
         ),  
     ]
 
-    /* assign gas costs */
+    /* assign gas costs 
     const gasPrices = { uusd: 0.0123 }; //false number needs to be adjsuted to true pricing
     const feeDenoms = ["uusd"];
-    const costs = await useLCDClient().tx.estimateFee(
-        connectedWallet.walletAddress, 
-        executeContractMsg, 
-        { gasPrices: gasPrices, feeDenoms: feeDenoms }
-      )
-      .catch((error) => {
-        throw `Costs Fee Error: ${error instanceof Error ? error.message : String(error)}`;
-      })
+    */
+    
+    try {
+        const costs = await useLCDClient().tx.estimateFee(
+            tx.address, 
+            executeContractMsg, 
+            tx.gasPrice
+            //{ gasPrices: gasPrices, feeDenoms: feeDenoms }
+        )
+        tx.costs = costs
+    } catch (error) {
+        console.error(`Costs Fee Error: ${error instanceof Error ? error.message : String(error)}`);
+    }
 
-    await connectedWallet.post({
-        msgs: executeContractMsg,
-        fee: costs
-    }).then(async (result) => {
+    try {
+        const result = await connectedWallet.post({
+            msgs: executeContractMsg,
+            fee: tx.costs
+        })
         txResult.txResult = result
         txResult.txHash = result.result.txhash
-        //txResult.txInfo = await retrieveTxInfo(result.result.txhash)
-
-    }).catch((error) => {
+    } catch (error) {
         if (error instanceof UserDenied) {
-        throw 'User Denied';
+            console.error('User Denied');
         } else if (error instanceof CreateTxFailed) {
-        throw `Create Tx Failed: ${error.message}`;
+            console.error(`Failed to create the transaction: ${error.message}`);
         } else if (error instanceof TxFailed) {
-        throw `Tx Failed: ${error.message}`;
+            console.error(`Transaction Failed: ${error.message}`);
         } else if (error instanceof Timeout) {
-        throw 'Timeout';
+            console.error('Timeout');
         } else if (error instanceof TxUnspecifiedError) {
-        throw `Unspecified Error: ${error.message}`;
+            console.error(`Unspecified Error: ${error.message}`);
         } else {
-        throw `Unknown Error: ${error instanceof Error ? error.message : String(error)}`;
+            console.error(`Unknown Error: ${error instanceof Error ? error.message : String(error)}`);
         }
-})
+    };
 
-
-return txResult
+return txResult;
 }
 
 export default useExecuteContract;
