@@ -4,14 +4,7 @@
     "description": "Fees paid to the author, owner of the NFT. By percentage or flat fee.",
     "$id": "/schemas/royalties",
     "type": "object",
-    "ui:panel": true,
-    "ui:toggle": true,
     "properties": {
-      "enabled": {
-        "type": "boolean",
-        "default": false,
-        "ui:toggle": true
-      },
       "description": {
         "type": "string",
         "title": "Royalty Description",
@@ -53,7 +46,7 @@
         ]
       },
       "payment_address": {
-        "type":"array",
+        "type": "array",
         "items": {
           "type": "string"
         },

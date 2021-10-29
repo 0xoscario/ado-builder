@@ -8,13 +8,13 @@ import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm
 import useUUID from '@/hooks/useUUID';
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
-import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-builder';
+import { generateSchemaPanels } from '@/packages/jsonschema-form/ado-panels/form-builder';
 
 const NFT: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-//List all available panels to be shown at one time for proofing all ado-panels
-  const { schema, uiSchema, formData } = generateSchema([
+  //List all available panels to be shown at one time for proofing all ado-panels
+  const { schema, uiSchema, formData } = generateSchemaPanels([
     { type: 'nft-details', id: useUUID() },
     { type: 'metadata', id: useUUID() },
     { type: 'whitelist', id: useUUID() },

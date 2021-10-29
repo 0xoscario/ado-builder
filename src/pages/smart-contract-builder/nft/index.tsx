@@ -8,19 +8,18 @@ import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm
 import useUUID from '@/hooks/useUUID';
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
-import { generateSchema } from '@/packages/jsonschema-form/ado-panels/form-builder';
+import { generateSchemaPanels } from '@/packages/jsonschema-form/ado-panels/form-builder';
 
 const NFT: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { schema, uiSchema, formData } = generateSchema([
-    { type: 'nft-details', id: useUUID() },
-    { type: 'metadata', id: useUUID() },
+  const { schema, uiSchema, formData } = generateSchemaPanels([
+    { type: 'nft-details', id: useUUID(), required: true },
+    { type: 'metadata', id: useUUID(), open: true },
     { type: 'whitelist', id: useUUID() },
     { type: 'blacklist', id: useUUID() },
     { type: 'taxes', id: useUUID() },
     { type: 'royalties', id: useUUID() },
-    
   ]);
 
   function closeModal() {
@@ -32,7 +31,12 @@ const NFT: NextPage = () => {
   }
 
   function changeSchema() {
-    console.log(schema)
+    console.log(schema);
+  }
+
+  function submitForm({ formData }) {
+    openModal();
+    console.log('formData', formData);
   }
 
   return (
@@ -52,16 +56,14 @@ const NFT: NextPage = () => {
               schema={schema as JSONSchema7}
               uiSchema={uiSchema as JSONSchema7}
               formData={formData as JSONSchema7}
-              
               /*
               onChange={({ formData }) => {
                 console.log('formData', formData);
               }}
               */
 
-              onSubmit={openModal}
+              onSubmit={submitForm}
             >
-              
               {/*
               <div className="mt-2 sm:mt-3 text-center">
                 <button
@@ -86,8 +88,6 @@ const NFT: NextPage = () => {
                   Publish NFT
                 </button>
               </div>
-
-              
             </JsonSchemaForm>
           </div>
           <Transition.Root show={isOpen} as={Fragment}>

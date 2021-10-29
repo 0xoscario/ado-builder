@@ -4,14 +4,7 @@
     "description": "Fees built into the NFT, applied upon its sale.",
     "$id": "/schemas/taxes",
     "type": "object",
-    "ui:panel": true,
-    "ui:toggle": true,
     "properties": {
-      "enabled": {
-        "type": "boolean",
-        "default": false,
-        "ui:toggle": true
-      },
       "description": {
         "type": "string",
         "title": "Tax Description",
@@ -53,7 +46,7 @@
         ]
       },
       "payment_address": {
-        "type":"array",
+        "type": "array",
         "items": {
           "type": "string"
         },

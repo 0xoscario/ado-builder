@@ -4,14 +4,7 @@
     "description": "Optional Metadata of your NFT",
     "$id": "/schemas/metadata",
     "type": "object",
-    "ui:panel": true,
-    "ui:toggle": true,
     "properties": {
-      "enabled": {
-        "type": "boolean",
-        "default": false,
-        "ui:toggle": true
-      },
       "name": {
         "type": "string",
         "title": "Name",
@@ -39,7 +32,7 @@
       },
 
       "attributes": {
-        "title":"Attributes",
+        "title": "Attributes",
         "type": "array",
         "items": {
           "properties": {
@@ -60,7 +53,6 @@
             }
           }
         }
-        
       },
 
       "background_color": {

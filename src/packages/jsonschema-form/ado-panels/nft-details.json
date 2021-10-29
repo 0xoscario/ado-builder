@@ -4,7 +4,6 @@
     "description": "Tell us about what you're creating.",
     "$id": "/schemas/nft-detail",
     "type": "object",
-    "ui:panel": true,
     "required": ["name", "symbol", "url"],
     "properties": {
       "name": {
