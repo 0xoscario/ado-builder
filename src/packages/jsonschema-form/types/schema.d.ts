@@ -1,6 +1,6 @@
 interface SchemaPanel {
   id: string;
-  type: SchemaPanelType;
+  type: SchemaPanelType | string;
   open?: boolean;
   required?: boolean;
   enabled?: boolean;

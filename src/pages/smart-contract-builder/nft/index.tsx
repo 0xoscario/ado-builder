@@ -15,29 +15,27 @@ import {
 import { useCustomEventListener } from '@/packages/react-custom-events';
 import AddPanel from '@/packages/jsonschema-form/components/Modal/AddPanel';
 
-const DEFAULTS_PANELS: SchemaPanel[] = [
-  { type: 'nft-details', id: uuidv4(), required: true },
-  { type: 'metadata', id: uuidv4(), enabled: true, removable: true },
-  { type: 'whitelist', id: uuidv4() },
-  { type: 'taxes', id: uuidv4() },
-  { type: 'royalties', id: uuidv4() },
-];
-
-const SEARCH_PANELS: SchemaPanel[] = [
-  { type: 'taxes', id: uuidv4(), enabled: true, removable: true },
-  { type: 'royalties', id: uuidv4(), enabled: true, removable: true },
-];
+const SEARCH_PANELS: string[] = ['taxes', 'royalties'];
 
 const NFT: NextPage = () => {
   const formDataRef = useRef(null);
 
-  const formPanels = generateSchemaPanels(DEFAULTS_PANELS);
-
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [schema, setSchema] = useState(formPanels.schema);
-  const [uiSchema, setUiSchema] = useState(formPanels.uiSchema);
-  const [formData, setFormData] = useState(formPanels.formData);
+  const [schema, setSchema] = useState(null);
+  const [uiSchema, setUiSchema] = useState(null);
+  const [formData, setFormData] = useState(null);
+
+  useEffect(() => {
+    const formPanels = generateSchemaPanels([
+      { type: 'nft-details', id: uuidv4(), required: true },
+      { type: 'metadata', id: uuidv4() },
+      { type: 'whitelist', id: uuidv4() },
+      { type: 'taxes', id: uuidv4() },
+      { type: 'royalties', id: uuidv4() },
+    ]);
+    updateFormPanels(formPanels);
+  }, []);
 
   useCustomEventListener('form:panel:delete', (data: any) => {
     removeModule(data.id);
@@ -144,7 +142,7 @@ const NFT: NextPage = () => {
           </div>
           <AddPanel
             open={isSearchOpen}
-            panels={SEARCH_PANELS}
+            panelsId={SEARCH_PANELS}
             onClose={setIsSearchOpen}
             onSelect={(value) => {
               addModule(value);

@@ -11,12 +11,12 @@ const schemasADO = {
   whitelist: require('./whitelist.json'),
 };
 
-export const getTitleSchemaPanel = (panel: SchemaPanel): string => {
-  return schemasADO[panel.type]['schema']['title'];
+export const getTitleSchemaPanel = (panelId): string => {
+  return schemasADO[panelId]['schema']['title'];
 };
 
-export const getDescriptionSchemaPanel = (panel: SchemaPanel): string => {
-  return schemasADO[panel.type]['schema']['description'];
+export const getDescriptionSchemaPanel = (panelId): string => {
+  return schemasADO[panelId]['schema']['description'];
 };
 
 /**
@@ -37,7 +37,6 @@ export const generateSchemaPanels = (
 
   for (const panel of panels) {
     const schemaADO = schemasADO[panel.type];
-    console.log('panel', panel);
 
     // schema
     schemaDefinitions[`${panel.id}`] = schemaADO['schema'];
@@ -82,7 +81,6 @@ export const generateSchemaPanels = (
     }
 
     if (panel.removable) {
-      console.log('removable!!');
       schemaDefinitions[`${panel.id}`]['properties']['$removable'] = {
         type: 'boolean',
         default: panel.removable,
@@ -112,8 +110,6 @@ export const generateSchemaPanels = (
     type: 'object',
     properties: schemaProperties,
   };
-
-  console.log('schema', schema);
 
   return { schema, uiSchema, formData };
 };

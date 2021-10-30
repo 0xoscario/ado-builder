@@ -8,6 +8,7 @@ import {
 } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { RadioGroup } from '@headlessui/react';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   getTitleSchemaPanel,
@@ -20,7 +21,7 @@ function classNames(...classes) {
 
 type Props = {
   open?: boolean;
-  panels?: SchemaPanel[];
+  panelsId?: string[];
   onClose(value: boolean): void;
   onSelect(value: SchemaPanel): void;
   children?: ReactNode;
@@ -28,12 +29,12 @@ type Props = {
 
 const AddPanel: FunctionComponent<Props> = ({
   open,
-  panels,
+  panelsId,
   onClose,
   onSelect,
   children,
 }) => {
-  const [selected, setSelected] = useState(panels[0]);
+  const [selected, setSelected] = useState(panelsId[0]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -77,10 +78,10 @@ const AddPanel: FunctionComponent<Props> = ({
                   Server size
                 </RadioGroup.Label>
                 <div className="space-y-4 mt-2">
-                  {panels.map((panel) => (
+                  {panelsId.map((panelId) => (
                     <RadioGroup.Option
-                      key={panel.type}
-                      value={panel}
+                      key={panelId}
+                      value={panelId}
                       className={({ active }) =>
                         classNames(
                           active ? 'ring-1 ring-offset-2 ring-gray-500' : '',
@@ -96,14 +97,14 @@ const AddPanel: FunctionComponent<Props> = ({
                                 as="p"
                                 className="text-lg font-medium leading-6 text-gray-900"
                               >
-                                {getTitleSchemaPanel(panel)}
+                                {getTitleSchemaPanel(panelId)}
                               </RadioGroup.Label>
                               <RadioGroup.Description
                                 as="div"
                                 className="text-gray-500"
                               >
                                 <p className="sm:inline">
-                                  {getDescriptionSchemaPanel(panel)}
+                                  {getDescriptionSchemaPanel(panelId)}
                                 </p>
                               </RadioGroup.Description>
                             </div>
@@ -128,7 +129,12 @@ const AddPanel: FunctionComponent<Props> = ({
                   type="button"
                   className="my-4 inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 sm:text-sm"
                   onClick={() => {
-                    onSelect(selected);
+                    onSelect({
+                      type: selected,
+                      id: uuidv4(),
+                      enabled: true,
+                      removable: true,
+                    });
                   }}
                 >
                   Add module
