@@ -11,16 +11,18 @@ const schemasADO = {
   whitelist: require('./whitelist.json'),
 };
 
+/**
+ *
+ * @param panels
+ * @param defaults
+ * @returns
+ */
 export const generateSchemaPanels = (
   panels: SchemaPanel[],
   defaults?: any
 ): any => {
   const schemaDefinitions = defaults?.schemaDefinitions || {};
   const schemaProperties = defaults?.schemaProperties || {};
-
-  console.log('schemaDefinitions', schemaDefinitions);
-  console.log('schemaProperties', schemaProperties);
-  console.log('panels', panels);
 
   const uiSchema = defaults?.uiSchema || {};
   const formData = defaults?.formData || {};
@@ -70,15 +72,53 @@ export const generateSchemaPanels = (
       */
     }
 
+    if (panel.removable) {
+      schemaDefinitions[`${panel.id}`]['properties']['$removable'] = {
+        type: 'boolean',
+        default: panel.removable,
+      };
+    }
+
     schemaProperties[`${panel.id}`] = { $ref: `#/definitions/${panel.id}` };
 
     // ui-schema
     uiSchema[`${panel.id}`] = schemaADO['ui-schema'];
     uiSchema[`${panel.id}`]['$type'] = { 'ui:widget': 'hidden' };
     uiSchema[`${panel.id}`]['$open'] = { 'ui:widget': 'hidden' };
+    uiSchema[`${panel.id}`]['$removable'] = { 'ui:widget': 'hidden' };
 
     // form-data
     formData[`${panel.id}`] = schemaADO['form-data'];
+  }
+
+  const schema = {
+    definitions: schemaDefinitions,
+    type: 'object',
+    properties: schemaProperties,
+  };
+
+  return { schema, uiSchema, formData };
+};
+
+/**
+ *
+ * @param panelsId
+ * @param defaults
+ * @returns
+ */
+export const removeSchemaPanels = (panelsId: string[], defaults?: any): any => {
+  const schemaDefinitions = defaults?.schemaDefinitions || {};
+  const schemaProperties = defaults?.schemaProperties || {};
+
+  const uiSchema = defaults?.uiSchema || {};
+  const formData = defaults?.formData || {};
+
+  for (const panelId of panelsId) {
+    const id = panelId.split('_').pop();
+    delete schemaDefinitions[`${id}`];
+    delete schemaProperties[`${id}`];
+    delete uiSchema[`${id}`];
+    delete formData[`${id}`];
   }
 
   const schema = {

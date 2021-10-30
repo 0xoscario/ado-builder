@@ -21,6 +21,7 @@ const ObjectFieldTemplate = ({
         description={description}
         toggle={schema['ui:toggle']}
         enabled={formData['$enabled']}
+        removable={formData['$removable']}
         autoOpen={formData['$open']}
       >
         {properties.map((element: any) => element.content)}

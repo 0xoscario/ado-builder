@@ -7,7 +7,13 @@ import {
   useRef,
 } from 'react';
 import { Switch } from '@headlessui/react';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
+
+import { emitCustomEvent } from '@/packages/react-custom-events';
 
 type Props = {
   id: string;
@@ -15,6 +21,7 @@ type Props = {
   description?: string;
   toggle?: boolean;
   autoOpen?: boolean;
+  removable?: boolean;
   enabled?: boolean;
   children?: ReactNode;
 };
@@ -25,6 +32,7 @@ const Panel: FunctionComponent<Props> = ({
   description,
   toggle,
   enabled,
+  removable,
   autoOpen,
   children,
 }) => {
@@ -43,6 +51,16 @@ const Panel: FunctionComponent<Props> = ({
     <div className="mb-4 shadow sm:rounded-md sm:overflow-hidden">
       <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
         <div className="relative md:grid md:grid-cols-3 md:gap-6 ">
+          {removable && (
+            <div
+              className="absolute top-0 right-0 h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700"
+              onClick={() => {
+                emitCustomEvent('form:panel:delete', { id });
+              }}
+            >
+              <TrashIcon />
+            </div>
+          )}
           <div className="md:col-span-1">
             <div className="flex items-center">
               <span className="h-3 w-3 mr-2" onClick={() => setOpen(!open)}>

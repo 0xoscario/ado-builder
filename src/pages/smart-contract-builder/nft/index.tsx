@@ -8,7 +8,11 @@ import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm
 
 /* Resolve typecheck failures when passing JSON props */
 import { JSONSchema7 } from 'json-schema'; //Appropriate Type for props
-import { generateSchemaPanels } from '@/packages/jsonschema-form/ado-panels/form-builder';
+import {
+  generateSchemaPanels,
+  removeSchemaPanels,
+} from '@/packages/jsonschema-form/ado-panels/form-builder';
+import { useCustomEventListener } from '@/packages/react-custom-events';
 
 const defaultPanels: SchemaPanel[] = [
   { type: 'nft-details', id: uuidv4(), required: true },
@@ -31,6 +35,10 @@ const NFT: NextPage = () => {
     updateFormPanels(formPanels);
   }, []);
 
+  useCustomEventListener('form:panel:delete', (data: any) => {
+    removeModule(data.id);
+  });
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -44,6 +52,20 @@ const NFT: NextPage = () => {
     setUiSchema(form.uiSchema);
     setFormData(form.formData);
   }
+
+  const removeModule = useCallback(
+    (panelId: string) => {
+      const formPanels = removeSchemaPanels([panelId], {
+        schemaDefinitions: schema.definitions,
+        schemaProperties: schema.properties,
+        uiSchema: uiSchema,
+        formData: { ...formData, ...formDataRef.current },
+      });
+
+      updateFormPanels(formPanels);
+    },
+    [schema, uiSchema, formData]
+  );
 
   const addModule = useCallback(
     (panel: SchemaPanel) => {
@@ -60,7 +82,6 @@ const NFT: NextPage = () => {
 
   function submitForm({ formData }) {
     openModal();
-    console.log('formData', formData);
   }
 
   return (
@@ -95,6 +116,7 @@ const NFT: NextPage = () => {
                       addModule({
                         type: 'royalties',
                         id: uuidv4(),
+                        removable: true,
                       });
                     }}
                   >
