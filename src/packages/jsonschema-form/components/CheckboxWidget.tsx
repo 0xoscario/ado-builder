@@ -44,7 +44,7 @@ export default function CheckboxWidget({
             <span
               aria-hidden="true"
               className={[
-                `${checked ? 'bg-green-500' : 'bg-gray-200'}`,
+                `${checked ? 'bg-green-500' : 'bg-gray-300'}`,
                 'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200',
               ].join(' ')}
             />
