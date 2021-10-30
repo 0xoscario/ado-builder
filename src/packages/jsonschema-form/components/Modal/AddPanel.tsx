@@ -134,6 +134,7 @@ const AddPanel: FunctionComponent<Props> = ({
                       id: uuidv4(),
                       enabled: true,
                       removable: true,
+                      open: true,
                     });
                   }}
                 >
