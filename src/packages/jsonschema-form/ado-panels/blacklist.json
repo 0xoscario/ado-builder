@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Blacklist Addressess",
-    "description": "A list of addresses prohibited from interaction with your NFT.",
+    "description": "Set Wallet Addresses that are not allowed to interact with the ADO.",
     "$id": "/schemas/blacklist",
     "type": "object",
     "properties": {

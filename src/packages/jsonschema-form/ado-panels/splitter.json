@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Splitter",
-    "description": "Distribute funds by percentage to others.",
+    "description": "Set a percentage of funds to be distributed to specified Wallet Addresses.",
     "$id": "/schemas/splitter",
     "type": "object",
     "required": ["percentage"],

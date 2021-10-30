@@ -115,7 +115,7 @@ const NFT: NextPage = () => {
                       className="-ml-0.5 mr-2 h-4 w-4"
                       aria-hidden="true"
                     />
-                    Add module
+                    Add ADO Panel
                   </button>
                 </div>
                 <div className="text-center">

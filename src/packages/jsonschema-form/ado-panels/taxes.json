@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Add Built-In Taxes",
-    "description": "Fees built into the NFT, applied upon its sale.",
+    "description": "Fees built into tax the ADO at point of sale, paid to specified Wallet Addresses.",
     "$id": "/schemas/taxes",
     "type": "object",
     "properties": {

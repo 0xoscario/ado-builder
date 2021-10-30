@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Metadata",
-    "description": "Optional Metadata of your NFT",
+    "description": "Add optional metadata information for your NFT Collectible.",
     "$id": "/schemas/metadata",
     "type": "object",
     "required": [],

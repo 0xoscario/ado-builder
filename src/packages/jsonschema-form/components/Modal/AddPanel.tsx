@@ -138,7 +138,7 @@ const AddPanel: FunctionComponent<Props> = ({
                     });
                   }}
                 >
-                  Add module
+                  Add Selected ADO Panel
                 </button>
               </div>
             </div>
