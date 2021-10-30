@@ -1,7 +1,7 @@
 {
   "schema": {
-    "title": "Setup Royalties",
-    "description": "Fees paid to the author, owner of the NFT. By percentage or flat fee.",
+    "title": "Royalties",
+    "description": "Set Royalties for your ADO, paid to specified Wallet Addresses.",
     "$id": "/schemas/royalties",
     "type": "object",
     "properties": {

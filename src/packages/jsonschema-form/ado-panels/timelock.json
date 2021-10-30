@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Timelock",
-    "description": "Allows users to lock funds until a specified time or block height.",
+    "description": "Set a time or block height at which funds are released.",
     "$id": "/schemas/timmelock",
     "type": "object",
     "properties": {
