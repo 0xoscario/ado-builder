@@ -59,6 +59,9 @@ export default function SelectWidget({
 
   const emptyValue = multiple ? [] : '';
 
+  const fieldDescription = schema.description;
+  const fieldUIHelp = schema['ui:help'];
+
   function getValue(
     event: React.FocusEvent | React.ChangeEvent | any,
     multiple: boolean
@@ -74,6 +77,9 @@ export default function SelectWidget({
   }
   return (
     <div>
+      {fieldDescription ? (
+        <p className="mb-4 text-sm text-gray-400">{fieldDescription}</p>
+      ) : null}
       <label
         className={
           rawErrors.length > 0
@@ -131,14 +137,14 @@ export default function SelectWidget({
           );
         })}
       </select>
-      {schema.description ? (
+      {fieldUIHelp ? (
         <p
           className={
             'text-xs mt-2 text-gray-400 ' +
             (rawErrors.length > 0 ? 'text-red-400' : 'text-gray-400')
           }
         >
-          {schema.description}
+          {fieldUIHelp}
         </p>
       ) : null}
     </div>

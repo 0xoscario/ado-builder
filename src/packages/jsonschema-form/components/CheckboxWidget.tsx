@@ -27,9 +27,10 @@ export default function CheckboxWidget({
 
   const checked = typeof value === 'undefined' ? false : value;
 
+  console.log('value', value, schema);
   if (schema['ui:toggle']) {
     return (
-      <div className="absolute right-0 top-0">
+      <div className="absolute right-8 top-0">
         <div className="relative">
           <Switch
             checked={checked}
@@ -44,7 +45,7 @@ export default function CheckboxWidget({
             <span
               aria-hidden="true"
               className={[
-                `${checked ? 'bg-green-500' : 'bg-gray-200'}`,
+                `${checked ? 'bg-green-500' : 'bg-gray-300'}`,
                 'pointer-events-none absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200',
               ].join(' ')}
             />

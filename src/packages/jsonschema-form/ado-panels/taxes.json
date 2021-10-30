@@ -4,18 +4,11 @@
     "description": "Fees built into the NFT, applied upon its sale.",
     "$id": "/schemas/taxes",
     "type": "object",
-    "ui:panel": true,
-    "ui:toggle": true,
     "properties": {
-      "enabled": {
-        "type": "boolean",
-        "default": false,
-        "ui:toggle": true
-      },
       "description": {
         "type": "string",
         "title": "Tax Description",
-        "description": "* Optional - Information is solely for organizational use."
+        "ui:help": "* Optional - Information is solely for organizational use."
       },
       "distribution-type": {
         "type": "object",
@@ -53,12 +46,12 @@
         ]
       },
       "payment_address": {
-        "type":"array",
+        "type": "array",
         "items": {
           "type": "string"
         },
         "title": "Alphanumeric Terra Address",
-        "description": "Address recieving funds for tax."
+        "ui:help": "Address recieving funds for tax."
       }
     }
   },

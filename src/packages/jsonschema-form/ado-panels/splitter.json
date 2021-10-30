@@ -1,34 +1,27 @@
 {
-    "schema": {
-        "title": "Splitter",
-        "description": "Distribute funds by percentage to others.",
-        "$id": "/schemas/splitter",
-        "type": "object",
-        "ui:panel": true,
-        "ui:toggle": true,
-        "required": ["percentage"],
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "default": false,
-            "ui:toggle": true
-          },
-          "percentage": {
-            "type": "string",
-            "title": "Percentage",
-            "description": "The percentage to distribute to addresses.",
-            "maximum": 100
-          },
-          "address": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Alphanumeric Terra Address",
-            "description": "Address to distribute funds amongst."
-          }
-        }
-    },
-    "ui-schema": {},
-    "form-data": {}
-  }
+  "schema": {
+    "title": "Splitter",
+    "description": "Distribute funds by percentage to others.",
+    "$id": "/schemas/splitter",
+    "type": "object",
+    "required": ["percentage"],
+    "properties": {
+      "percentage": {
+        "type": "string",
+        "title": "Percentage",
+        "ui:help": "The percentage to distribute to addresses.",
+        "maximum": 100
+      },
+      "address": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "Alphanumeric Terra Address",
+        "ui:help": "Address to distribute funds amongst."
+      }
+    }
+  },
+  "ui-schema": {},
+  "form-data": {}
+}

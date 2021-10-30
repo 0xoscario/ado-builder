@@ -41,10 +41,14 @@ const TextWidget = ({
     (type || schema.type) === 'string' ? 'text' : `${type || schema.type}`;
 
   const fieldDescription = uiSchema['ui:description'] || schema.description;
+  const fieldUIHelp = schema['ui:help'];
 
   // const classNames = [rawErrors.length > 0 ? "is-invalid" : "", type === 'file' ? 'custom-file-label': ""]
   return (
     <div>
+      {fieldDescription ? (
+        <p className="mb-4 text-sm text-gray-400">{fieldDescription}</p>
+      ) : null}
       <label
         className={
           rawErrors.length > 0
@@ -73,14 +77,14 @@ const TextWidget = ({
         onBlur={_onBlur}
         onFocus={_onFocus}
       />
-      {fieldDescription ? (
+      {fieldUIHelp ? (
         <p
           className={
             'text-xs mt-2 text-gray-400 ' +
             (rawErrors.length > 0 ? 'text-red-400' : 'text-gray-400')
           }
         >
-          {fieldDescription}
+          {fieldUIHelp}
         </p>
       ) : null}
       {schema.examples ? (

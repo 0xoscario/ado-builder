@@ -1,58 +1,51 @@
 {
-    "schema": {
-        "title": "Timelock",
-        "description": "Allows users to lock funds until a specified time or block height.",
-        "$id": "/schemas/timmelock",
+  "schema": {
+    "title": "Timelock",
+    "description": "Allows users to lock funds until a specified time or block height.",
+    "$id": "/schemas/timmelock",
+    "type": "object",
+    "properties": {
+      "payment_address": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "Alphanumeric Terra Address",
+        "ui:help": "Address for distribution recipients. *(Defaults to sender if undeclared.)"
+      },
+      "expiration-type": {
         "type": "object",
-        "ui:panel": true,
-        "ui:toggle": true,
-        "properties": {
-          "enabled": {
-            "type": "boolean",
-            "default": false,
-            "ui:toggle": true
-          },
-          "payment_address": {
-            "type":"array",
-            "items": {
-              "type": "string"
-            },
-            "title": "Alphanumeric Terra Address",
-            "description": "Address for distribution recipients. *(Defaults to sender if undeclared.)"
-          },
-          "expiration-type": {
+        "title": "Expiration Type",
+        "anyOf": [
+          {
+            "title": "By Date",
             "type": "object",
-            "title": "Expiration Type",
-            "anyOf": [
-              {
-                "title": "By Date",
-                "type": "object",
-                "ui:group": true,
-                "properties": {
-                  "date": {
-                    "type": "string",
-                    "title": "Time & Date to Unlock",
-                    "description": "The time and date to be reached for funds to be available for release.",
-                    "format": "date-time"
-                  }
-                }
-              },
-              {
-                "title": "By Block Height",
-                "type": "object",
-                "ui:group": true,
-                "properties": {
-                  "block-height": {
-                    "type": "string",
-                    "title": "Height to Unlock",
-                    "description": "The height to be reached for funds to be available for release."
-                  }
-                }
+            "ui:group": true,
+            "properties": {
+              "date": {
+                "type": "string",
+                "title": "Time & Date to Unlock",
+                "ui:help": "The time and date to be reached for funds to be available for release.",
+                "format": "date-time"
               }
-            ]
-          }          
-        }
-    },
-    "ui-schema": {},
-    "form-data": {}
-  }
+            }
+          },
+          {
+            "title": "By Block Height",
+            "type": "object",
+            "ui:group": true,
+            "properties": {
+              "block-height": {
+                "type": "string",
+                "title": "Height to Unlock",
+                "ui:help": "The height to be reached for funds to be available for release."
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ui-schema": {},
+  "form-data": {}
+}

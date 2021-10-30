@@ -37,9 +37,13 @@ const TextareaWidget = ({
   }: React.FocusEvent<HTMLTextAreaElement>) => onFocus(id, value);
 
   const fieldDescription = uiSchema['ui:description'] || schema.description;
+  const fieldUIHelp = schema['ui:help'];
 
   return (
     <>
+      {fieldDescription ? (
+        <p className="mb-4 text-sm text-gray-400">{fieldDescription}</p>
+      ) : null}
       <label
         htmlFor={id}
         className={
@@ -71,14 +75,14 @@ const TextareaWidget = ({
         onBlur={_onBlur}
         onFocus={_onFocus}
       />
-      {fieldDescription ? (
+      {fieldUIHelp ? (
         <p
           className={
             'text-xs mt-2 text-gray-400 ' +
             (rawErrors.length > 0 ? 'text-red-400' : 'text-gray-400')
           }
         >
-          {fieldDescription}
+          {fieldUIHelp}
         </p>
       ) : null}
     </>
