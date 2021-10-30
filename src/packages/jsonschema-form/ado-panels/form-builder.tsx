@@ -11,6 +11,14 @@ const schemasADO = {
   whitelist: require('./whitelist.json'),
 };
 
+export const getTitleSchemaPanel = (panel: SchemaPanel): string => {
+  return schemasADO[panel.type]['schema']['title'];
+};
+
+export const getDescriptionSchemaPanel = (panel: SchemaPanel): string => {
+  return schemasADO[panel.type]['schema']['description'];
+};
+
 /**
  *
  * @param panels
@@ -29,6 +37,7 @@ export const generateSchemaPanels = (
 
   for (const panel of panels) {
     const schemaADO = schemasADO[panel.type];
+    console.log('panel', panel);
 
     // schema
     schemaDefinitions[`${panel.id}`] = schemaADO['schema'];
@@ -73,6 +82,7 @@ export const generateSchemaPanels = (
     }
 
     if (panel.removable) {
+      console.log('removable!!');
       schemaDefinitions[`${panel.id}`]['properties']['$removable'] = {
         type: 'boolean',
         default: panel.removable,
@@ -85,10 +95,16 @@ export const generateSchemaPanels = (
     uiSchema[`${panel.id}`] = schemaADO['ui-schema'];
     uiSchema[`${panel.id}`]['$type'] = { 'ui:widget': 'hidden' };
     uiSchema[`${panel.id}`]['$open'] = { 'ui:widget': 'hidden' };
-    uiSchema[`${panel.id}`]['$removable'] = { 'ui:widget': 'hidden' };
+    if (panel.removable) {
+      uiSchema[`${panel.id}`]['$removable'] = { 'ui:widget': 'hidden' };
+    }
 
     // form-data
     formData[`${panel.id}`] = schemaADO['form-data'];
+    formData[`${panel.id}`]['$enabled'] = panel.enabled;
+    if (panel.removable) {
+      formData[`${panel.id}`]['$removable'] = true;
+    }
   }
 
   const schema = {
@@ -96,6 +112,8 @@ export const generateSchemaPanels = (
     type: 'object',
     properties: schemaProperties,
   };
+
+  console.log('schema', schema);
 
   return { schema, uiSchema, formData };
 };

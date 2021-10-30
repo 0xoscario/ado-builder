@@ -3,6 +3,7 @@ interface SchemaPanel {
   type: SchemaPanelType;
   open?: boolean;
   required?: boolean;
+  enabled?: boolean;
   removable?: boolean;
   data?: any;
 }

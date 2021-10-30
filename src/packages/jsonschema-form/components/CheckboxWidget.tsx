@@ -27,6 +27,7 @@ export default function CheckboxWidget({
 
   const checked = typeof value === 'undefined' ? false : value;
 
+  console.log('value', value, schema);
   if (schema['ui:toggle']) {
     return (
       <div className="absolute right-8 top-0">
