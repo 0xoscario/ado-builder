@@ -20,7 +20,7 @@ const links = [
     title: 'My missions',
     description: '...',
     icon: BriefcaseIcon,
-    href: '#',
+    href: '/missions',
   },
   {
     title: 'My assets',
