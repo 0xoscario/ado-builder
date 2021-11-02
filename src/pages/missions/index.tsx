@@ -46,34 +46,8 @@ const itemData = [
 const Missions: NextPage = () => {
   return (
     <Layout title="My missions" currentNavIndex="2">
-      <div className="flex justify-between mb-3 pb-3 border-b border-grey-500">
-        <div className="flex items-end">
-          <h1 className="text-2xl font-medium text-gray-900">My Missions</h1>
-        </div>
-        <div className="flex w-1/3">
-          <div className="items-center w-1/2 mr-3 mt-1 block w-full pl-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm flex">
-            <SearchIcon className="w-5 mr-1 h-5 text-gray-500" />
-            <input
-              className="w-5/6 p-0 font-light border-transparent focus:border-transparent focus:ring-0 focus:placeholder-gray-400 focus:outline-none sm:text-sm"
-              type="search"
-              name="search"
-              id="search-field"
-              placeholder="Search My assets"
-              autoComplete="off"
-              onChange={() => {}}
-            />
-          </div>
-
-          <select
-            id="country"
-            name="country"
-            autoComplete="country-name"
-            className="w-1/2 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            onChange={() => {}}
-          >
-            <option>All types</option>
-          </select>
-        </div>
+      <div className="flex mb-3 pb-3 border-b border-grey-500">
+        <h1 className="text-2xl font-medium text-gray-900">My Missions</h1>
       </div>
       <div className="text-center mt-12">
         <h2 className="text-2xl font-medium text-gray-500">(In Development)</h2>
