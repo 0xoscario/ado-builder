@@ -20,7 +20,7 @@ import ConnectedButton from '@/components/ConnectedButton';
 const navigation = [
   { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon },
   { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
-  { name: 'My missions', href: '#', icon: BriefcaseIcon },
+  { name: 'My missions', href: '/missions', icon: BriefcaseIcon },
   { name: 'My assets', href: '#', icon: FolderIcon },
   { name: 'Contracts', href: '#', icon: DocumentTextIcon },
 ];

@@ -30,7 +30,7 @@ const headCells = [
 const MarketPlace: NextPage = () => {
 
     return (
-        <Layout title="Marketpalce" currentNavIndex="1" >
+        <Layout title="Marketplace" currentNavIndex="1" >
             <NftTable dataList={testNftDataList} headCells={headCells} />
         </Layout>
     )
