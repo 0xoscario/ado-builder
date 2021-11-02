@@ -54,7 +54,7 @@ const Missions: NextPage = () => {
           (In Development)
         </span>
         <p className="text-sm">
-          Missions is currently under development, but below, you'll find an
+          Missions is currently under development, but below, you’ll find an
           example of what they are and how they might be utilized.
         </p>
         <div className="max-w-3xl mx-auto mt-8 mb-8">
