@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { CogIcon, PlusCircleIcon } from '@heroicons/react/outline';
 import { v4 as uuidv4 } from 'uuid';
 import Layout from '@/components/DefaultLayout';
+import useWarnIfUnsavedChanges from '@/hooks/useWarnIfUnsavedChanges';
 import JsonSchemaForm from '@/packages/jsonschema-form/components/JsonSchemaForm';
 
 /* Resolve typecheck failures when passing JSON props */
@@ -21,6 +22,7 @@ const SEARCH_PANELS: string[] = ['taxes', 'royalties'];
 const NFT: NextPage = () => {
   const formDataRef = useRef(null);
 
+  const [dirty, setDirty] = useState(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [schema, setSchema] = useState(null);
@@ -41,6 +43,8 @@ const NFT: NextPage = () => {
   useCustomEventListener('form:panel:delete', (data: any) => {
     removeModule(data.id);
   });
+
+  useWarnIfUnsavedChanges(dirty);
 
   function updateFormPanels(form) {
     setSchema(form.schema);
@@ -99,6 +103,9 @@ const NFT: NextPage = () => {
                 uiSchema={uiSchema as JSONSchema7}
                 formData={formData as JSONSchema7}
                 onChange={({ formData }) => {
+                  if (!dirty && formDataRef.current) {
+                    setDirty(true);
+                  }
                   formDataRef.current = formData;
                 }}
                 onSubmit={submitForm}
