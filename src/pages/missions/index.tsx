@@ -50,14 +50,14 @@ const Missions: NextPage = () => {
         <div className="flex items-end">
           <h1 className="text-2xl font-medium text-gray-900">My Missions</h1>
         </div>
-        <div className="flex">
-          <div className="items-center w-1/2 mr-3 mt-1 block w-full px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm flex">
-            <SearchIcon className="w-5 h-5 text-gray-500" />
+        <div className="flex w-1/3">
+          <div className="items-center w-1/2 mr-3 mt-1 block w-full pl-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm flex">
+            <SearchIcon className="w-5 mr-1 h-5 text-gray-500" />
             <input
-              className="w-5/6 font-light border-transparent focus:border-transparent focus:ring-0 focus:placeholder-gray-400 focus:outline-none"
-              type="text"
-              name="first-name"
-              id="first-name"
+              className="w-5/6 p-0 font-light border-transparent focus:border-transparent focus:ring-0 focus:placeholder-gray-400 focus:outline-none sm:text-sm"
+              type="search"
+              name="search"
+              id="search-field"
               placeholder="Search My assets"
               autoComplete="off"
               onChange={() => {}}
@@ -68,19 +68,15 @@ const Missions: NextPage = () => {
             id="country"
             name="country"
             autoComplete="country-name"
-            className="w-1/2  mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="w-1/2 mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             onChange={() => {}}
           >
             <option>All types</option>
-            <option>Image</option>
-            <option>Audio</option>
-            <option>Domain</option>
-            <option>Other</option>
           </select>
         </div>
       </div>
       <div className="text-center mt-12">
-        <h1 className="text-2xl font-medium text-gray-500">(In Development)</h1>
+        <h2 className="text-2xl font-medium text-gray-500">(In Development)</h2>
         <p>
           Missions is currently under development, but below, you'll find an
           example of what they are and how they might be utilized.
