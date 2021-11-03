@@ -8,7 +8,7 @@ import Layout from '@/components/DefaultLayout';
 import { classnames } from '@/utils/styles';
 
 interface BuilderItemProps {
-  svg: object;
+  svg: any;
   title: string;
   desc: string;
   checkLists: [string, string, string, string];
@@ -30,8 +30,8 @@ const BuilderItem: React.FC<BuilderItemProps> = (prop: BuilderItemProps) => {
         <p className="mb-4">{prop.desc}</p>
         <div className="flex flex-col justify-end flex-grow">
           <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
-            {prop.checkLists.map((x) => (
-              <a>
+            {prop.checkLists.map((x, i) => (
+              <a key={i}>
                 <span className="bg-green-100 text-green-500 w-4 h-4 mr-2 rounded-full inline-flex items-center justify-center">
                   <svg
                     fill="none"
@@ -175,8 +175,9 @@ const Home: NextPage = () => {
           <p>Create NFT collectibles, DeFi instruments and generic ADOs</p>
         </div>
         <div className="flex flex-wrap -m-4">
-          {itemData.map((x) => (
+          {itemData.map((x, i) => (
             <BuilderItem
+              key={i}
               svg={x.svg}
               title={x.title}
               desc={x.desc}
