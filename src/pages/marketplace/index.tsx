@@ -41,11 +41,17 @@ const MarketPlace: NextPage = () => {
     console.log(client);
 
     return (
+
         <ApolloProvider client={client}>            
             <Layout title="Marketpalce" currentNavIndex="1" >
                 <NftTable headCells={headCells} />            
             </Layout>
         </ApolloProvider>
+
+      {/* <Layout title="Marketplace" currentNavIndex="1" >
+            <NftTable dataList={testNftDataList} headCells={headCells} />
+        </Layout> */}
+
     )
 }
 

@@ -1,0 +1,60 @@
+{
+  "schema": {
+    "title": "Add Built-In Taxes",
+    "description": "Fees built into tax the ADO at point of sale, paid to specified Wallet Addresses.",
+    "$id": "/schemas/taxes",
+    "type": "object",
+    "properties": {
+      "description": {
+        "type": "string",
+        "title": "Tax Description",
+        "ui:help": "* Optional - Information is solely for organizational use."
+      },
+      "distribution-type": {
+        "type": "object",
+        "title": "Distribution Type",
+        "anyOf": [
+          {
+            "title": "By Percentage",
+            "type": "object",
+            "ui:group": true,
+            "properties": {
+              "distribution_percentage": {
+                "title": "% fee of sale price",
+                "type": "number"
+              }
+            }
+          },
+          {
+            "title": "By Flat Fee",
+            "type": "object",
+            "ui:group": true,
+            "properties": {
+              "distribution_fiat-fee": {
+                "type": "number",
+                "title": "Flat fee"
+              },
+              "distribution_fiat-fee-currency": {
+                "type": "string",
+                "title": "Currency type",
+                "enum": ["usd"],
+                "enumNames": ["USD"],
+                "default": "usd"
+              }
+            }
+          }
+        ]
+      },
+      "payment_address": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "title": "Alphanumeric Terra Address",
+        "ui:help": "Address recieving funds for tax."
+      }
+    }
+  },
+  "ui-schema": {},
+  "form-data": {}
+}

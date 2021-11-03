@@ -13,8 +13,8 @@ const mainnet = {
 
 const testnet = {
   name: 'testnet',
-  chainID: 'tequila-0004',
-  lcd: 'https://tequila-lcd.terra.dev',
+  chainID: 'bombay-12',
+  lcd: 'https://bombay-lcd.terra.dev',
 };
 
 type Props = {
@@ -24,16 +24,16 @@ type Props = {
 const AppProviders: FunctionComponent<Props> = ({ children }) => {
   return process.browser ? (
     <WalletProvider
-      defaultNetwork={mainnet}
+      defaultNetwork={testnet}
       walletConnectChainIds={{
         0: testnet,
-        1: mainnet,
+        /** 1: mainnet, **/
       }}
     >
       {children}
     </WalletProvider>
   ) : (
-    <StaticWalletProvider defaultNetwork={mainnet}>
+    <StaticWalletProvider defaultNetwork={testnet}>
       {children}
     </StaticWalletProvider>
   );

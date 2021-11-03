@@ -17,7 +17,10 @@ import {
   useConnectedWallet,
   ConnectType,
 } from '@terra-money/wallet-provider';
-import { LightningBoltIcon } from '@heroicons/react/outline';
+import {
+  LightningBoltIcon,
+  ShieldExclamationIcon,
+} from '@heroicons/react/outline';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Terra from '@/assets/terra.svg';
@@ -96,11 +99,11 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
         : []
     )
     .concat(
-      availableConnectTypes.includes(ConnectType.WEBEXTENSION)
+      availableConnectTypes.includes(ConnectType.WEB_CONNECT)
         ? {
             label: 'Terra Station Extension',
             image: <Terra {...size} />,
-            onClick: () => connect(ConnectType.WEBEXTENSION),
+            onClick: () => connect(ConnectType.WEB_CONNECT),
           }
         : availableConnectTypes.includes(ConnectType.CHROME_EXTENSION)
         ? {
@@ -122,7 +125,14 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
 
   /* Wallet Connected / Not Connected Button Display */
   return (
-    <>
+    <div className="relative flex items-center">
+      <small className="ml-4 text-xs text-gray-100 bg-red-500 rounded px-3 py-1 flex items-center">
+        <ShieldExclamationIcon
+          className="mr-1 flex-shrink-0 h-6 w-6 "
+          aria-hidden="true"
+        />
+        Testnet
+      </small>
       {status === WalletStatus.WALLET_NOT_CONNECTED ? (
         <>
           <button
@@ -211,7 +221,7 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
           </motion.div>
         </AnimatePresence>
       </DialogOverlay>
-    </>
+    </div>
   );
 };
 

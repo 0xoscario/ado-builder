@@ -1,0 +1,37 @@
+{
+  "schema": {
+    "title": "Details",
+    "description": "Tell us about what you're creating.",
+    "$id": "/schemas/nft-detail",
+    "type": "object",
+    "required": ["name", "symbol", "url"],
+    "properties": {
+      "name": {
+        "type": "string",
+        "title": "Name your NFT",
+        "ui:help": "Give your creation a name you’ll easily identify it  with."
+      },
+      "symbol": {
+        "type": "string",
+        "title": "Create a NFT symbol",
+        "ui:help": "A publicly searchable identifier."
+      },
+      "url": {
+        "type": "string",
+        "title": "External link / url to image",
+        "ui:help": "Where users will go to learn more about this item."
+      },
+      "description": {
+        "type": "string",
+        "title": "Message",
+        "ui:help": "This will be included on the item's detail page. - Markdown syntax is supported."
+      }
+    }
+  },
+  "ui-schema": {
+    "description": {
+      "ui:widget": "textarea"
+    }
+  },
+  "form-data": {}
+}

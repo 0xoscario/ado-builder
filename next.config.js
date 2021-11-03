@@ -1,4 +1,8 @@
 module.exports = {
+  swcMinify: true,
+  env: {
+    appVersion: process.env.npm_package_version,
+  },
   /* config options here */
   webpack(config, { isServer, dev: isDevelopmentMode }) {
     if (!isServer) {

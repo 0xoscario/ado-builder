@@ -13,15 +13,17 @@ const ObjectFieldTemplate = ({
   formData,
   schema,
 }: ObjectFieldTemplateProps) => {
-  console.log('schema', schema);
   if (schema['ui:panel']) {
-    if (schema['ui:toggle']) {
-      properties = formData['enabled']
-        ? properties
-        : properties.filter((prop) => prop.name === 'enabled');
-    }
     return (
-      <Panel title={title} description={description}>
+      <Panel
+        id={idSchema['$id']}
+        title={title}
+        description={description}
+        toggle={schema['ui:toggle']}
+        removable={formData['$removable']}
+        enabled={formData['$enabled']}
+        autoOpen={formData['$open']}
+      >
         {properties.map((element: any) => element.content)}
       </Panel>
     );

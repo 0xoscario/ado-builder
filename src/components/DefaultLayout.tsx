@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   FolderIcon,
+  BeakerIcon,
   PresentationChartBarIcon,
   DocumentTextIcon,
   MenuAlt2Icon,
@@ -11,15 +12,15 @@ import {
   BriefcaseIcon,
   XIcon,
 } from '@heroicons/react/outline';
-import { SearchIcon } from '@heroicons/react/solid';
+// import { SearchIcon } from '@heroicons/react/solid';
 
 import { classnames } from '@/utils/styles';
 import ConnectedButton from '@/components/ConnectedButton';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon  },
+  { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon },
   { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
-  { name: 'My missions', href: '#', icon: BriefcaseIcon },
+  { name: 'My missions', href: '/missions', icon: BriefcaseIcon },
   { name: 'My assets', href: '#', icon: FolderIcon },
   { name: 'Contracts', href: '#', icon: DocumentTextIcon },
 ];
@@ -96,13 +97,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                   </div>
                 </Transition.Child>
                 <div className=" flex-shrink-0 flex items-center px-4">
-                  <div className="h-8	relative">
+                  <div className="relative flex">
                     <img
                       src="/images/AND_Logo-Full.svg"
                       alt="Andromeda"
                       width="190"
                       height="32"
                     />
+                    <small className="ml-2 uppercase text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded-md">
+                      Beta
+                    </small>
                   </div>
                 </div>
                 <div className="mt-5 flex-1 h-0 overflow-y-auto">
@@ -114,7 +118,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                             currentNavIndex == index
                               ? 'bg-gray-900 text-white'
                               : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            'group flex items-center px-2 py-2 text-base rounded-md'
                           )}
                         >
                           <item.icon
@@ -132,6 +136,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     ))}
                   </nav>
                 </div>
+                <div className="pt-3 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
+                  <BeakerIcon
+                    className="text-gray-500 group-hover:text-gray-300 mr-4 flex-shrink-0 h-4 w-4"
+                    aria-hidden="true"
+                  />
+                  <div className="pb-1">
+                    <span>version&nbsp;</span>
+                    <strong>{process.env.appVersion}</strong>
+                  </div>
+                </div>
               </div>
             </Transition.Child>
             <div className="flex-shrink-0 w-14" aria-hidden="true">
@@ -145,14 +159,17 @@ const DefaultLayout: FunctionComponent<Props> = ({
           <div className="flex flex-col w-64">
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex-1 flex flex-col min-h-0">
-              <div className="flex relative items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-                <div className="relative h-8 w-auto">
+              <div className="flex relative items-center jus h-16 flex-shrink-0 px-4 bg-gray-900">
+                <div className="relative w-auto flex">
                   <img
                     src="/images/AND_Logo-Full.svg"
                     alt="Andromeda"
                     width="150"
                     height="32"
                   />
+                  <small className="ml-2 uppercase text-xs text-gray-300 bg-gray-700 px-2 py-1 rounded-md">
+                    Beta
+                  </small>
                 </div>
               </div>
               <div className="flex-1 flex flex-col overflow-y-auto">
@@ -164,7 +181,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                           currentNavIndex == index
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                          'group flex items-center px-2 py-2 text-sm  rounded-md'
                         )}
                       >
                         <item.icon
@@ -181,6 +198,16 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     </Link>
                   ))}
                 </nav>
+              </div>
+              <div className="p-4 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
+                <BeakerIcon
+                  className="text-gray-500 group-hover:text-gray-300 mr-4 flex-shrink-0 h-4 w-4"
+                  aria-hidden="true"
+                />
+                <div className="pb-1">
+                  <span>version&nbsp;</span>
+                  <strong>{process.env.appVersion}</strong>
+                </div>
               </div>
             </div>
           </div>
@@ -202,6 +229,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                     Search
                   </label>
                   <div className="relative w-full text-gray-400 focus-within:text-gray-600">
+                    {/**
                     <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                       <SearchIcon className="h-5 w-5" aria-hidden="true" />
                     </div>
@@ -211,14 +239,12 @@ const DefaultLayout: FunctionComponent<Props> = ({
                       placeholder="Search"
                       type="search"
                       name="search"
-                    />
+                    />*/}
                   </div>
                 </form>
               </div>
               <div className="ml-4 flex items-center md:ml-6">
-                <div className="relative">
-                  <ConnectedButton />
-                </div>
+                <ConnectedButton />
               </div>
             </div>
           </div>

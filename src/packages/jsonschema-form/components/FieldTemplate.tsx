@@ -11,10 +11,14 @@ const FieldTemplate = ({
   rawDescription,
   label,
   schema,
+  uiSchema,
   required,
 }: FieldTemplateProps) => {
   return (
-    <fieldset id={id}>
+    <fieldset
+      id={id}
+      className={uiSchema['ui:widget'] === 'hidden' ? 'absolute h-0' : ''}
+    >
       {children}
       {rawErrors.length > 0 && (
         <ul>
