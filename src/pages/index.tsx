@@ -10,6 +10,7 @@ import { classnames } from '@/utils/styles';
 interface BuilderItemProps {
   svg: object;
   title: string;
+  desc: string;
   checkLists: [string, string, string, string];
   url: string;
 }
@@ -18,7 +19,7 @@ const BuilderItem: React.FC<BuilderItemProps> = (prop: BuilderItemProps) => {
   return (
     <div className="p-4 md:w-1/3">
       <div className="flex rounded-lg h-full bg-white shadow sm:rounded-lg p-8 flex-col">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center mb-4">
           <div className="w-8 h-8 mr-4 inline-flex items-center justify-center rounded-full bg-red-700 text-white flex-shrink-0">
             {prop.svg}
           </div>
@@ -26,7 +27,8 @@ const BuilderItem: React.FC<BuilderItemProps> = (prop: BuilderItemProps) => {
             {prop.title}
           </h2>
         </div>
-        <div className="flex-grow">
+        <p className="mb-4">{prop.desc}</p>
+        <div className="flex flex-col justify-end flex-grow">
           <nav className="flex flex-col sm:items-start sm:text-left text-center items-center -mb-1 space-y-2.5">
             {prop.checkLists.map((x) => (
               <a>
@@ -85,6 +87,7 @@ const itemData: BuilderItemProps[] = [
       </svg>
     ),
     title: 'NFT Collectible',
+    desc: 'Create the most advanced and feature rich NFT Collectible in the world.',
     checkLists: [
       'Add royalities',
       'Black/White list',
@@ -109,6 +112,7 @@ const itemData: BuilderItemProps[] = [
       </svg>
     ),
     title: 'DeFi Instruments',
+    desc: 'Setup components for financial automation',
     checkLists: ['Splitter', 'Timelock', 'MIR & ANC', '(more in dev)'],
     url: '#',
   },
@@ -129,6 +133,7 @@ const itemData: BuilderItemProps[] = [
       </svg>
     ),
     title: 'Generic ADO',
+    desc: 'Define simple data values to be utilized in other ADOs',
     checkLists: [
       'Address lists',
       'Specific values',
@@ -174,6 +179,7 @@ const Home: NextPage = () => {
             <BuilderItem
               svg={x.svg}
               title={x.title}
+              desc={x.desc}
               checkLists={x.checkLists}
               url={x.url}
             />
