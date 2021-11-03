@@ -1,9 +1,14 @@
 import type { NextPage } from 'next';
 import NftTable from '@/components/NftTable';
 import Layout from '@/components/DefaultLayout';
+import {
+    ApolloProvider,
+    ApolloClient,
+    InMemoryCache
+  } from "@apollo/client";
 
-import testNftDataList from '@/assets/MarketplaceData.json';
-
+// import testNftDataList from '@/assets/MarketplaceData.json';
+// import nftDataList  from '../api/nft-list';
 const headCells = [
     {
         id: 'Name',
@@ -27,12 +32,20 @@ const headCells = [
     },
 ];
 
-const MarketPlace: NextPage = () => {
+
+const MarketPlace: NextPage = () => {    
+    const client = new ApolloClient({
+        uri: 'https://graphql.andromedaprotocol.io:8080',
+        cache: new InMemoryCache()
+    });
+    console.log(client);
 
     return (
-        <Layout title="Marketpalce" currentNavIndex="1" >
-            <NftTable dataList={testNftDataList} headCells={headCells} />
-        </Layout>
+        <ApolloProvider client={client}>            
+            <Layout title="Marketpalce" currentNavIndex="1" >
+                <NftTable headCells={headCells} />            
+            </Layout>
+        </ApolloProvider>
     )
 }
 

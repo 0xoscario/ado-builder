@@ -7,6 +7,7 @@ import AudioSvg from '@/assets/audio.svg';
 import ImageSvg from '@/assets/image.svg';
 import DomainSvg from '@/assets/domain.svg';
 import OtherSvg from '@/assets/other.svg';
+import nftDataList from '../pages/api/nft-list';
 
 interface Item {
     Name: string,
@@ -34,6 +35,8 @@ const NftTable = (props) => {
     const [curPage, setCurPage] = React.useState(0);
 
 
+    const nftList = nftDataList()
+    
 
     const handleRequestSort = (property) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -130,7 +133,7 @@ const NftTable = (props) => {
                     <div className="p-5 pl-10">
                         <img
                             className="inline-block w-20 h-20 rounded ring-2 ring-white"
-                            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            src={data.image}
                             alt=""
                         />
 
@@ -170,7 +173,7 @@ const NftTable = (props) => {
         return results;
     }
     let total_count = 0;
-    let orderList = orderByDataList(props.dataList, itemPerPage)
+    let orderList = orderByDataList(nftList, itemPerPage)
 
     return (
         <div className="flex flex-col">

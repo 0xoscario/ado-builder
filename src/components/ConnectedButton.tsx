@@ -9,7 +9,8 @@ import {
 import { DialogContent, DialogOverlay } from '@reach/dialog';
 import { Popover } from '@headlessui/react';
 
-import { LCDClient, Coin } from '@terra-money/terra.js';
+import { LCDClient, Coin, Coins } from '@terra-money/terra.js';
+import { Pagination } from '@terra-money/terra.js/dist/client/lcd/APIRequester';
 import {
   useWallet,
   WalletStatus,
@@ -66,8 +67,9 @@ const ConnectedButton: FunctionComponent<Props> = ({ label = 'Connect' }) => {
       setShowConnectOptions(false);
 
       const balances: Record<string, number> = {};
-      lcd.bank.balance(connectedWallet.walletAddress).then((coins) => {
-        coins.toArray().forEach(async (coin: Coin) => {
+      lcd.bank.balance(connectedWallet.walletAddress).then((coins:[Coins, Pagination]) => {
+        
+        coins[0].toArray().forEach(async (coin: Coin) => {
           const item = coin.toData();
           const denom = item.denom;
           const amount = parseFloat(item.amount) / DENOM_UNIT;
