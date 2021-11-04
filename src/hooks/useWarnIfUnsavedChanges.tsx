@@ -12,7 +12,7 @@ const throwFakeErrorToFoolNextRouter = (): never => {
 const useWarnIfUnsavedChanges = (shouldWarn: boolean): void => {
   const router = useRouter();
 
-  const message = 'Are you sure that you want to leave?';
+  const message = 'Any configurations you have made will be lost.\nAre you sure that you want to leave?';
 
   const lastHistoryState = useRef<{ idx: number }>(global.history?.state);
 
