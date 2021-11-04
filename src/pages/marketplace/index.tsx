@@ -1,57 +1,59 @@
 import type { NextPage } from 'next';
 import NftTable from '@/components/NftTable';
 import Layout from '@/components/DefaultLayout';
-import {
-    ApolloProvider,
-    ApolloClient,
-    InMemoryCache
-  } from "@apollo/client";
+import { gql, useQuery } from '@apollo/client';
 
-// import testNftDataList from '@/assets/MarketplaceData.json';
-// import nftDataList  from '../api/nft-list';
+const GET_NFTS = () => {
+  return gql`
+    query NFTS {
+      nfts {
+        nftId
+        owner
+        symbol
+        pricing
+        dataType
+        publisher
+        image
+        name
+      }
+    }
+  `;
+};
+
 const headCells = [
-    {
-        id: 'Name',
-        label: 'Name',
-    },
-    {
-        id: 'Price',
-        label: 'Price',
-    },
-    {
-        id: 'Type',
-        label: 'Type',
-    },
-    {
-        id: 'Owner',
-        label: 'Owner',
-    },
-    {
-        id: 'Publisher',
-        label: 'Publisher',
-    },
+  {
+    id: 'Name',
+    label: 'Name',
+  },
+  {
+    id: 'Price',
+    label: 'Price',
+  },
+  {
+    id: 'Type',
+    label: 'Type',
+  },
+  {
+    id: 'Owner',
+    label: 'Owner',
+  },
+  {
+    id: 'Publisher',
+    label: 'Publisher',
+  },
 ];
 
+const MarketPlace: NextPage = () => {
+  const { data } = useQuery(GET_NFTS(), {
+    pollInterval: 5000,
+    variables: {},
+  });
 
-const MarketPlace: NextPage = () => {    
-    const client = new ApolloClient({
-        uri: 'https://graphql.andromedaprotocol.io:8080',
-        cache: new InMemoryCache()
-    });
-    console.log(client);
-
-    return (
-
-        <ApolloProvider client={client}>            
-            <Layout title="Marketpalce" currentNavIndex="1" >
-                <NftTable headCells={headCells} />            
-            </Layout>
-        </ApolloProvider>
-    )
-      {/* <Layout title="Marketplace" currentNavIndex="1" >
-            <NftTable dataList={testNftDataList} headCells={headCells} />
-        </Layout> */}
-
-}
+  return (
+    <Layout title="Marketplace" currentNavIndex="1">
+      {data && <NftTable headCells={headCells} dataList={data.nfts} />}
+    </Layout>
+  );
+};
 
 export default MarketPlace;
