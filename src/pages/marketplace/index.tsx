@@ -50,7 +50,7 @@ const MarketPlace: NextPage = () => {
   });
 
   return (
-    <Layout title="Marketplace" currentNavIndex="1">
+    <Layout title="Marketplace">
       {data && <NftTable headCells={headCells} dataList={data.nfts} />}
     </Layout>
   );

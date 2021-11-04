@@ -45,7 +45,7 @@ const itemData: ItemProps[] = [
 
 const Missions: NextPage = () => {
   return (
-    <Layout title="My missions" currentNavIndex="2">
+    <Layout title="My missions">
       <div className="flex mb-3 pb-3 border-b border-grey-500">
         <h1 className="text-2xl font-medium text-gray-700 m-3">My Missions</h1>
       </div>

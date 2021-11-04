@@ -166,7 +166,7 @@ const statusStyles = {
 */
 const Home: NextPage = () => {
   return (
-    <Layout title="Andromeda" currentNavIndex="0">
+    <Layout title="Andromeda">
       <div className="text-gray-600 container mx-auto">
         <div className="flex flex-col text-center w-full mt-4 mb-8">
           <h1 className="sm:text-2xl text-xl font-medium title-font text-gray-900">
