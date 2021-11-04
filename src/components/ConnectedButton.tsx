@@ -9,7 +9,7 @@ import {
 import { DialogContent, DialogOverlay } from '@reach/dialog';
 import { Popover } from '@headlessui/react';
 
-import { LCDClient, Coin } from '@terra-money/terra.js';
+import { LCDClient, Coin} from '@terra-money/terra.js';
 import {
   useWallet,
   WalletStatus,
