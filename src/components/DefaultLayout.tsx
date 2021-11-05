@@ -208,36 +208,23 @@ const DefaultLayout: FunctionComponent<Props> = ({
               </div>
 
               <div className="px-2 py-4 bg-gray-800">
-                <Link key={docNavigation.name} href={docNavigation.href}>
-                  <a
-                    className={classnames(
-                      router.pathname == docNavigation.href
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300',
-                      'group flex items-center px-2 py-2 text-sm  rounded-md'
-                    )}
-                  >
-                    <docNavigation.icon
-                      className={classnames(
-                        router.pathname == docNavigation.href
-                          ? 'text-gray-300'
-                          : 'text-gray-400 group-hover:text-gray-300',
-                        'mr-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {docNavigation.name}
-                    <docNavigation.linkIcon
-                      className={classnames(
-                        router.pathname == docNavigation.href
-                          ? 'text-gray-300'
-                          : 'text-gray-400 group-hover:text-gray-300',
-                        'ml-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                  </a>
-                </Link>
+                <a
+                  key={docNavigation.name}
+                  href={docNavigation.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-gray-300 group flex items-center px-2 py-2 text-sm rounded-md"
+                >
+                  <docNavigation.icon
+                    className="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6"
+                    aria-hidden="true"
+                  />
+                  {docNavigation.name}
+                  <docNavigation.linkIcon
+                    className="text-gray-400 group-hover:text-gray-300 ml-3 flex-shrink-0 h-6 w-6"
+                    aria-hidden="true"
+                  />
+                </a>
               </div>
 
               <div className="p-4 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
