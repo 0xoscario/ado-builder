@@ -8,12 +8,12 @@ import {
   BeakerIcon,
   PresentationChartBarIcon,
   DocumentTextIcon,
+  ExternalLinkIcon,
   MenuAlt2Icon,
   UsersIcon,
   BriefcaseIcon,
   XIcon,
 } from '@heroicons/react/outline';
-// import { SearchIcon } from '@heroicons/react/solid';
 
 import { classnames } from '@/utils/styles';
 import ConnectedButton from '@/components/ConnectedButton';
@@ -23,8 +23,14 @@ const navigation = [
   { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
   { name: 'My missions', href: '/missions', icon: BriefcaseIcon },
   { name: 'My assets', href: '#', icon: FolderIcon },
-  { name: 'Contracts', href: '#', icon: DocumentTextIcon },
 ];
+
+const docNavigation = {
+  name: 'Documentation',
+  href: 'https://docs.andromedaprotocol.io/andromeda/user-docs',
+  icon: DocumentTextIcon,
+  linkIcon: ExternalLinkIcon,
+};
 
 type Props = {
   title?: string;
@@ -200,6 +206,40 @@ const DefaultLayout: FunctionComponent<Props> = ({
                   ))}
                 </nav>
               </div>
+
+              <div className="px-2 py-4 bg-gray-800">
+                <Link key={docNavigation.name} href={docNavigation.href}>
+                  <a
+                    className={classnames(
+                      router.pathname == docNavigation.href
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300',
+                      'group flex items-center px-2 py-2 text-sm  rounded-md'
+                    )}
+                  >
+                    <docNavigation.icon
+                      className={classnames(
+                        router.pathname == docNavigation.href
+                          ? 'text-gray-300'
+                          : 'text-gray-400 group-hover:text-gray-300',
+                        'mr-3 flex-shrink-0 h-6 w-6'
+                      )}
+                      aria-hidden="true"
+                    />
+                    {docNavigation.name}
+                    <docNavigation.linkIcon
+                      className={classnames(
+                        router.pathname == docNavigation.href
+                          ? 'text-gray-300'
+                          : 'text-gray-400 group-hover:text-gray-300',
+                        'ml-3 flex-shrink-0 h-6 w-6'
+                      )}
+                      aria-hidden="true"
+                    />
+                  </a>
+                </Link>
+              </div>
+
               <div className="p-4 pl-6 flex items-center text-center text-xs text-gray-500 bg-gray-800 space-y-1 border-t-2 border-opacity-5">
                 <BeakerIcon
                   className="text-gray-500 group-hover:text-gray-300 mr-4 flex-shrink-0 h-4 w-4"
