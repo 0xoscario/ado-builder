@@ -221,7 +221,7 @@ const DefaultLayout: FunctionComponent<Props> = ({
                   />
                   {docNavigation.name}
                   <docNavigation.linkIcon
-                    className="text-gray-400 group-hover:text-gray-300 ml-3 flex-shrink-0 h-6 w-6"
+                    className="text-gray-400 group-hover:text-gray-300 ml-3 flex-shrink-0 h-5 w-5"
                     aria-hidden="true"
                   />
                 </a>
