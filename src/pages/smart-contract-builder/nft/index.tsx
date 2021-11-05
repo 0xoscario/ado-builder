@@ -44,7 +44,10 @@ const NFT: NextPage = () => {
     removeModule(data.id);
   });
 
-  useWarnIfUnsavedChanges(dirty);
+  useWarnIfUnsavedChanges(
+    dirty,
+    'Any configurations you have made will be lost.\nAre you sure that you want to leave?'
+  );
 
   function updateFormPanels(form) {
     setSchema(form.schema);

@@ -9,10 +9,11 @@ const throwFakeErrorToFoolNextRouter = (): never => {
   throw 'Abort route change. Please ignore this error.';
 };
 
-const useWarnIfUnsavedChanges = (shouldWarn: boolean): void => {
+const useWarnIfUnsavedChanges = (
+  shouldWarn: boolean,
+  message = 'Are you sure that you want to leave?'
+): void => {
   const router = useRouter();
-
-  const message = 'Are you sure that you want to leave?';
 
   const lastHistoryState = useRef<{ idx: number }>(global.history?.state);
 
