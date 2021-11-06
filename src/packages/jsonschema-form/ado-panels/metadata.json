@@ -4,45 +4,60 @@
     "description": "Add optional metadata information for your NFT Collectible.",
     "$id": "/schemas/metadata",
     "type": "object",
-    "required": [],
+    "required": ["external_url", "data_type"],
     "properties": {
-      "name": {
-        "type": "string",
-        "title": "Name",
-        "ui:help": "The name / title of your NFT."
-      },
-      "image": {
-        "type": "string",
-        "title": "Image",
-        "ui:help": "Image"
-      },
-      "image_data": {
-        "type": "string",
-        "title": "Image Data",
-        "ui:help": ""
-      },
       "external_url": {
         "type": "string",
-        "title": "External URL",
-        "ui:help": "An external URL related to the NFT."
+        "title": "External link to asset.",
+        "ui:help": "The source URI of the NFT."
       },
-      "description": {
+      "data_type": {
+        "type": "object",
+        "title": "Type of NFT",
+        "anyOf": [
+          {
+            "title": "Image",
+            "type": "object",
+            "ui:group": true
+          },
+          {
+            "title": "Video",
+            "type": "object",
+            "ui:group": true
+          },
+          {
+            "title": "Audio",
+            "type": "object",
+            "ui:group": true
+          },
+          {
+            "title": "Domain",
+            "type": "object",
+            "ui:group": true
+          },
+          {
+            "title": "Json",
+            "type": "object",
+            "ui:group": true
+          },
+          {
+            "title": "Other",
+            "type": "object",
+            "ui:group": true
+          }
+        ]
+      },
+      "data_url": {
         "type": "string",
-        "title": "Description",
-        "ui:help": "Descriptive text about your NFT"
+        "title": "External link to information about NFT.",
+        "ui:help": "An external link to information about NFT."
       },
-
       "attributes": {
         "title": "Attributes",
         "type": "array",
         "items": {
           "properties": {
-            "display_type": {
-              "type": "string",
-              "title": "Display Type",
-              "ui:help": "The display type of trait."
-            },
-            "trait_type": {
+            "key": {
               "type": "string",
               "title": "Trait Type",
               "ui:help": "The type of trait."
@@ -51,25 +66,14 @@
               "type": "string",
               "title": "Trait Value",
               "ui:help": "The value of the trait."
+            },
+            "display_label": {
+              "type": "string",
+              "title": "Display Label (replaces Trait Type label when displaying)",
+              "ui:help": "An optional value for how to display the trait. (defaults to Trait Type if ommitted)"
             }
           }
         }
-      },
-
-      "background_color": {
-        "type": "string",
-        "title": "Background color",
-        "ui:help": "Background Color"
-      },
-      "animation_url": {
-        "type": "string",
-        "title": "Animation URL",
-        "ui:help": "URL path to NFT related animation."
-      },
-      "youtube_url": {
-        "type": "string",
-        "title": "YouTube URL",
-        "ui:help": "URL path to NFT related youtube video."
       }
     }
   },

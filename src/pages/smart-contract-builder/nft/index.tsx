@@ -32,7 +32,7 @@ const NFT: NextPage = () => {
   useEffect(() => {
     const formPanels = generateSchemaPanels([
       { type: 'nft-details', id: uuidv4(), required: true },
-      { type: 'metadata', id: uuidv4() },
+      { type: 'metadata', id: uuidv4(), required: true },
       { type: 'whitelist', id: uuidv4() },
       { type: 'taxes', id: uuidv4() },
       { type: 'royalties', id: uuidv4() },
