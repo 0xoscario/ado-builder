@@ -18,8 +18,8 @@
       },
       "url": {
         "type": "string",
-        "title": "External link / url to image",
-        "ui:help": "Where users will go to learn more about this item."
+        "title": "External link / url to NFT asset.",
+        "ui:help": "Link to source data for the NFT."
       },
       "description": {
         "type": "string",
