@@ -1,7 +1,7 @@
 {
   "schema": {
     "title": "Metadata",
-    "description": "Add optional metadata information for your NFT Collectible.",
+    "description": "Add metadata information for your NFT Collectible.",
     "$id": "/schemas/metadata",
     "type": "object",
     "required": ["external_url", "data_type"],
@@ -74,6 +74,26 @@
             }
           }
         }
+      },
+      "Pricing": {
+        "properties": {
+          "price": {
+            "type": "string",
+            "title": "Price to sell for in marketplace? (Leave blank to NOT list for sale.)",
+            "ui:help": "Price you are asking others to offer in marketplace. (No value = undecalred)"
+          },
+          "denomination": {
+            "type": "object",
+            "title": "Denomination",
+            "anyOf": [
+              {
+                "title": "UST",
+                "type": "object",
+                "ui:group": true
+              }
+            ]
+          }
+        } 
       }
     }
   },
