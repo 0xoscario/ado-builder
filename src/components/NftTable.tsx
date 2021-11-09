@@ -236,9 +236,9 @@ const NftTable = (props) => {
           <td colSpan={2} className="align-top">
             <div className="flex flex-col p-4 text-sm">
               <div className="mt-2 font-bold">Description</div>
-              <div className="mt-2">Vastness is bearable only  through love hearts of the stars rich in heavy atoms dream of the mind's eye kindling the energy hidden in matter rich in heavy atoms and billions upon billions.</div>
+              <div className="mt-2">Vastness is bearable only  through love hearts of the stars rich in heavy atoms dream of the mind&apos;s eye kindling the energy hidden in matter rich in heavy atoms and billions upon billions.</div>
               <div className="mt-10 font-bold">About the Author</div>
-              <div className="mt-2">Rich in heavy atoms dream of the mind's eye kindling the energy hidden in mater rich in heavy.</div>
+              <div className="mt-2">Rich in heavy atoms dream of the mind&apos;s eye kindling the energy hidden in mater rich in heavy.</div>
             </div>
           </td>
           <td className="align-top">
@@ -351,6 +351,7 @@ const NftTable = (props) => {
           <select
               id="country"
               name="country"
+              aria-label="country"
               autoComplete="country-name"
               className="ml-5 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               onChange={handleItemPerPage}

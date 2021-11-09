@@ -101,6 +101,7 @@ const MarketPlace: NextPage = () => {
           <select
               id="country"
               name="country"
+              aria-label="nft-type"
               autoComplete="country-name"
               className="text-gray-500 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               onChange={(event)=>filterNftType.current(event)}
@@ -119,6 +120,7 @@ const MarketPlace: NextPage = () => {
             <div>
               <input
                   type="text"
+                  aria-label="minimum-price"
                   className="rounded-md border-gray-300 py-1 w-20 text-sm"
                   autoComplete="off"
                   onChange={(event)=>minPrice.current(event)}
@@ -130,6 +132,7 @@ const MarketPlace: NextPage = () => {
             <div>
               <input
                   type="text"
+                  aria-label="maximum-price"
                   className="rounded-md border-gray-300 py-1 w-20 text-sm"
                   autoComplete="off"
                   onChange={(event)=>maxPrice.current(event)}
