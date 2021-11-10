@@ -22,7 +22,7 @@ const navigation = [
   { name: 'Dashboard', href: '/', icon: PresentationChartBarIcon },
   { name: 'Marketplace', href: '/marketplace', icon: UsersIcon },
   { name: 'My missions', href: '/missions', icon: BriefcaseIcon },
-  { name: 'My assets', href: '#', icon: FolderIcon },
+  { name: 'My assets', href: '/assets', icon: FolderIcon },
 ];
 
 const docNavigation = {
