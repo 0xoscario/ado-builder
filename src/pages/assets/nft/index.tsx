@@ -2,7 +2,12 @@ import { useState } from 'react';
 import type { NextPage } from 'next';
 import Layout from '@/components/DefaultLayout';
 import Link from 'next/link';
-import { CheckCircleIcon } from '@heroicons/react/outline';
+import {
+  CheckCircleIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from '@heroicons/react/outline';
 
 const Detail: NextPage = () => {
   const [showWhiteList, setShowWhiteList] = useState(false);
@@ -11,9 +16,11 @@ const Detail: NextPage = () => {
   return (
     <Layout title="Assets detail">
       <div className="flex mb-3 pb-3 border-b border-grey-500 justify-between">
-        <h1 className="text-2xl font-medium text-gray-700 m-3">
-          My Assets &gt; Space Ape 827
-        </h1>
+        <div className="flex items-center m-3">
+          <h1 className="text-2xl font-medium text-gray-700">My Assets</h1>
+          <ChevronRightIcon className="w-5 h-5 m-2 text-gray-400" />
+          <h1 className="text-2xl font-medium text-gray-700">Space Ape 827</h1>
+        </div>
         <Link href="/assets/">
           <a className="border border-gray-900 w-32 h-8 rounded-md flex items-center self-center justify-center font-medium text-xs">
             Back to Assets
@@ -56,7 +63,7 @@ const Detail: NextPage = () => {
                 <p className="text-white text-xs">Actions</p>
               </div>
             </div>
-            <div className="bg-white mt-3 border-gray-300 border shadow-lg rounded p-4">
+            <div className="flex flex-col bg-white mt-3 border-gray-300 border shadow-lg rounded p-4">
               <p className="font-medium text-xs text-gray-400 mb-2">
                 Current Price
               </p>
@@ -64,9 +71,12 @@ const Detail: NextPage = () => {
               <p className="font-medium text-xs text-gray-400 mb-2">
                 Asset Status
               </p>
-              <h2 className="text-green-400 mb-2 text-base">
-                Listed on marketplace
-              </h2>
+              <div className="flex flex-row items-center self-baseline">
+                <CheckCircleIcon className="w-5 h-5 ml-auto text-green-400" />
+                <h2 className="text-green-400 text-base">
+                  Listed on marketplace
+                </h2>
+              </div>
             </div>
           </div>
         </div>
@@ -240,7 +250,11 @@ const Detail: NextPage = () => {
                   className="cursor-pointer"
                   onClick={() => setShowWhiteList(!showWhiteList)}
                 >
-                  Arrow
+                  {showWhiteList ? (
+                    <ChevronDownIcon className="w-5 h-5 m-2 text-gray-400" />
+                  ) : (
+                    <ChevronUpIcon className="w-5 h-5 m-2 text-gray-400" />
+                  )}
                 </div>
               </div>
               {showWhiteList && (
@@ -305,7 +319,11 @@ const Detail: NextPage = () => {
                   className="cursor-pointer"
                   onClick={() => setShowBlackList(!showBlackList)}
                 >
-                  Arrow
+                  {showWhiteList ? (
+                    <ChevronDownIcon className="w-5 h-5 m-2 text-gray-400" />
+                  ) : (
+                    <ChevronUpIcon className="w-5 h-5 m-2 text-gray-400" />
+                  )}
                 </div>
               </div>
               {showBlackList && (
@@ -370,7 +388,11 @@ const Detail: NextPage = () => {
                   className="cursor-pointer"
                   onClick={() => setShowItemActivity(!showItemActivity)}
                 >
-                  Arrow
+                  {showWhiteList ? (
+                    <ChevronDownIcon className="w-5 h-5 m-2 text-gray-400" />
+                  ) : (
+                    <ChevronUpIcon className="w-5 h-5 m-2 text-gray-400" />
+                  )}
                 </div>
               </div>
               {showItemActivity && (
