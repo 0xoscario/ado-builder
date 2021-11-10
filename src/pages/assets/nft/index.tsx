@@ -94,7 +94,7 @@ const Detail: NextPage = () => {
               </h3>
               <p className="text-gray-600 text-sm">
                 Vastness is description.{' '}
-                <a href="/" className="text-blue-500 text-sm">
+                <a href="#" className="text-blue-500 text-sm">
                   read more
                 </a>
               </p>
@@ -107,12 +107,12 @@ const Detail: NextPage = () => {
                     External URL
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     className="font-medium text-blue-500 text-sm"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    https://www.google.com
+                    #
                   </a>
                 </div>
                 <div className="w-1/2 pl-4">
@@ -127,7 +127,7 @@ const Detail: NextPage = () => {
                   <h4 className="font-medium text-gray-900 text-sm">
                     Data URL
                   </h4>
-                  <a href="/" className="font-medium text-blue-500 text-sm">
+                  <a href="#" className="font-medium text-blue-500 text-sm">
                     https://spaceape.io...
                   </a>
                 </div>
@@ -151,7 +151,7 @@ const Detail: NextPage = () => {
                     Royalty receipient
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     target="_blank"
                     className="font-medium text-blue-500 text-sm"
                     rel="noreferrer"
@@ -172,7 +172,7 @@ const Detail: NextPage = () => {
                     Royalty receipient
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     target="_blank"
                     className="text-blue-500 text-sm"
                     rel="noreferrer"
@@ -194,7 +194,7 @@ const Detail: NextPage = () => {
                     Tax receipient
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     target="_blank"
                     className="text-blue-500 text-sm"
                     rel="noreferrer"
@@ -214,7 +214,7 @@ const Detail: NextPage = () => {
                     Link to asset
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     target="_blank"
                     className="text-blue-500 text-sm"
                     rel="noreferrer"
@@ -237,7 +237,7 @@ const Detail: NextPage = () => {
                     Contract Address
                   </h4>
                   <a
-                    href="https://www.google.com"
+                    href="#"
                     target="_blank"
                     className="text-blue-500 text-sm"
                     rel="noreferrer"
@@ -271,7 +271,7 @@ const Detail: NextPage = () => {
                     </h4>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -281,7 +281,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -291,7 +291,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -301,7 +301,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -340,7 +340,7 @@ const Detail: NextPage = () => {
                     </h4>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -350,7 +350,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -360,7 +360,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -370,7 +370,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -409,7 +409,7 @@ const Detail: NextPage = () => {
                     </h4>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -419,7 +419,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -429,7 +429,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
@@ -439,7 +439,7 @@ const Detail: NextPage = () => {
                     </p>
                     <p className="mt-4">
                       <a
-                        href="https://www.google.com"
+                        href="#"
                         target="_blank"
                         className="text-blue-500 text-sm"
                         rel="noreferrer"
