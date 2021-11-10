@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Layout from '@/components/DefaultLayout';
 import { Tab } from '@headlessui/react';
 import { LightningBoltIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
 
 const Assets: NextPage = () => {
   return (
@@ -19,19 +20,29 @@ const Assets: NextPage = () => {
           }}
         >
           <div className="flex items-center">
-            <p className="text-gray-600 font-bold">SHOW</p>
+            <p className="text-gray-600 font-medium">SHOW</p>
             <Tab.List className="ml-3">
-              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">ALL</Tab>
-              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">NFTs</Tab>
-              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">ADOs</Tab>
-              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">Tokens</Tab>
-              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">Digital Currencies</Tab>
+              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">
+                ALL
+              </Tab>
+              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">
+                NFTs
+              </Tab>
+              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">
+                ADOs
+              </Tab>
+              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">
+                Tokens
+              </Tab>
+              <Tab className="px-3 border-l-0 border-t-0 border-b-0 border-r border-gray-500">
+                Digital Currencies
+              </Tab>
               <Tab className="px-3">Contracts</Tab>
             </Tab.List>
           </div>
 
           <Tab.Panels className="mt-3 bg-white rounded-lg shadow-md px-6 py-4">
-            <h1 className="text-md font-bold">CW-721 Assets</h1>
+            <h1 className="text-md font-medium">CW-721 Assets</h1>
             <Tab.Panel className="mt-3 flex items-center justify-between bg-white rounded-lg shadow-md px-6 py-4">
               <div className="flex items-center">
                 <div className="w-8 h-8 mr-4 inline-flex items-center justify-center rounded-full bg-red-700 text-white flex-shrink-0">
@@ -47,12 +58,19 @@ const Assets: NextPage = () => {
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">NFT</h3>
-                <p className="text-gray-500 font-bold text-xs ml-3">Digital Art</p>
+                <h3 className="text-xl font-medium">NFT</h3>
+                <p className="text-gray-500 font-medium text-xs ml-3">
+                  Digital Art
+                </p>
               </div>
               <div className="flex items-center">
-                <h3 className="text-xl font-bold">Space Ape 827</h3>
-                <button className="text-white bg-gray-800 w-28 h-8 ml-3 rounded-md flex items-center justify-center"><LightningBoltIcon className="w-5 h-5 mr-1" />Detail</button>
+                <h3 className="text-xl font-medium">Space Ape 827</h3>
+                <Link href="/assets/nft">
+                  <a className="text-white bg-gray-800 w-28 h-8 ml-3 rounded-md flex items-center justify-center">
+                    <LightningBoltIcon className="w-5 h-5 mr-1" />
+                    Detail
+                  </a>
+                </Link>
               </div>
             </Tab.Panel>
             <Tab.Panel>Content nfts</Tab.Panel>
@@ -68,4 +86,3 @@ const Assets: NextPage = () => {
 };
 
 export default Assets;
-
