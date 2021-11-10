@@ -198,7 +198,7 @@ const NftTable = (props) => {
           {formatAddressShort(data.owner)}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {data.publisher}
+          {formatAddressShort(data.publisher)}
         </td>
         <td className="px-6 py-4 text-gray-500">
           <div
@@ -222,12 +222,11 @@ const NftTable = (props) => {
               src={data.image}
               onPlay={e => console.log("onPlay")}
               className="pt-4"
-              // other props here
                     /></div>
                 )
                 :
                 (<img
-                className="inline-block w-20 h-20 rounded ring-2 ring-white m-6"
+                className="inline-block w-20 h-20 rounded ring-2 ring-white m-6 ml-10"
                 src={data.image}
                 alt=""
             />)
@@ -283,7 +282,7 @@ const NftTable = (props) => {
             <td>
               <div className="flex flex-col p-4  text-sm">
                 <div className="mt-2 font-bold">Token Standard</div>
-                <div className="mt-2">ERC-0000</div>
+                <div className="mt-2">CW721</div>
               </div>
             </td>
             <td>
@@ -349,10 +348,10 @@ const NftTable = (props) => {
           <div className="text-gray-500">Results: {total_count}</div>
           <div className="text-gray-500" >
           <select
-              id="country"
-              name="country"
-              aria-label="country"
-              autoComplete="country-name"
+              id="item-per-page"
+              name="item-per-page"
+              aria-label="item-per-page"
+              autoComplete="Off"
               className="ml-5 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               onChange={handleItemPerPage}
           >
@@ -419,8 +418,8 @@ const NftTable = (props) => {
         </div>
       </div>
 
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div className="-my-2 overflow-x-auto">
+        <div className="py-2 align-middle inline-block min-w-full">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-gray-800 text-gray-200">

@@ -63,7 +63,7 @@ const dataList ={nfts: [
     nftId:" token_id2",
     owner:"terra1aqhd8edcc590tdvy7zhhjt62e2gs49wcl22xaq",
     pricing:"102",
-    publisher:"terra1qqhd8edcc590tdvy7zhhjt62e2gs49wcl22xaq",
+    publisher:"terra1qqhd8edcc590tdvy7zhhjt62e2gs49wcl22xaq12348-213094821309483-210948231094823-0948",
     symbol: "TOK"
   }
   ]
@@ -91,16 +91,16 @@ const MarketPlace: NextPage = () => {
             <input
                 className="w-5/6  border-transparent focus:border-transparent focus:ring-0 focus:placeholder-gray-400 focus:outline-none"
                 type="text"
-                name="first-name"
-                id="first-name"
+                name="search-text"
+                id="search-text"
                 placeholder="Search Marketplace"
                 autoComplete="off"
                 onChange={(event)=>searchText.current(event)}
             />
           </div>
           <select
-              id="country"
-              name="country"
+              id="nft-type"
+              name="nft-type"
               aria-label="nft-type"
               autoComplete="country-name"
               className="text-gray-500 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
