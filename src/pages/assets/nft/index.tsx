@@ -44,7 +44,13 @@ const Detail: NextPage = () => {
       <div className="bg-white mt-3 rounded shadow-lg p-4">
         <div className="flex">
           <div className="xs:w-full w-2/5 p-3">
-            <div className="bg-black h-full" />
+            <div className="bg-black h-full rounded">
+              <img
+                className="mx-auto h-full w-full"
+                src="/images/nft-asset.jpg"
+                alt="nft asset"
+              />
+            </div>
           </div>
           <div className="xs:w-full w-3/5 p-3">
             <div className="flex justify-between items-start flex-wrap">
