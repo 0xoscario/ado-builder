@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon, CheckCircleIcon } from '@heroicons/react/outline';
 import _ from 'lodash';
@@ -44,18 +44,18 @@ enum NftType {
 }
 
 const NftTable = (props) => {
-  const [order, setOrder] = React.useState(0);
-  const [orderBy, setOrderBy] = React.useState('item');
-  const [expandedRows, setExpandedRows] = React.useState([]);
-  const [searchText, setSearchText] = React.useState('');
-  const [filterType, setFilterType] = React.useState('All');
-  const [filterMinPrice, setFilterMinPrice] = React.useState(0);
-  const [filterMaxPrice, setFilterMaxPrice] = React.useState(0);
+  const [order, setOrder] = useState(0);
+  const [orderBy, setOrderBy] = useState('item');
+  const [expandedRows, setExpandedRows] = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [filterType, setFilterType] = useState('All');
+  const [filterMinPrice, setFilterMinPrice] = useState(0);
+  const [filterMaxPrice, setFilterMaxPrice] = useState(0);
 
-  const [itemPerPage, setItemPerPage] = React.useState(25);
-  const [curPage, setCurPage] = React.useState(0);
+  const [itemPerPage, setItemPerPage] = useState(25);
+  const [curPage, setCurPage] = useState(0);
 
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -65,7 +65,7 @@ const NftTable = (props) => {
     setIsOpen(true);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     props.searchText.current = handleSearchText;
     props.filterNftType.current = filterNftType;
     props.minPrice.current = handleMinPrice;
@@ -478,40 +478,42 @@ const NftTable = (props) => {
                 <div className="relative border-b-2 py-4">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg text-center font-medium leading-6 text-gray-900"
+                    className="text-lg text-center font-md leading-6 text-gray-900"
                   >
                     Complete checkout
                   </Dialog.Title>
                   <XIcon
-                    className="absolute right-4 w-5 top-6"
+                    className="absolute right-4 w-5 top-5"
                     onClick={closeModal}
                   />
                 </div>
                 <div className="p-5">
                   <div className="flex border-b-2 justify-between p-2">
-                    <h3 className="text-sm text-gray-500">Item</h3>
-                    <h3 className="text-sm text-gray-500">Subtotal</h3>
+                    <h3 className="text-sm text-gray-900">Item</h3>
+                    <h3 className="text-sm text-gray-900">Subtotal</h3>
                   </div>
 
                   <div className="mt-2 flex border-b-2 justify-between p-2">
                     <div className="flex">
                       <div className="bg-black w-3 h-full"></div>
                       <div className="ml-2">
-                        <h3>Mr. Smiley Stan</h3>
-                        <p>Royalties: 5%</p>
-                        <p>Tax - flat fee</p>
+                        <h3 className="text-sm text-gray-900">
+                          Mr. Smiley Stan
+                        </h3>
+                        <p className="text-sm text-gray-600">Royalties: 5%</p>
+                        <p className="text-sm text-gray-600">Tax - flat fee</p>
                       </div>
                     </div>
-                    <div>
-                      <h3>79.95</h3>
-                      <p>3.99</p>
-                      <p>2.50</p>
+                    <div className="flex flex-col items-end">
+                      <h3 className="text-sm text-gray-900">79.95</h3>
+                      <p className="text-sm text-gray-600">3.99</p>
+                      <p className="text-sm text-gray-600">2.50</p>
                     </div>
                   </div>
 
                   <div className="mt-2 border-b-2 flex justify-between p-2">
-                    <h2>Total</h2>
-                    <h2>86.44</h2>
+                    <h2 className="text-sm text-gray-900">Total</h2>
+                    <h2 className="text-sm text-gray-900">86.44</h2>
                   </div>
 
                   <div className="mt-2 border-b-2 p-2 flex items-center">
@@ -528,9 +530,11 @@ const NftTable = (props) => {
                         />
                       </div>
                     )}
-                    <h3>By checking this box, I agree to pay this total</h3>
+                    <h3 className="text-sm text-gray-600">
+                      By checking this box, I agree to pay this total
+                    </h3>
                   </div>
-                  <div className="mt-2 flex justify-center">
+                  <div className="mt-4 flex justify-center">
                     <button
                       type="button"
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
