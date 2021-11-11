@@ -458,7 +458,6 @@ const NftTable = (props) => {
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
@@ -483,7 +482,7 @@ const NftTable = (props) => {
                     Complete checkout
                   </Dialog.Title>
                   <XIcon
-                    className="absolute right-4 w-5 top-5"
+                    className="absolute right-4 w-5 top-5 cursor-pointer"
                     onClick={closeModal}
                   />
                 </div>
@@ -495,7 +494,11 @@ const NftTable = (props) => {
 
                   <div className="mt-2 flex border-b-2 justify-between p-2">
                     <div className="flex">
-                      <div className="bg-black w-3 h-full"></div>
+                      <img
+                        className="inline-block w-20 h-20 rounded ring-2 ring-white"
+                        src="https://mypass.ace-energy.co.th/asset/img/avatar.jpg"
+                        alt=""
+                      />
                       <div className="ml-2">
                         <h3 className="text-sm text-gray-900">
                           Mr. Smiley Stan
@@ -505,15 +508,15 @@ const NftTable = (props) => {
                       </div>
                     </div>
                     <div className="flex flex-col items-end">
-                      <h3 className="text-sm text-gray-900">79.95</h3>
-                      <p className="text-sm text-gray-600">3.99</p>
-                      <p className="text-sm text-gray-600">2.50</p>
+                      <h3 className="text-sm text-gray-900">79.95 UST</h3>
+                      <p className="text-sm text-gray-600">3.99 UST</p>
+                      <p className="text-sm text-gray-600">2.50 UST</p>
                     </div>
                   </div>
 
                   <div className="mt-2 border-b-2 flex justify-between p-2">
                     <h2 className="text-sm text-gray-900">Total</h2>
-                    <h2 className="text-sm text-gray-900">86.44</h2>
+                    <h2 className="text-sm text-gray-900">86.44 UST</h2>
                   </div>
 
                   <div className="mt-2 border-b-2 p-2 flex items-center">
@@ -535,13 +538,23 @@ const NftTable = (props) => {
                     </h3>
                   </div>
                   <div className="mt-4 flex justify-center">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                      onClick={closeModal}
-                    >
-                      Confirm Checkout
-                    </button>
+                    {confirmed ? (
+                      <button
+                        type="button"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-900 border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        onClick={closeModal}
+                      >
+                        Confirm Checkout
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-300 border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                        onClick={closeModal}
+                      >
+                        Confirm Checkout
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
